@@ -1,0 +1,13 @@
+{
+  "name": "kamerarendszer-budapest-functions",
+  "description": "Firebase Functions — saveMinisite",
+  "scripts": {
+    "deploy": "firebase deploy --only functions"
+  },
+  "engines": { "node": "20" },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-functions": "^6.0.0"
+  },
+  "private": true
+}
