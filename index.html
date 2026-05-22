@@ -3,151 +3,438 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kamerarendszer telepítés Budapesten | Profi biztonságtechnika 2025</title>
-  <meta name="description" content="Professzionális kamerarendszer telepítés Budapesten. ✓ Ingyenes helyszíni felmérés ✓ Garanciális munkavégzés ✓ Hikvision, Dahua rendszerek. Kérjen ajánlatot!">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://kamerearendszer-budapest.hu/">
-  <link rel="stylesheet" href="/css/style.css">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "KameraRendszer Budapest",
-    "description": "Professzionális biztonsági kamerarendszer telepítés, szerviz és karbantartás Budapesten.",
-    "url": "https://kamerearendszer-budapest.hu",
-    "telephone": "+36-1-234-5678",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Váci út 45.",
-      "addressLocality": "Budapest",
-      "postalCode": "1134",
-      "addressCountry": "HU"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 47.5160,
-      "longitude": 19.0682
-    },
-    "openingHoursSpecification": [
-      {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "18:00"},
-      {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:00"}
+  <script>
+  // ═══════════════════════════════════════════════════════════════
+  //  SITE CONFIG — megnyerés után csak ezt a blokkot kell kitölteni
+  // ═══════════════════════════════════════════════════════════════
+  var SITE = {
+    domain:            'kamerearendszer-budapest.hu',
+    nev:               'Kovács Péter',
+    telefon:           '+3612345678',
+    telefonMegjelenit: '+36-1-234-5678',
+    varos:             'Budapest',
+    kerulet:           'XIII. kerület',
+    szakmaJelzo:       'Biztonságtechnikai szakértő',
+    schemaType:        'LocalBusiness',
+    title:             'Kamerarendszer telepítés Budapesten | Profi biztonságtechnika 2025',
+    description:       'Professzionális kamerarendszer telepítés Budapesten. ✓ Ingyenes helyszíni felmérés ✓ 2 év garancia ✓ Hikvision, Dahua rendszerek. Kérjen ajánlatot!',
+    keywords:          'kamerarendszer Budapest, kamera telepítés, biztonsági kamera, térfigyelő kamera, hikvision, dahua, biztonságtechnika',
+    ogTitle:           'Kamerarendszer telepítés Budapesten — Profi biztonságtechnika',
+    ogDesc:            'Professzionális kamerarendszer telepítés Budapesten. Ingyenes felmérés, 2 év garancia, Hikvision/Dahua eszközök.',
+    faqSchema: [
+      { q: 'Mennyibe kerül a kamerarendszer telepítés Budapesten?',
+        a: 'Budapesten a kamerarendszer telepítés 35–65 ezer Ft kamera+telepítés, az épület típusától és a kamerák számától függően. Ingyenes helyszíni felmérés után adunk pontos árajánlatot.' },
+      { q: 'Mennyi idő alatt végzik el a telepítést?',
+        a: 'Egy átlagos lakásos telepítés (4 kamera) általában 1 munkanapot vesz igénybe. Társasházaknál és ipari objektumoknál 2–5 munkanappal számoljon.' },
+      { q: 'Van-e garancia a telepített kamerarendszerre?',
+        a: 'Igen, minden telepített rendszerre 2 év garanciát vállalunk alkatrészre és munkadíjra egyaránt.' }
     ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "187",
-      "bestRating": "5"
-    },
-    "priceRange": "$$",
-    "areaServed": {"@type": "City", "name": "Budapest"}
-  }
+  };
+  // Meta tagek kitöltése
+  (function(){
+    var url='https://'+SITE.domain+'/';
+    document.title=SITE.title;
+    var h=document.head;
+    function meta(attrs){var el=document.createElement('meta');for(var k in attrs)el.setAttribute(k,attrs[k]);h.appendChild(el)}
+    function link(attrs){var el=document.createElement('link');for(var k in attrs)el.setAttribute(k,attrs[k]);h.appendChild(el)}
+    function ld(obj){var el=document.createElement('script');el.type='application/ld+json';el.textContent=JSON.stringify(obj);h.appendChild(el)}
+    meta({'name':'description','content':SITE.description});
+    meta({'name':'keywords','content':SITE.keywords});
+    meta({'name':'author','content':SITE.nev});
+    meta({'name':'robots','content':'index, follow'});
+    meta({'name':'geo.region','content':'HU-BU'});
+    meta({'name':'geo.placename','content':SITE.varos+', '+SITE.kerulet});
+    link({'rel':'canonical','href':url});
+    meta({'property':'og:title','content':SITE.ogTitle});
+    meta({'property':'og:description','content':SITE.ogDesc});
+    meta({'property':'og:type','content':'website'});
+    meta({'property':'og:url','content':url});
+    meta({'property':'og:locale','content':'hu_HU'});
+    ld({
+      "@context":"https://schema.org","@type":SITE.schemaType,
+      "name":SITE.nev+' – Kamerarendszer Budapest',
+      "description":SITE.description,
+      "url":url,"telephone":SITE.telefon,
+      "address":{"@type":"PostalAddress","addressLocality":SITE.varos,"addressRegion":SITE.kerulet,"addressCountry":"HU"},
+      "areaServed":{"@type":"City","name":SITE.varos},
+      "openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"08:00","closes":"18:00"},
+      "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"187","bestRating":"5"},
+      "priceRange":"$$"
+    });
+    ld({
+      "@context":"https://schema.org","@type":"FAQPage",
+      "mainEntity":SITE.faqSchema.map(function(i){
+        return {"@type":"Question","name":i.q,"acceptedAnswer":{"@type":"Answer","text":i.a}};
+      })
+    });
+  })();
   </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#1a3a6b;--navy-dark:#0f2347;--navy-light:#1e4d8c;--red:#e8390e;--red-dark:#c42d0a;--cream:#f1f5f9;--white:#ffffff;--text:#334155;--text-mid:#64748b;--text-light:#94a3b8;--warm:#c4955a;--warm-light:#d9b07e;--border:rgba(0,0,0,0.08);--border-light:rgba(255,255,255,0.08);--success:#16a34a;--ff-display:'Cormorant Garamond',Georgia,serif;--ff-body:'Manrope',system-ui,sans-serif;--ease:cubic-bezier(0.23,1,0.32,1)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--ff-body);color:var(--text);background:var(--cream);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:var(--navy);text-decoration:none;transition:color .2s}
+    a:hover{color:var(--red)}
+    img{max-width:100%;height:auto;display:block}
+    .container{max-width:1180px;margin:0 auto;padding:0 24px}
+
+    /* NAV */
+    .nav{position:fixed;top:0;left:0;right:0;z-index:200;transition:all .5s var(--ease)}
+    .nav.scrolled{background:rgba(15,35,71,0.96);backdrop-filter:blur(20px);box-shadow:0 1px 0 var(--border-light)}
+    .nav-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:76px;gap:16px}
+    .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .logo-icon{width:42px;height:42px;background:var(--navy);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid rgba(255,255,255,0.15)}
+    .logo-icon svg{width:24px;height:24px;fill:var(--white)}
+    .logo-name{font-size:1rem;font-weight:800;color:var(--white);display:block;line-height:1.1}
+    .logo-sub{font-size:.62rem;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:.08em}
+    .nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+    .nav-links a{color:rgba(255,255,255,0.6);font-size:.82rem;font-weight:500;letter-spacing:.8px;text-transform:uppercase;padding:8px 12px;border-radius:6px;transition:all .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--white);background:rgba(255,255,255,0.08)}
+    .nav-cta{background:var(--red)!important;color:var(--white)!important;padding:10px 20px!important;border-radius:6px!important}
+    .nav-cta:hover{background:var(--red-dark)!important}
+    .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px;z-index:210;position:relative}
+    .hamburger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px;transition:.3s var(--ease)}
+    .hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+    /* TOPBAR */
+    .topbar{background:var(--navy-dark);color:rgba(255,255,255,0.65);font-size:.8rem;padding:8px 0;position:relative;z-index:100}
+    .topbar-inner{max-width:1180px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+    .topbar a{color:rgba(255,255,255,0.65);transition:color .2s}
+    .topbar a:hover{color:var(--white)}
+    .topbar-item{display:inline-flex;align-items:center;gap:6px}
+
+    /* HERO */
+    .hero{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%,var(--navy-light) 100%);color:var(--white);padding:88px 0 72px;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+    .hero-inner{display:grid;grid-template-columns:1fr 400px;gap:64px;align-items:center;max-width:1180px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.18);border-radius:100px;padding:6px 14px;font-size:.78rem;font-weight:600;margin-bottom:22px;color:rgba(255,255,255,0.88)}
+    .hero-badge-dot{width:8px;height:8px;background:#4ade80;border-radius:50%;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+    .hero h1{font-family:var(--ff-display);font-weight:400;font-size:clamp(2.4rem,4.5vw,3.6rem);line-height:1.1;color:var(--white);margin-bottom:22px;letter-spacing:-.01em}
+    .hero h1 em{font-style:italic;color:var(--warm-light)}
+    .hero-desc{font-size:1.05rem;color:rgba(255,255,255,0.65);line-height:1.85;max-width:480px;margin-bottom:36px;font-weight:300}
+    .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:40px}
+    .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-body);font-weight:700;font-size:.85rem;letter-spacing:.8px;text-transform:uppercase;padding:16px 32px;border:none;cursor:pointer;transition:all .3s var(--ease);text-decoration:none}
+    .btn-gold{background:var(--warm);color:var(--navy-dark)}
+    .btn-gold:hover{background:var(--warm-light);transform:translateY(-2px);box-shadow:0 12px 32px rgba(196,149,90,.3);color:var(--navy-dark)}
+    .btn-ghost{background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);padding:15px 28px}
+    .btn-ghost:hover{color:var(--white);border-color:rgba(255,255,255,.5)}
+    .hero-stats{display:flex;gap:32px;flex-wrap:wrap}
+    .hero-stat-number{font-family:var(--ff-display);font-size:2rem;font-weight:600;color:var(--white);display:block;line-height:1}
+    .hero-stat-label{font-size:.7rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+
+    /* PROFILE CARD (hero jobb oldal) */
+    .hero-cred{background:rgba(10,18,32,.45);border:1px solid rgba(196,149,90,.25);border-radius:20px;padding:36px 32px;text-align:center;backdrop-filter:blur(12px);position:relative}
+    .hero-cred::before{content:'';position:absolute;top:-1px;left:60px;right:60px;height:1px;background:linear-gradient(90deg,transparent,rgba(196,149,90,.7),transparent)}
+    .hero-cred::after{content:'';position:absolute;bottom:-1px;left:60px;right:60px;height:1px;background:linear-gradient(90deg,transparent,rgba(196,149,90,.3),transparent)}
+
+    /* Profil nézet (id esetén) */
+    .cred-profile{display:none}
+    .cred-photo{width:160px;height:160px;border-radius:50%;overflow:hidden;border:2px solid rgba(196,149,90,.65);margin:0 auto 24px;box-shadow:0 0 0 8px rgba(196,149,90,.09),0 0 0 18px rgba(196,149,90,.04),0 16px 48px rgba(0,0,0,.4);background:#1a3a6b}
+    .cred-photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
+    .cred-name{font-family:var(--ff-display);font-size:1.8rem;font-weight:500;color:var(--white);margin-bottom:6px;line-height:1.1}
+    .cred-role{font-size:.65rem;text-transform:uppercase;letter-spacing:3px;color:var(--warm);font-weight:600;margin-bottom:28px}
+    .cred-sep{width:32px;height:1px;background:rgba(255,255,255,.1);margin:0 auto 28px}
+    .cred-phone-label{font-size:.6rem;text-transform:uppercase;letter-spacing:2.5px;color:rgba(255,255,255,.3);margin-bottom:10px;font-weight:500}
+    .cred-phone-num{display:block;font-family:var(--ff-display);font-size:1.6rem;font-weight:500;color:var(--warm);text-decoration:none;letter-spacing:.5px;transition:color .3s;margin-bottom:20px}
+    .cred-phone-num:hover{color:var(--warm-light)}
+
+    /* Form nézet (id nélkül) */
+    .cred-form{}
+    .cred-form h3{font-family:var(--ff-display);font-size:1.4rem;font-weight:500;color:var(--white);margin-bottom:20px;text-align:left}
+    .form-group{margin-bottom:14px;text-align:left}
+    .form-group label{display:block;font-size:.72rem;font-weight:600;margin-bottom:5px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1.5px}
+    .form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;font-size:.95rem;font-family:var(--ff-body);color:var(--white);transition:border-color .2s}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:rgba(196,149,90,.7)}
+    .form-group select option{background:var(--navy-dark);color:var(--white)}
+    .form-group input::placeholder{color:rgba(255,255,255,.25)}
+    .form-note{font-size:.75rem;color:rgba(255,255,255,.3);margin-top:10px;text-align:center}
+    .btn-form{width:100%;background:var(--red);color:var(--white);border:none;padding:14px;font-family:var(--ff-body);font-size:.85rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;border-radius:6px;transition:all .3s;margin-top:4px}
+    .btn-form:hover{background:var(--red-dark);transform:translateY(-1px)}
+
+    /* STATS STRIP */
+    .stats-strip{background:var(--navy);padding:40px 0}
+    .stats-inner{max-width:1180px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+    .stat-num{font-family:var(--ff-display);font-size:2.2rem;font-weight:600;color:var(--white);display:block;line-height:1}
+    .stat-lbl{font-size:.72rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em;margin-top:5px}
+
+    /* SECTIONS */
+    section{padding:96px 0}
+    .sec-inner{max-width:1180px;margin:0 auto;padding:0 24px}
+    .sec-header{text-align:center;margin-bottom:56px}
+    .sec-overline{display:inline-flex;align-items:center;gap:12px;margin-bottom:14px}
+    .sec-overline::before{content:'';width:32px;height:1px;background:var(--warm)}
+    .sec-overline::after{content:'';width:32px;height:1px;background:var(--warm)}
+    .sec-overline span{font-size:.7rem;text-transform:uppercase;letter-spacing:3px;color:var(--warm);font-weight:600}
+    .sec-title{font-family:var(--ff-display);font-weight:400;font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.2;letter-spacing:-.01em;color:var(--navy-dark);margin-bottom:12px}
+    .sec-title em{font-style:italic;color:var(--warm)}
+    .sec-desc{color:var(--text-mid);font-size:1rem;font-weight:300;max-width:540px;margin:0 auto}
+
+    /* CARDS */
+    .cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+    .cards-grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px}
+    .card{background:var(--white);border-radius:14px;padding:32px;border:1.5px solid rgba(0,0,0,.06);transition:all .3s var(--ease);box-shadow:0 2px 16px rgba(26,58,107,.06)}
+    .card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(26,58,107,.12);border-color:rgba(196,149,90,.2)}
+    .card-icon{width:48px;height:48px;background:rgba(26,58,107,.08);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:18px}
+    .card h3{font-family:var(--ff-display);font-size:1.3rem;font-weight:500;color:var(--navy-dark);margin-bottom:10px}
+    .card p{color:var(--text-mid);font-size:.9rem;line-height:1.75;font-weight:300;margin-bottom:14px}
+    .card-link{font-weight:700;font-size:.82rem;color:var(--navy);display:inline-flex;align-items:center;gap:6px;transition:gap .2s,color .2s}
+    .card-link:hover{color:var(--red);gap:10px}
+
+    /* USP */
+    .usp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+    .usp-item{display:flex;align-items:flex-start;gap:14px;padding:20px;background:var(--white);border-radius:10px;border:1.5px solid rgba(0,0,0,.06)}
+    .usp-check{width:30px;height:30px;background:rgba(22,163,74,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--success);font-size:.9rem;font-weight:700}
+    .usp-item h4{font-size:.95rem;font-weight:700;margin-bottom:4px;color:var(--navy-dark)}
+    .usp-item p{font-size:.85rem;color:var(--text-mid);font-weight:300}
+
+    /* TESTIMONIALS */
+    .test-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+    .test-card{background:var(--white);border-radius:14px;padding:28px;border:1.5px solid rgba(0,0,0,.06);box-shadow:0 2px 16px rgba(26,58,107,.05)}
+    .stars{color:#f59e0b;margin-bottom:12px;letter-spacing:2px}
+    .test-text{font-family:var(--ff-display);font-style:italic;font-size:1.05rem;color:var(--text);line-height:1.7;margin-bottom:16px}
+    .test-author{display:flex;align-items:center;gap:12px;padding-top:16px;border-top:1px solid rgba(0,0,0,.06)}
+    .test-avatar{width:40px;height:40px;border-radius:50%;background:var(--navy);color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem;flex-shrink:0}
+    .test-name{font-weight:700;font-size:.88rem;color:var(--navy-dark);margin-bottom:2px}
+    .test-loc{font-size:.75rem;color:var(--text-light)}
+
+    /* DARK SECTION */
+    .sec-dark{background:var(--navy-dark);color:var(--white)}
+    .sec-dark .sec-title{color:var(--white)}
+    .sec-dark .sec-desc{color:rgba(255,255,255,.5)}
+
+    /* PROCESS */
+    .process-track{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+    .process-track::before{content:'';position:absolute;top:34px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(196,149,90,.3),rgba(196,149,90,.3),transparent)}
+    .process-step{text-align:center;padding:0 20px;position:relative}
+    .step-num{width:68px;height:68px;border-radius:50%;border:1px solid rgba(196,149,90,.3);background:var(--navy-dark);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;position:relative;z-index:2}
+    .step-num span{font-family:var(--ff-display);font-size:1.5rem;font-weight:500;color:var(--warm)}
+    .process-step h3{font-family:var(--ff-display);font-size:1.15rem;font-weight:500;color:var(--white);margin-bottom:8px}
+    .process-step p{color:rgba(255,255,255,.4);font-size:.85rem;line-height:1.75;font-weight:300}
+
+    /* FAQ */
+    .faq-list{max-width:760px;margin:0 auto}
+    .faq-item{border-bottom:1px solid rgba(0,0,0,.07);overflow:hidden}
+    .faq-q{width:100%;background:none;border:none;padding:22px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-family:var(--ff-body);font-size:.98rem;font-weight:600;color:var(--text);text-align:left;gap:12px;transition:color .2s}
+    .faq-q:hover{color:var(--warm)}
+    .faq-icon{width:24px;height:24px;flex-shrink:0;position:relative}
+    .faq-icon::before,.faq-icon::after{content:'';position:absolute;background:currentColor;transition:all .3s var(--ease)}
+    .faq-icon::before{width:12px;height:1.5px;top:50%;left:50%;transform:translate(-50%,-50%)}
+    .faq-icon::after{width:1.5px;height:12px;top:50%;left:50%;transform:translate(-50%,-50%)}
+    .faq-item.open .faq-icon::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
+    .faq-item.open .faq-q{color:var(--warm)}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .5s var(--ease)}
+    .faq-item.open .faq-a{max-height:200px}
+    .faq-a-inner{padding:0 0 22px;color:var(--text-mid);font-size:.92rem;line-height:1.85;font-weight:300}
+
+    /* CTA */
+    .cta-band{background:linear-gradient(135deg,var(--red) 0%,var(--red-dark) 100%);padding:72px 0;text-align:center}
+    .cta-band h2{font-family:var(--ff-display);font-weight:400;font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--white);margin-bottom:14px}
+    .cta-band p{color:rgba(255,255,255,.8);font-size:1.05rem;font-weight:300;margin-bottom:28px}
+    .cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+    .btn-outline{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,.6);padding:14px 28px}
+    .btn-outline:hover{background:rgba(255,255,255,.12);color:var(--white);border-color:var(--white)}
+
+    /* BLOG */
+    .blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+    .blog-card{background:var(--white);border-radius:14px;overflow:hidden;border:1.5px solid rgba(0,0,0,.06);transition:all .3s var(--ease)}
+    .blog-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(26,58,107,.12)}
+    .blog-card-img{height:190px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-dark) 100%);display:flex;align-items:center;justify-content:center;font-size:2.8rem}
+    .blog-body{padding:24px}
+    .blog-meta{display:flex;align-items:center;gap:10px;font-size:.78rem;color:var(--text-light);margin-bottom:10px}
+    .blog-tag{background:rgba(26,58,107,.08);color:var(--navy);padding:3px 10px;border-radius:100px;font-weight:600}
+    .blog-card h3{font-family:var(--ff-display);font-size:1.15rem;font-weight:500;margin-bottom:8px;line-height:1.3}
+    .blog-card h3 a{color:var(--navy-dark)}
+    .blog-card h3 a:hover{color:var(--navy)}
+    .blog-card p{font-size:.88rem;color:var(--text-mid);font-weight:300;line-height:1.7}
+    .blog-more{margin-top:12px;font-weight:700;font-size:.82rem;color:var(--navy);display:inline-flex;align-items:center;gap:6px}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+    .contact-detail{display:flex;align-items:flex-start;gap:16px;padding:18px 0;border-bottom:1px solid rgba(0,0,0,.07)}
+    .cd-icon{width:44px;height:44px;background:var(--navy);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+    .cd-label{font-size:.68rem;text-transform:uppercase;letter-spacing:2px;color:var(--text-light);margin-bottom:3px;font-weight:600}
+    .cd-value{font-weight:700;color:var(--navy-dark)}
+    .map-placeholder{height:260px;background:var(--cream);border:1.5px solid rgba(0,0,0,.06);border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--text-mid);font-size:.9rem;margin-top:20px;padding:20px}
+
+    /* FOOTER */
+    footer{background:var(--navy-dark);padding:56px 0 0}
+    .footer-grid{max-width:1180px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:40px;margin-bottom:48px}
+    .footer-brand{font-family:var(--ff-display);font-size:1.3rem;color:var(--white);font-weight:500;margin-bottom:12px}
+    .footer-brand span{color:var(--warm)}
+    .footer-about p{font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.75;font-weight:300}
+    .footer-col h4{font-size:.72rem;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.4);font-weight:600;margin-bottom:16px}
+    .footer-col ul{list-style:none}
+    .footer-col ul li{margin-bottom:8px}
+    .footer-col ul li a{color:rgba(255,255,255,.55);font-size:.88rem;transition:color .2s}
+    .footer-col ul li a:hover{color:var(--white)}
+    .footer-contact-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;font-size:.88rem;color:rgba(255,255,255,.55)}
+    .footer-contact-item a{color:rgba(255,255,255,.55)}
+    .footer-contact-item a:hover{color:var(--white)}
+    .footer-bottom{max-width:1180px;margin:0 auto;padding:20px 24px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:.8rem;color:rgba(255,255,255,.3)}
+    .footer-bottom a{color:rgba(255,255,255,.3)}
+    .footer-bottom a:hover{color:rgba(255,255,255,.6)}
+    .trust-badges{display:flex;gap:8px;flex-wrap:wrap}
+    .trust-badge{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:4px 10px;font-size:.72rem;color:rgba(255,255,255,.5);font-weight:600}
+
+    /* FAB */
+    .fab{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:300;background:#23B573;color:#fff;font-family:var(--ff-body);font-size:.78rem;font-weight:700;letter-spacing:.8px;white-space:nowrap;border:none;cursor:pointer;padding:15px 28px;border-radius:100px;box-shadow:0 4px 6px rgba(0,0,0,.15),0 10px 36px rgba(35,181,115,.35);transition:background .3s,transform .3s,box-shadow .3s;text-decoration:none;display:none}
+    .fab:hover{background:#1fa866;transform:translateX(-50%) translateY(-2px);box-shadow:0 6px 10px rgba(0,0,0,.18),0 16px 48px rgba(35,181,115,.45);color:#fff}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-delay-1{transition-delay:.1s}.reveal-delay-2{transition-delay:.2s}.reveal-delay-3{transition-delay:.3s}
+    .hero-content>*{opacity:0;transform:translateY(18px);animation:heroIn .8s var(--ease) forwards}
+    .hero-content>*:nth-child(1){animation-delay:.2s}.hero-content>*:nth-child(2){animation-delay:.35s}.hero-content>*:nth-child(3){animation-delay:.5s}.hero-content>*:nth-child(4){animation-delay:.65s}.hero-content>*:nth-child(5){animation-delay:.8s}
+    .hero-cred{opacity:0;transform:translateY(28px);animation:heroIn .9s var(--ease) .45s forwards}
+    @keyframes heroIn{to{opacity:1;transform:translateY(0)}}
+
+    /* REFERENCIÁK */
+    .ref-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+    .ref-card{background:var(--white);border-radius:14px;padding:28px;border:1.5px solid rgba(0,0,0,.06)}
+    .ref-loc{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;color:var(--navy);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px}
+    .ref-card h3{font-family:var(--ff-display);font-size:1.2rem;margin-bottom:8px;color:var(--navy-dark)}
+    .ref-card p{font-size:.88rem;color:var(--text-mid);font-weight:300;line-height:1.75;margin-bottom:12px}
+    .ref-tags{display:flex;gap:6px;flex-wrap:wrap}
+    .tag{background:var(--cream);color:var(--text);font-size:.72rem;padding:3px 10px;border-radius:100px;font-weight:600}
+
+    @media(max-width:1024px){
+      .hero-inner{grid-template-columns:1fr;gap:48px}
+      .hero-cred{max-width:440px}
+      .contact-grid{grid-template-columns:1fr;gap:40px}
+      .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+      .process-track{grid-template-columns:1fr 1fr;gap:40px}
+      .process-track::before{display:none}
+      .stats-inner{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:640px){
+      .nav-links{display:none;position:fixed;inset:0;background:rgba(15,35,71,.97);backdrop-filter:blur(16px);flex-direction:column;align-items:center;justify-content:center;gap:8px}
+      .nav-links.open{display:flex}
+      .nav-links a{font-size:1rem;padding:12px 24px}
+      .hamburger{display:flex}
+      section{padding:64px 0}
+      .hero{padding:80px 0 56px}
+      .hero h1{font-size:clamp(2rem,8vw,2.8rem)}
+      .hero-actions{flex-direction:column;align-items:flex-start}
+      .hero-stats{gap:20px}
+      .stats-inner{grid-template-columns:repeat(2,1fr)}
+      .footer-grid{grid-template-columns:1fr}
+      .topbar-right{display:none}
+    }
+  </style>
 </head>
 <body>
 
 <!-- TOPBAR -->
 <div class="topbar">
-  <div class="container">
-    <div class="topbar-left">
+  <div class="topbar-inner">
+    <div style="display:flex;gap:18px;flex-wrap:wrap">
       <span class="topbar-item">📍 Budapest, XIII. kerület — Pest megye</span>
       <span class="topbar-item">⭐ 4.9/5 (187 értékelés)</span>
     </div>
-    <div class="topbar-right">
+    <div class="topbar-right" style="display:flex;gap:18px">
       <span class="topbar-item">🕐 H–P: 8:00–18:00 | Szo: 9:00–14:00</span>
-      <a href="tel:+3612345678" class="topbar-item">📞 +36-1-234-5678</a>
+      <a href="tel:+3612345678" class="topbar-item dyn-phone">+36-1-234-5678</a>
     </div>
   </div>
 </div>
 
-<!-- HEADER -->
-<header class="site-header">
-  <div class="container">
-    <nav class="nav-wrap">
-      <a href="/" class="logo">
+<!-- HEADER / NAV -->
+<header>
+  <nav class="nav" id="mainNav" role="navigation">
+    <div class="nav-inner">
+      <a href="/" class="logo" aria-label="Főoldal">
         <div class="logo-icon">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
         </div>
-        <div class="logo-text">
-          <span class="logo-name">KameraRendszer Budapest</span>
+        <div>
+          <span class="logo-name dyn-name">KameraRendszer Budapest</span>
           <span class="logo-sub">Profi biztonságtechnika</span>
         </div>
       </a>
-      <ul class="main-nav" id="mainNav">
-        <li><a href="/telepites/">Telepítés</a></li>
-        <li><a href="/arak/">Árak</a></li>
-        <li><a href="/szerviz/">Szerviz</a></li>
-        <li><a href="/referenciak/">Referenciák</a></li>
-        <li><a href="/blog/">Blog</a></li>
-        <li><a href="/kapcsolat/" class="nav-cta btn btn-primary btn-sm">Ajánlatkérés</a></li>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#szolgaltatasok">Szolgáltatások</a></li>
+        <li><a href="#folyamat">Folyamat</a></li>
+        <li><a href="#referenciak">Referenciák</a></li>
+        <li><a href="#gyik">GYIK</a></li>
+        <li><a href="#kapcsolat">Kapcsolat</a></li>
+        <li><a href="tel:+3612345678" class="nav-cta dyn-phone">+36-1-234-5678</a></li>
       </ul>
       <button class="hamburger" id="hamburger" aria-label="Menü">
         <span></span><span></span><span></span>
       </button>
-    </nav>
-  </div>
+    </div>
+  </nav>
 </header>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="container">
+<section class="hero" id="fooldal">
+  <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
         Budapest vezető kamerarendszer-telepítője
       </div>
-      <h1>Kamerarendszer telepítés Budapesten — Profi, gyors, garantált</h1>
+      <h1>Kamerarendszer<br>telepítés <em>Budapesten</em><br>— profi, garantált</h1>
       <p class="hero-desc">Védje otthonát, vállalkozását és társasházát Pest megye tapasztalt biztonságtechnikai csapatával. Ingyenes helyszíni felmérés, 2 év garancia, Hikvision és Dahua minőség.</p>
       <div class="hero-actions">
-        <a href="#ajanlat" class="btn btn-primary btn-lg">Ingyenes felmérés kérése</a>
-        <a href="tel:+3612345678" class="btn btn-outline btn-lg">📞 +36-1-234-5678</a>
+        <a href="tel:+3612345678" class="btn btn-gold dyn-phone">📞 +36-1-234-5678</a>
+        <a href="#kapcsolat" class="btn btn-ghost">Ingyenes felmérés</a>
       </div>
       <div class="hero-stats">
-        <div class="hero-stat-item">
-          <span class="hero-stat-number" data-count="340" data-suffix="+">340+</span>
-          <div class="hero-stat-label">Telepített rendszer</div>
-        </div>
-        <div class="hero-stat-item">
-          <span class="hero-stat-number" data-count="8">8</span>
-          <div class="hero-stat-label">Év tapasztalat</div>
-        </div>
-        <div class="hero-stat-item">
-          <span class="hero-stat-number" data-count="187">187</span>
-          <div class="hero-stat-label">5-csillagos vélemény</div>
-        </div>
-        <div class="hero-stat-item">
-          <span class="hero-stat-number" data-count="24">24</span>
-          <div class="hero-stat-label">Óra szerviz</div>
-        </div>
+        <div><span class="hero-stat-number">340+</span><div class="hero-stat-label">Elvégzett telepítés</div></div>
+        <div><span class="hero-stat-number">8 év</span><div class="hero-stat-label">Fővárosi tapasztalat</div></div>
+        <div><span class="hero-stat-number">4.9★</span><div class="hero-stat-label">187 Google-értékelés</div></div>
       </div>
     </div>
-    <div class="hero-form" id="ajanlat">
-      <div class="hero-card">
-        <h3>🎯 Ingyenes ajánlat kérése</h3>
-        <form data-ajanlat>
+
+    <div class="hero-cred" id="heroCredCard">
+      <!-- Profil nézet — csak ?id= esetén látható -->
+      <div class="cred-profile" id="credProfile">
+        <div class="cred-photo">
+          <img id="profilImg" src="./profil.webp" alt="" loading="eager">
+        </div>
+        <div class="cred-name dyn-name">Kovács Péter</div>
+        <div class="cred-role">Kamerarendszer szakértő · Budapest</div>
+        <div class="cred-sep"></div>
+        <div class="cred-phone-label">Telefonszám</div>
+        <a href="tel:+3612345678" class="cred-phone-num dyn-phone">+36-1-234-5678</a>
+      </div>
+
+      <!-- Form nézet — ?id= nélkül -->
+      <div class="cred-form" id="credForm">
+        <h3>🎯 Ingyenes ajánlatkérés</h3>
+        <form data-ajanlat id="heroForm">
           <div class="form-group">
-            <label for="nev">Neve</label>
-            <input type="text" id="nev" name="nev" placeholder="Kovács János" required>
+            <label>Neve</label>
+            <input type="text" name="nev" placeholder="Kovács János" required>
           </div>
           <div class="form-group">
-            <label for="tel">Telefonszám</label>
-            <input type="tel" id="tel" name="tel" placeholder="+36 30 123 4567" required>
+            <label>Telefonszám</label>
+            <input type="tel" name="tel" placeholder="+36 30 123 4567" required>
           </div>
           <div class="form-group">
-            <label for="tipus">Milyen objektum?</label>
-            <select id="tipus" name="tipus">
+            <label>Milyen objektum?</label>
+            <select name="tipus">
               <option value="">Válasszon...</option>
               <option>Lakás / ház</option>
               <option>Vállalkozás / iroda</option>
               <option>Társasház</option>
               <option>Raktár / gyár</option>
-              <option>Egyéb</option>
             </select>
           </div>
           <div class="form-group">
-            <label for="ker">Budapest kerülete</label>
-            <input type="text" id="ker" name="ker" placeholder="pl. XIII. kerület">
+            <label>Kerület</label>
+            <input type="text" name="kerulet" placeholder="pl. XIII. kerület">
           </div>
-          <button type="submit" class="btn btn-primary" style="width:100%">Ajánlatot kérek →</button>
+          <button type="submit" class="btn-form">Ajánlatot kérek →</button>
         </form>
         <p class="form-note">🔒 Adatait bizalmasan kezeljük. Visszahívás 2 munkanapon belül.</p>
       </div>
@@ -155,414 +442,480 @@
   </div>
 </section>
 
-<!-- STATS -->
+<!-- STATS STRIP -->
 <div class="stats-strip">
-  <div class="container">
-    <div class="stat-item">
-      <span class="stat-number" data-count="340" data-suffix="+">340+</span>
-      <div class="stat-label">Telepített rendszer</div>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number" data-count="14">14</span>
-      <div class="stat-label">Budapest kerülete</div>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number" data-count="8">8</span>
-      <div class="stat-label">Év tapasztalat</div>
-    </div>
-    <div class="stat-item">
-      <span class="stat-number" data-count="100">100</span>
-      <div class="stat-label">% garanciális</div>
-    </div>
+  <div class="stats-inner">
+    <div class="stat-item"><span class="stat-num">340+</span><div class="stat-lbl">Telepített rendszer</div></div>
+    <div class="stat-item"><span class="stat-num">14</span><div class="stat-lbl">Budapest kerülete</div></div>
+    <div class="stat-item"><span class="stat-num">8 év</span><div class="stat-lbl">Fővárosi tapasztalat</div></div>
+    <div class="stat-item"><span class="stat-num">2 év</span><div class="stat-lbl">Garancia</div></div>
   </div>
 </div>
 
-<!-- USP -->
-<section class="section section--light">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Miért mi?</span>
-      <h2 class="section-title">3 ok, amiért Budapesten minket választanak</h2>
-      <p class="section-desc">Pest megyei licenccel rendelkező szerelőink 8 éve dolgoznak a fővárosban — ismerjük Budapest sajátosságait.</p>
-    </div>
-    <div class="usp-grid">
-      <div class="usp-item">
-        <div class="usp-check">✓</div>
-        <div>
-          <h4>Helyi szakértelem</h4>
-          <p>Pest megyei telepítői engedéllyel. Ismerjük Budapest panelházait, belvárosát és agglomerációját.</p>
-        </div>
-      </div>
-      <div class="usp-item">
-        <div class="usp-check">✓</div>
-        <div>
-          <h4>Ingyenes felmérés</h4>
-          <p>Helyszíni felmérés minden Budapesten belüli objektumnál — díjmentesen, 48 órán belül.</p>
-        </div>
-      </div>
-      <div class="usp-item">
-        <div class="usp-check">✓</div>
-        <div>
-          <h4>2 év garancia</h4>
-          <p>Minden telepített rendszerre 2 év garanciát vállalunk alkatrészre és munkadíjra egyaránt.</p>
-        </div>
-      </div>
-      <div class="usp-item">
-        <div class="usp-check">✓</div>
-        <div>
-          <h4>GDPR-kompatibilis</h4>
-          <p>Budapesti és fővárosi szabályozásnak megfelelő telepítés, dokumentációval és jogi tájékoztatóval.</p>
-        </div>
-      </div>
-      <div class="usp-item">
-        <div class="usp-check">✓</div>
-        <div>
-          <h4>Gyors reagálás</h4>
-          <p>Budapest területén belül 4 órás hibaelhárítás. 24/7-es szerviz elérhetőség biztosított.</p>
-        </div>
-      </div>
-      <div class="usp-item">
-        <div class="usp-check">✓</div>
-        <div>
-          <h4>Profi márkák</h4>
-          <p>Kizárólag Hikvision, Dahua és Axis márkanevű eszközök — certificált viszonteladói státusszal.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Szolgáltatások</span>
-      <h2 class="section-title">Teljes körű kameramegoldások Budapesten</h2>
-      <p class="section-desc">Az otthoni rögzítőtől az ipari övezeti rendszerig — minden megoldást vállalunk a fővárosban.</p>
+<!-- SZOLGÁLTATÁSOK -->
+<section id="szolgaltatasok">
+  <div class="sec-inner">
+    <div class="sec-header reveal">
+      <div class="sec-overline"><span>Szolgáltatások</span></div>
+      <h2 class="sec-title">Teljes körű kameramegoldások<br><em>Budapesten</em></h2>
+      <p class="sec-desc">Az otthoni rögzítőtől az ipari övezeti rendszerig — minden megoldást vállalunk a fővárosban.</p>
     </div>
     <div class="cards-grid">
-      <div class="card service-card">
+      <div class="card reveal">
         <div class="card-icon">🏠</div>
         <h3>Otthoni kamerarendszer</h3>
-        <p>Lakások, kertes házak, sorházak védelmére. Mobiltelefonos elérés, éjjellátó kamerák, riasztóintegráció.</p>
+        <p>Lakások, kertes házak, sorházak védelmére. Mobilos elérés, éjjellátó kamerák, riasztóintegráció.</p>
         <a href="/otthoni-kamerarendszer/" class="card-link">Részletek →</a>
       </div>
-      <div class="card service-card">
+      <div class="card reveal reveal-delay-1">
         <div class="card-icon">🏢</div>
         <h3>Üzleti kamerarendszer</h3>
         <p>Irodák, üzletek, éttermek, szállodák számára. NVR-alapú megoldások, beléptetőrendszer-integráció.</p>
         <a href="/uzleti-kamerarendszer/" class="card-link">Részletek →</a>
       </div>
-      <div class="card service-card">
+      <div class="card reveal reveal-delay-2">
         <div class="card-icon">🏗️</div>
-        <h3>Társasházi kamerarendszer</h3>
-        <p>Fővárosi önkormányzati rendeletnek megfelelő telepítés, GDPR-dokumentáció, lakógyűlési előkészítés.</p>
+        <h3>Társasházi rendszer</h3>
+        <p>Fővárosi rendeletnek megfelelő telepítés, GDPR-dokumentáció, lakógyűlési előkészítés.</p>
         <a href="/tarsashazi-kamerarendszer/" class="card-link">Részletek →</a>
       </div>
-      <div class="card service-card">
+      <div class="card reveal">
         <div class="card-icon">🏭</div>
         <h3>Ipari kamerarendszer</h3>
-        <p>Raktárak, gyárak, üzemek, logisztikai csarnokok. Sorban kiépített rendszerek, szerver-alapú NVR.</p>
+        <p>Raktárak, gyárak, üzemek. IP67 eszközök, szerver NVR, ONVIF-integráció.</p>
         <a href="/ipari-kamerarendszer/" class="card-link">Részletek →</a>
       </div>
-      <div class="card service-card">
+      <div class="card reveal reveal-delay-1">
         <div class="card-icon">🔧</div>
         <h3>Szerviz és karbantartás</h3>
-        <p>Meglévő rendszerek felülvizsgálata, karbantartása, bővítése. Más cég által telepített rendszerek is.</p>
+        <p>Meglévő rendszerek felülvizsgálata, karbantartása, bővítése. 24/7 hibaelhárítás.</p>
         <a href="/szerviz/" class="card-link">Részletek →</a>
       </div>
-      <div class="card service-card">
-        <div class="card-icon">📋</div>
-        <h3>Telepítés és beüzemelés</h3>
-        <p>Tervezéstől a beüzemelésig minden egy kézből. Helyszíni felmérés, kivitelezés, betanítás, dokumentáció.</p>
-        <a href="/telepites/" class="card-link">Részletek →</a>
+      <div class="card reveal reveal-delay-2">
+        <div class="card-icon">💰</div>
+        <h3>Árak 2025</h3>
+        <p>Átlátható, tételes árlista. Lakáscsomag 89 900 Ft-tól, üzleti csomag 189 900 Ft-tól.</p>
+        <a href="/arak/" class="card-link">Részletek →</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- LOCAL CONTEXT -->
-<section class="section section--light">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Budapest biztonsági helyzete 2024</span>
-      <h2 class="section-title">Miért fontos a kamerarendszer a fővárosban?</h2>
+<!-- USP / MIÉRT MI -->
+<section style="background:var(--white);padding:80px 0">
+  <div class="sec-inner">
+    <div class="sec-header reveal">
+      <div class="sec-overline"><span>Miért minket válasszon?</span></div>
+      <h2 class="sec-title">3 ok, amiért <em>Budapesten</em><br>minket választanak</h2>
     </div>
-    <div class="cards-grid--2">
-      <div class="card">
-        <div class="card-icon">📊</div>
-        <h3>Budapesti bűnügyi statisztikák</h3>
-        <p>Budapest XIII. kerületben 2024-ben <strong>340 lakásbetörést</strong> regisztráltak a rendőrségi adatok szerint. A VIII. kerületben a közterületi lopások száma 18%-kal emelkedett. Az I.–IX. kerületek belvárosában a kereskedelmi betörések 22%-ot nőttek.</p>
-        <p>Azok az ingatlanok, amelyeken látható biztonsági kamera van telepítve, <strong>73%-kal kisebb valószínűséggel</strong> válnak betörés célpontjává (Országos Rendőrfőkapitányság felmérése alapján).</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🗺️</div>
-        <h3>Fővárosi sajátosságok</h3>
-        <p>Budapest egyedi kihívásokat támaszt a biztonságtechnika számára: sűrű beépítettség, panelházak régi villamos hálózata, műemléki homlokzatok korlátai, és a társasházi közös döntéshozatal szükségessége.</p>
-        <p>Csapatunk <strong>8 éve</strong> dolgozik Budapesten, és ismeri a fővárosi kerületek specifikus igényeit: a belváros reprezentatív épületeitől a peremkerületek raktárterületéig.</p>
-      </div>
+    <div class="usp-grid">
+      <div class="usp-item reveal"><div class="usp-check">✓</div><div><h4>Helyi szakértelem</h4><p>Pest megyei licenccel. Ismerjük Budapest panelházait, belvárosát és agglomerációját.</p></div></div>
+      <div class="usp-item reveal reveal-delay-1"><div class="usp-check">✓</div><div><h4>Ingyenes felmérés</h4><p>Helyszíni felmérés 48 órán belül, minden Budapesten belüli objektumnál díjmentesen.</p></div></div>
+      <div class="usp-item reveal reveal-delay-2"><div class="usp-check">✓</div><div><h4>2 év garancia</h4><p>Minden telepített rendszerre 2 év garancia alkatrészre és munkadíjra egyaránt.</p></div></div>
+      <div class="usp-item reveal"><div class="usp-check">✓</div><div><h4>GDPR-kompatibilis</h4><p>Fővárosi szabályozásnak megfelelő telepítés, dokumentációval és jogi tájékoztatóval.</p></div></div>
+      <div class="usp-item reveal reveal-delay-1"><div class="usp-check">✓</div><div><h4>4 h hibaelhárítás</h4><p>Budapest területén belül 4 órás szerviz-kiszállás garanciával.</p></div></div>
+      <div class="usp-item reveal reveal-delay-2"><div class="usp-check">✓</div><div><h4>Profi márkák</h4><p>Kizárólag Hikvision, Dahua és Axis certificált eszközök — gyártói garanciával.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- REFERENCES -->
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Referenciák</span>
-      <h2 class="section-title">Elvégzett munkáink Budapesten</h2>
-      <p class="section-desc">Néhány példa a főváros különböző kerületeiben telepített rendszereinkből.</p>
+<!-- FOLYAMAT -->
+<section id="folyamat" class="sec-dark">
+  <div class="sec-inner">
+    <div class="sec-header reveal">
+      <div class="sec-overline" style="--warm:#c4955a"><span>Folyamat</span></div>
+      <h2 class="sec-title">Az első lépéstől<br>a beüzemelésig</h2>
+      <p class="sec-desc">Egyszerű, átlátható — a telefonhívástól a kész, működő rendszerig.</p>
     </div>
-    <div class="reference-grid">
-      <div class="reference-card">
-        <div class="reference-location">📍 VIII. kerület, Józsefváros</div>
-        <h3>14 társasházas projekt</h3>
-        <p>A Józsefváros megújulási programjában részt vevő 14 társasháznál telepítettük a kaputelefon-integrált kamerarendszert. GDPR-kompatibilis dokumentáció, teljes lakógyűlési előkészítéssel.</p>
-        <div class="reference-tags">
-          <span class="tag">Társasházi</span><span class="tag">GDPR</span><span class="tag">56 kamera</span>
-        </div>
-      </div>
-      <div class="reference-card">
-        <div class="reference-location">📍 XIII. kerület, Angyalföld</div>
-        <h3>Logisztikai centrum</h3>
-        <p>3500 m²-es raktárterületen 32 kamerás rendszer kiépítése. Szerver-alapú NVR, mozgásérzékelős zónák, beléptetőrendszer-integráció, ONVIF-kompatibilis eszközök.</p>
-        <div class="reference-tags">
-          <span class="tag">Ipari</span><span class="tag">32 kamera</span><span class="tag">Beléptetés</span>
-        </div>
-      </div>
-      <div class="reference-card">
-        <div class="reference-location">📍 XI. kerület, Újbuda</div>
-        <h3>Irodaház — 6 emelet</h3>
-        <p>Modern irodaháznál 24 kamerás rendszer, IP-alapú megoldás, felhős archiválással. Az üzemeltető mobiltelefon-appból is valós időben nyomon tudja követni a képeket.</p>
-        <div class="reference-tags">
-          <span class="tag">Üzleti</span><span class="tag">Felhő archiválás</span><span class="tag">24 kamera</span>
-        </div>
-      </div>
-    </div>
-    <div style="text-align:center; margin-top:36px">
-      <a href="/referenciak/" class="btn btn-dark">Összes referencia megtekintése</a>
+    <div class="process-track">
+      <div class="process-step reveal"><div class="step-num"><span>I</span></div><h3>Telefonos egyeztetés</h3><p>Felhív minket, átbeszéljük az igényeit és az objektum típusát.</p></div>
+      <div class="process-step reveal reveal-delay-1"><div class="step-num"><span>II</span></div><h3>Ingyenes felmérés</h3><p>48 órán belül kiszállunk Budapestre és elvégezzük a helyszíni felmérést.</p></div>
+      <div class="process-step reveal reveal-delay-2"><div class="step-num"><span>III</span></div><h3>Tételes ajánlat</h3><p>Részletes, írásbeli ajánlat — rejtett díjak nélkül, 2 munkanapon belül.</p></div>
+      <div class="process-step reveal reveal-delay-3"><div class="step-num"><span>IV</span></div><h3>Telepítés és garancia</h3><p>Elvégezzük a telepítést, betanítjuk és 2 év garanciával átadjuk a rendszert.</p></div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="section section--light">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Google-vélemények</span>
-      <h2 class="section-title">Mit mondanak ügyfeleink?</h2>
-      <p class="section-desc">187 értékelés alapján 4.9/5 csillag — Google Maps</p>
+<!-- REFERENCIÁK -->
+<section id="referenciak">
+  <div class="sec-inner">
+    <div class="sec-header reveal">
+      <div class="sec-overline"><span>Referenciák</span></div>
+      <h2 class="sec-title">Elvégzett munkáink<br><em>Budapesten</em></h2>
     </div>
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
+    <div class="ref-grid">
+      <div class="ref-card reveal">
+        <div class="ref-loc">📍 VIII. kerület, Józsefváros</div>
+        <h3>14 társasházzas kerületi program</h3>
+        <p>A Józsefváros Megújul program keretében 14 társasháznál kaputelefon-integrált kamerarendszer. GDPR-dokumentáció, egységes kiépítés.</p>
+        <div class="ref-tags"><span class="tag">Társasházi</span><span class="tag">56 kamera</span><span class="tag">GDPR</span></div>
+      </div>
+      <div class="ref-card reveal reveal-delay-1">
+        <div class="ref-loc">📍 XIII. kerület, Angyalföld</div>
+        <h3>3500 m²-es logisztikai centrum</h3>
+        <p>32 HD IP kamera, szerver NVR RAID-tárolással, beléptetőrendszer-integráció, mozgásérzékelős riasztó-összekötés.</p>
+        <div class="ref-tags"><span class="tag">Ipari</span><span class="tag">32 kamera</span><span class="tag">Beléptetés</span></div>
+      </div>
+      <div class="ref-card reveal reveal-delay-2">
+        <div class="ref-loc">📍 XI. kerület, Újbuda</div>
+        <h3>6 emeletes irodaház</h3>
+        <p>24 IP kamera, felhős biztonsági mentés, mobilos elérés az üzemeltetőnek és a biztonsági cégnek egyszerre.</p>
+        <div class="ref-tags"><span class="tag">Üzleti</span><span class="tag">24 kamera</span><span class="tag">Felhő</span></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px">
+      <a href="/referenciak/" class="btn btn-ghost" style="color:var(--navy);border-color:var(--navy)">Összes referencia →</a>
+    </div>
+  </div>
+</section>
+
+<!-- VÉLEMÉNYEK -->
+<section style="background:var(--navy-dark)" id="velemenyek">
+  <div class="sec-inner">
+    <div class="sec-header reveal">
+      <div class="sec-overline"><span>Vélemények</span></div>
+      <h2 class="sec-title" style="color:var(--white)">Mit mondanak<br><em>ügyfeleink?</em></h2>
+      <p class="sec-desc" style="color:rgba(255,255,255,.5)">4.9/5 csillag — 187 Google Maps értékelés alapján</p>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal" style="background:rgba(255,255,255,.04);border-color:rgba(196,149,90,.15)">
         <div class="stars">★★★★★</div>
-        <p class="testimonial-text">"Pontosak, profik és tiszták utánuk. A XIII. kerületi lakásunknál 4 kamerát szereltek fel délelőtt, délutánra már minden működött. Appból követem a bejáratot."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">KM</div>
-          <div>
-            <div class="author-name">Kis Mariann</div>
-            <div class="author-location">Budapest XIII. kerület</div>
-          </div>
-        </div>
+        <p class="test-text" style="color:rgba(255,255,255,.75)">"Pontosak, profik és tiszták utánuk. A XIII. kerületi lakásunkban 4 kamerát szereltek fel délelőtt, délutánra már a telefonomon nézem az előszobát."</p>
+        <div class="test-author"><div class="test-avatar">KM</div><div><div class="test-name" style="color:var(--white)">Kis Mariann</div><div class="test-loc" style="color:var(--warm)">Budapest XIII. kerület</div></div></div>
       </div>
-      <div class="testimonial-card">
+      <div class="test-card reveal reveal-delay-1" style="background:rgba(255,255,255,.04);border-color:rgba(196,149,90,.15)">
         <div class="stars">★★★★★</div>
-        <p class="testimonial-text">"Társasházunkhoz kértünk ajánlatot. Nagyon korrekt árajánlat, a lakógyűlési dokumentumokat is segítették összeállítani. A telepítés egy napot vett igénybe."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">NB</div>
-          <div>
-            <div class="author-name">Nagy Balázs</div>
-            <div class="author-location">Budapest VIII. kerület (közösképviselő)</div>
-          </div>
-        </div>
+        <p class="test-text" style="color:rgba(255,255,255,.75)">"Társasházunkhoz kértünk ajánlatot. Nagyon korrekt ár, a lakógyűlési dokumentumokat is segítették összeállítani. Egy napot vett igénybe a telepítés."</p>
+        <div class="test-author"><div class="test-avatar">NB</div><div><div class="test-name" style="color:var(--white)">Nagy Balázs</div><div class="test-loc" style="color:var(--warm)">Közös képviselő, VIII. kerület</div></div></div>
       </div>
-      <div class="testimonial-card">
+      <div class="test-card reveal reveal-delay-2" style="background:rgba(255,255,255,.04);border-color:rgba(196,149,90,.15)">
         <div class="stars">★★★★★</div>
-        <p class="testimonial-text">"Raktárunkban 18 kamerát szereltek. A rendszer nem okoz gondot, a szervizesek gyorsan kijönnek ha bármi kérdés van. Ajánlom minden raktárnak és üzemnek."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">VT</div>
-          <div>
-            <div class="author-name">Varga Tamás</div>
-            <div class="author-location">Budapest XX. kerület (raktár)</div>
-          </div>
-        </div>
+        <p class="test-text" style="color:rgba(255,255,255,.75)">"Raktárunkban 32 kamerát szereltek. A rendszer tökéletesen működik, a szervizesek gyorsan kijönnek — Angyalföldön 2-3 órán belül mindig itt vannak."</p>
+        <div class="test-author"><div class="test-avatar">VT</div><div><div class="test-name" style="color:var(--white)">Varga Tamás</div><div class="test-loc" style="color:var(--warm)">Logisztikai igazgató, XIII. kerület</div></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
+<!-- CTA BAND -->
 <div class="cta-band">
   <div class="container">
     <h2>Kérjen ingyenes felmérést Budapesten!</h2>
-    <p>Helyszíni felmérés 48 órán belül, ajánlat azonnal. Nincs rejtett díj, nincs kötelezettség.</p>
-    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-      <a href="#ajanlat" class="btn btn-outline btn-lg">Ajánlatot kérek</a>
-      <a href="tel:+3612345678" class="btn btn-outline btn-lg">📞 Visszahívást kérek</a>
+    <p>48 órán belül kiszállunk, ajánlat azonnal. Nincs rejtett díj, nincs kötelezettség.</p>
+    <div class="cta-actions">
+      <a href="#kapcsolat" class="btn btn-outline">Ajánlatot kérek</a>
+      <a href="tel:+3612345678" class="btn btn-outline dyn-phone">📞 +36-1-234-5678</a>
     </div>
   </div>
 </div>
 
-<!-- BLOG PREVIEW -->
-<section class="section">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Tudásbázis</span>
-      <h2 class="section-title">Hasznos cikkek kamerarendszerekről</h2>
+<!-- GYIK -->
+<section id="gyik">
+  <div class="sec-inner">
+    <div class="sec-header reveal">
+      <div class="sec-overline"><span>GYIK</span></div>
+      <h2 class="sec-title">Gyakori kérdések</h2>
     </div>
-    <div class="blog-grid">
-      <div class="blog-card">
-        <div class="blog-card-img">📷</div>
-        <div class="blog-card-body">
-          <div class="blog-meta"><span class="blog-tag">Árak</span><span>2025. január</span></div>
-          <h3><a href="/blog/kamerarendszer-budapest-arak-2025/">Kamerarendszer ár Budapesten 2025 — Mennyibe kerül valójában?</a></h3>
-          <p>Részletes árösszehasonlítás budapesti viszonylatban: anyag, munka, garancia bontásban.</p>
-          <a href="/blog/kamerarendszer-budapest-arak-2025/" class="blog-more">Elolvasom →</a>
-        </div>
-      </div>
-      <div class="blog-card">
-        <div class="blog-card-img">🏗️</div>
-        <div class="blog-card-body">
-          <div class="blog-meta"><span class="blog-tag">Telepítés</span><span>2025. február</span></div>
-          <h3><a href="/blog/kamerarendszer-telepites-budapest/">Kamerarendszer telepítés Budapesten — Amit tudni kell 2025-ben</a></h3>
-          <p>Helyi szabályok, engedélyek, kerületi sajátosságok és a legjobb szerelők kiválasztása.</p>
-          <a href="/blog/kamerarendszer-telepites-budapest/" class="blog-more">Elolvasom →</a>
-        </div>
-      </div>
-      <div class="blog-card">
-        <div class="blog-card-img">🔐</div>
-        <div class="blog-card-body">
-          <div class="blog-meta"><span class="blog-tag">Betörések</span><span>2025. március</span></div>
-          <h3><a href="/blog/budapest-betoresek-biztonsag-2025/">Budapesten megnőttek a betörések — mit tehetsz 2025-ben?</a></h3>
-          <p>Kerületi bűnügyi statisztikák és a leghatékonyabb megelőzési módszerek.</p>
-          <a href="/blog/budapest-betoresek-biztonsag-2025/" class="blog-more">Elolvasom →</a>
-        </div>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:32px">
-      <a href="/blog/" class="btn btn-dark">Összes cikk</a>
+    <div class="faq-list">
+      <div class="faq-item reveal"><button class="faq-q">Mennyibe kerül a kamerarendszer telepítés Budapesten? <span class="faq-icon"></span></button><div class="faq-a"><div class="faq-a-inner">Budapesten egy komplett 4 kamerás otthoni rendszer 75 000–120 000 Ft között mozog (eszköz + telepítés + garancia). Pontos árat csak ingyenes helyszíni felmérés után adunk — az épület típusa és a kamerák száma jelentősen befolyásolja az árat.</div></div></div>
+      <div class="faq-item reveal reveal-delay-1"><button class="faq-q">Mennyi idő alatt végzik el a telepítést? <span class="faq-icon"></span></button><div class="faq-a"><div class="faq-a-inner">Egy 4 kamerás lakásos telepítés általában 1 munkanapot vesz igénybe. Társasházaknál és ipari objektumoknál 2–5 munkanappal számoljon. Hétvégi telepítés is lehetséges előzetes egyeztetéssel.</div></div></div>
+      <div class="faq-item reveal reveal-delay-2"><button class="faq-q">GDPR-kompatibilis lesz a rendszer? <span class="faq-icon"></span></button><div class="faq-a"><div class="faq-a-inner">Igen. Minden telepítésünk tartalmazza a szükséges GDPR dokumentációt: adatkezelési tájékoztatót, figyelmeztető táblákat és a 30 napos automatikus felülírás beállítását. Társasházi esetben a lakógyűlési előterjesztés sablont is biztosítjuk.</div></div></div>
+      <div class="faq-item reveal"><button class="faq-q">Más cég által telepített rendszert is szervizelnek? <span class="faq-icon"></span></button><div class="faq-a"><div class="faq-a-inner">Igen, Hikvision, Dahua, Axis, Hanwha és más márkájú rendszereket egyaránt szervizelünk. Budapest területén 4 órán belül kiszállunk — prémium karbantartási szerződéssel.</div></div></div>
+      <div class="faq-item reveal reveal-delay-1"><button class="faq-q">Mekkora a garancia? <span class="faq-icon"></span></button><div class="faq-a"><div class="faq-a-inner">Minden telepített rendszerre 2 év garanciát vállalunk alkatrészre és munkadíjra egyaránt. A garanciális javítás díjmentes, és Budapest területén belül 4 órán belül kiszállunk.</div></div></div>
     </div>
   </div>
 </section>
 
-<!-- MAP -->
-<section class="section section--light">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Elérhetőség</span>
-      <h2 class="section-title">Keresse fel budapesti irodánkat</h2>
+<!-- BLOG PREVIEW -->
+<section style="background:var(--white)">
+  <div class="sec-inner">
+    <div class="sec-header reveal">
+      <div class="sec-overline"><span>Blog</span></div>
+      <h2 class="sec-title">Hasznos cikkek</h2>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card reveal">
+        <div class="blog-card-img">💰</div>
+        <div class="blog-body">
+          <div class="blog-meta"><span class="blog-tag">Árak</span><span>2025. január</span></div>
+          <h3><a href="/blog/kamerarendszer-budapest-arak-2025/">Kamerarendszer ár Budapesten 2025 — Mennyibe kerül?</a></h3>
+          <p>Részletes árösszehasonlítás budapesti viszonylatban.</p>
+          <a href="/blog/kamerarendszer-budapest-arak-2025/" class="blog-more">Elolvasom →</a>
+        </div>
+      </div>
+      <div class="blog-card reveal reveal-delay-1">
+        <div class="blog-card-img">🚨</div>
+        <div class="blog-body">
+          <div class="blog-meta"><span class="blog-tag">Biztonság</span><span>2025. március</span></div>
+          <h3><a href="/blog/budapest-betoresek-biztonsag-2025/">Budapesten megnőttek a betörések — mit tehetsz?</a></h3>
+          <p>Kerületi bűnügyi statisztikák és megelőzési módszerek.</p>
+          <a href="/blog/budapest-betoresek-biztonsag-2025/" class="blog-more">Elolvasom →</a>
+        </div>
+      </div>
+      <div class="blog-card reveal reveal-delay-2">
+        <div class="blog-card-img">⚖️</div>
+        <div class="blog-body">
+          <div class="blog-meta"><span class="blog-tag">GDPR</span><span>2025. február</span></div>
+          <h3><a href="/blog/tarsashazi-kamera-budapest-szabalyok/">Társasházi kamerarendszer — GDPR és lakógyűlés</a></h3>
+          <p>A fővárosi rendelet és a Lakástörvény együttes alkalmazása.</p>
+          <a href="/blog/tarsashazi-kamera-budapest-szabalyok/" class="blog-more">Elolvasom →</a>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px"><a href="/blog/" class="btn btn-ghost" style="color:var(--navy);border-color:var(--navy)">Összes cikk →</a></div>
+  </div>
+</section>
+
+<!-- KAPCSOLAT -->
+<section id="kapcsolat">
+  <div class="sec-inner">
+    <div class="sec-header reveal">
+      <div class="sec-overline"><span>Kapcsolat</span></div>
+      <h2 class="sec-title">Kérjen ingyenes<br><em>ajánlatot!</em></h2>
     </div>
     <div class="contact-grid">
-      <ul class="contact-info-list">
-        <li>
-          <div class="contact-icon">📍</div>
-          <div>
-            <div class="contact-label">Cím</div>
-            <div class="contact-value">1134 Budapest, Váci út 45.</div>
+      <div class="reveal">
+        <div class="contact-detail"><div class="cd-icon">📍</div><div><div class="cd-label">Cím</div><div class="cd-value">1134 Budapest, Váci út 45.</div></div></div>
+        <div class="contact-detail"><div class="cd-icon">📞</div><div><div class="cd-label">Telefon</div><div class="cd-value"><a href="tel:+3612345678" class="dyn-phone" style="color:var(--navy-dark)">+36-1-234-5678</a></div></div></div>
+        <div class="contact-detail"><div class="cd-icon">✉️</div><div><div class="cd-label">E-mail</div><div class="cd-value"><a href="mailto:info@kamerearendszer-budapest.hu" style="color:var(--navy-dark)">info@kamerearendszer-budapest.hu</a></div></div></div>
+        <div class="contact-detail"><div class="cd-icon">🕐</div><div><div class="cd-label">Nyitvatartás</div><div class="cd-value">H–P: 8:00–18:00 | Szo: 9:00–14:00</div></div></div>
+        <div class="map-placeholder">🗺️ Google Térkép<br><small>1134 Budapest, Váci út 45. — XIII. kerület</small></div>
+      </div>
+      <div class="reveal" style="background:var(--navy-dark);border-radius:14px;padding:40px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:-1px;left:52px;right:52px;height:1px;background:linear-gradient(90deg,transparent,rgba(196,149,90,.6),transparent)"></div>
+        <h3 style="font-family:var(--ff-display);font-weight:400;font-size:1.5rem;color:var(--white);margin-bottom:24px">Írjon nekünk</h3>
+        <form data-ajanlat>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div class="form-group"><label>Neve *</label><input type="text" name="nev" placeholder="Kovács János" required></div>
+            <div class="form-group"><label>Telefon *</label><input type="tel" name="tel" placeholder="+36 30 ..." required></div>
           </div>
-        </li>
-        <li>
-          <div class="contact-icon">📞</div>
-          <div>
-            <div class="contact-label">Telefon</div>
-            <div class="contact-value"><a href="tel:+3612345678">+36-1-234-5678</a></div>
-          </div>
-        </li>
-        <li>
-          <div class="contact-icon">✉️</div>
-          <div>
-            <div class="contact-label">E-mail</div>
-            <div class="contact-value"><a href="mailto:info@kamerearendszer-budapest.hu">info@kamerearendszer-budapest.hu</a></div>
-          </div>
-        </li>
-        <li>
-          <div class="contact-icon">🕐</div>
-          <div>
-            <div class="contact-label">Nyitvatartás</div>
-            <div class="contact-value">H–P: 8:00–18:00 | Szo: 9:00–14:00</div>
-          </div>
-        </li>
-      </ul>
-      <div class="map-embed">
-        🗺️ Google Maps<br><small>1134 Budapest, Váci út 45.<br>XIII. kerület, Angyalföld</small>
+          <div class="form-group"><label>Szolgáltatás</label><select name="tipus"><option>Otthoni kamerarendszer</option><option>Üzleti kamerarendszer</option><option>Társasházi kamerarendszer</option><option>Ipari kamerarendszer</option><option>Szerviz</option></select></div>
+          <div class="form-group"><label>Megjegyzés</label><textarea name="uzenet" placeholder="Miben segíthetünk?" rows="3" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;width:100%;padding:11px 14px;font-family:var(--ff-body);color:var(--white);font-size:.95rem;resize:vertical"></textarea></div>
+          <button type="submit" class="btn-form">Üzenet küldése</button>
+        </form>
+        <p class="form-note">🔒 Adatait bizalmasan kezeljük.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-about">
-        <a href="/" class="logo">
-          <div class="logo-icon">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>
-          </div>
-          <div class="logo-text">
-            <span class="logo-name" style="color:#fff">KameraRendszer Budapest</span>
-            <span class="logo-sub">Profi biztonságtechnika</span>
-          </div>
-        </a>
-        <p>Budapesten és Pest megyében 2017 óta telepítünk és szervizelünk profi biztonsági kamerarendszereket. Pest megyei telepítői engedéllyel, garanciával.</p>
-        <div class="trust-badges" style="margin-top:14px">
-          <span class="trust-badge">Hikvision Partner</span>
-          <span class="trust-badge">Dahua Partner</span>
-          <span class="trust-badge">GDPR Kompatibilis</span>
-        </div>
+<footer>
+  <div class="footer-grid">
+    <div class="footer-about">
+      <div class="footer-brand"><span class="dyn-name">KameraRendszer Budapest</span></div>
+      <p>Budapesten és Pest megyében 2017 óta telepítünk és szervizelünk profi biztonsági kamerarendszereket. Pest megyei telepítői engedéllyel, garanciával.</p>
+      <div class="trust-badges" style="margin-top:14px">
+        <span class="trust-badge">Hikvision Partner</span>
+        <span class="trust-badge">Dahua Partner</span>
+        <span class="trust-badge">GDPR Kompatibilis</span>
       </div>
-      <div class="footer-col">
-        <h4>Szolgáltatások</h4>
-        <ul>
-          <li><a href="/telepites/">Telepítés</a></li>
-          <li><a href="/szerviz/">Szerviz</a></li>
-          <li><a href="/otthoni-kamerarendszer/">Otthoni rendszer</a></li>
-          <li><a href="/uzleti-kamerarendszer/">Üzleti rendszer</a></li>
-          <li><a href="/tarsashazi-kamerarendszer/">Társasházi rendszer</a></li>
-          <li><a href="/ipari-kamerarendszer/">Ipari rendszer</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Információk</h4>
-        <ul>
-          <li><a href="/arak/">Árak 2025</a></li>
-          <li><a href="/gdpr-adatvedelem/">GDPR tájékoztató</a></li>
-          <li><a href="/referenciak/">Referenciák</a></li>
-          <li><a href="/rolunk/">Rólunk</a></li>
-          <li><a href="/blog/">Blog</a></li>
-          <li><a href="/kapcsolat/">Kapcsolat</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Elérhetőség</h4>
-        <div class="footer-contact-item">
-          <span class="footer-contact-icon">📍</span>
-          <span>1134 Budapest, Váci út 45.</span>
-        </div>
-        <div class="footer-contact-item">
-          <span class="footer-contact-icon">📞</span>
-          <a href="tel:+3612345678" style="color:rgba(255,255,255,0.7)">+36-1-234-5678</a>
-        </div>
-        <div class="footer-contact-item">
-          <span class="footer-contact-icon">✉️</span>
-          <a href="mailto:info@kamerearendszer-budapest.hu" style="color:rgba(255,255,255,0.7)">info@kamerearendszer-budapest.hu</a>
-        </div>
-        <div class="footer-contact-item">
-          <span class="footer-contact-icon">🕐</span>
-          <span>H–P: 8–18 | Szo: 9–14</span>
-        </div>
-      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Szolgáltatások</h4>
+      <ul>
+        <li><a href="/telepites/">Telepítés</a></li>
+        <li><a href="/szerviz/">Szerviz</a></li>
+        <li><a href="/otthoni-kamerarendszer/">Otthoni rendszer</a></li>
+        <li><a href="/uzleti-kamerarendszer/">Üzleti rendszer</a></li>
+        <li><a href="/tarsashazi-kamerarendszer/">Társasházi rendszer</a></li>
+        <li><a href="/ipari-kamerarendszer/">Ipari rendszer</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Infók</h4>
+      <ul>
+        <li><a href="/arak/">Árak 2025</a></li>
+        <li><a href="/gdpr-adatvedelem/">GDPR tájékoztató</a></li>
+        <li><a href="/referenciak/">Referenciák</a></li>
+        <li><a href="/rolunk/">Rólunk</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/kapcsolat/">Kapcsolat</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Elérhetőség</h4>
+      <div class="footer-contact-item">📍 <span>1134 Budapest, Váci út 45.</span></div>
+      <div class="footer-contact-item">📞 <a href="tel:+3612345678" class="dyn-phone">+36-1-234-5678</a></div>
+      <div class="footer-contact-item">✉️ <a href="mailto:info@kamerearendszer-budapest.hu">info@kamerearendszer-budapest.hu</a></div>
+      <div class="footer-contact-item">🕐 <span>H–P: 8–18 | Szo: 9–14</span></div>
     </div>
   </div>
-  <div class="container">
-    <div class="footer-bottom">
-      <span>© 2025 KameraRendszer Budapest. Minden jog fenntartva.</span>
-      <span><a href="/gdpr-adatvedelem/">Adatvédelmi tájékoztató</a> · <a href="/kapcsolat/">Kapcsolat</a></span>
-    </div>
+  <div class="footer-bottom">
+    <span>© <span id="footerYear"></span> <span class="dyn-name">KameraRendszer Budapest</span> · <a href="tel:+3612345678" class="dyn-phone">+36-1-234-5678</a></span>
+    <span><a href="/gdpr-adatvedelem/">Adatvédelmi tájékoztató</a> · <a href="https://joszaki.hu" data-locked target="_blank" rel="noopener">joszaki.hu</a></span>
   </div>
 </footer>
 
-<a href="tel:+3612345678" class="floating-phone">📞 +36-1-234-5678</a>
-<script src="/js/main.js"></script>
+<!-- FAB — csak ?id= esetén jelenik meg -->
+<a id="fabBtn" class="fab" target="_blank">Szeretném ezt az oldalt magamra szabni</a>
+
+<!-- Rejtett admin belépő -->
+<button id="editLoginBtn" onclick="initEditMode()" style="position:fixed;bottom:0;right:0;width:32px;height:32px;opacity:0;border:none;background:none;cursor:default;z-index:9998" aria-hidden="true"></button>
+<div id="editSaveBar" style="display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:10000;background:var(--navy-dark);border:1px solid rgba(196,149,90,.4);border-radius:100px;padding:12px 24px;align-items:center;gap:16px;box-shadow:0 8px 32px rgba(0,0,0,.4)">
+  <span style="font-family:var(--ff-body);font-size:.8rem;color:rgba(255,255,255,.6)">Szerkesztési mód</span>
+  <button onclick="saveEdits()" style="background:#23B573;color:#fff;border:none;border-radius:100px;padding:8px 20px;font-family:var(--ff-body);font-size:.78rem;font-weight:700;cursor:pointer">Mentés</button>
+  <button onclick="cancelEdit()" style="background:transparent;color:rgba(255,255,255,.4);border:none;font-family:var(--ff-body);font-size:.78rem;cursor:pointer">Mégse</button>
+</div>
+
+<script>
+  // ── FAB + Firebase betöltés ─────────────────────────────────
+  (function(){
+    const id  = new URLSearchParams(location.search).get('id');
+    const fab = document.getElementById('fabBtn');
+    fab.href  = 'erdekel.html' + (id ? '?id=' + encodeURIComponent(id) : '');
+    if (!id) { fab.style.display = 'none'; return; }
+    fab.style.display = 'inline-block';
+  })();
+
+  (async function(){
+    const id = new URLSearchParams(location.search).get('id');
+    if (!id) return;
+    try {
+      const res = await fetch(
+        'https://firestore.googleapis.com/v1/projects/joszaki-minisite/databases/(default)/documents/joszaki/'
+        + encodeURIComponent(id) + '?key=AIzaSyDfdCNl3LeuBT4xIYQPYluSVKKMFJTGVws'
+      );
+      if (!res.ok) return;
+      const f = (await res.json()).fields || {};
+      const name  = f.name?.stringValue;
+      const phone = f.phone?.stringValue;
+
+      if (name) {
+        document.querySelectorAll('.dyn-name').forEach(el => el.textContent = name);
+        document.title = name + ' — Kamerarendszer Budapest';
+        const md = document.querySelector('meta[name="description"]');
+        if (md) md.content = md.content.replace(SITE.nev, name);
+      }
+      if (phone) {
+        const digits  = phone.replace(/\D/g, '');
+        const telHref = 'tel:+36' + (digits.startsWith('36') ? digits.slice(2) : digits.startsWith('06') ? digits.slice(2) : digits);
+        document.querySelectorAll('.dyn-phone').forEach(el => el.textContent = phone);
+        document.querySelectorAll('a[href^="tel:"]').forEach(a => a.href = telHref);
+      }
+
+      // Profil kártya megjelenítése
+      const profile = document.getElementById('credProfile');
+      const form    = document.getElementById('credForm');
+      if (profile && form) {
+        profile.style.display = 'block';
+        form.style.display    = 'none';
+      }
+
+      // Profilkép betöltése GCS-ről (foto mező a Firestore-ból, fallback: bucket/id.webp)
+      const img = document.getElementById('profilImg');
+      if (img) {
+        const fotoUrl = f.foto?.stringValue
+          || ('https://storage.googleapis.com/joszaki-assets/minisite_assests/' + id + '.webp');
+        img.onerror = () => { img.onerror = null; img.src = './profil.webp'; };
+        img.src = fotoUrl;
+        if (name) img.alt = name + ' – Kamerarendszer szakértő';
+      }
+    } catch(e) {}
+  })();
+
+  // ── Navigáció ──────────────────────────────────────────────
+  const hamburger = document.getElementById('hamburger');
+  const navLinks  = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('open');
+    document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('open');
+    document.body.style.overflow = '';
+  }));
+
+  // Scroll → nav háttér
+  const nav = document.getElementById('mainNav');
+  const onScroll = () => nav.classList.toggle('scrolled', scrollY > 40);
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // ── Reveal animáció ─────────────────────────────────────────
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ── FAQ accordion ────────────────────────────────────────────
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!open) item.classList.add('open');
+    });
+  });
+
+  // ── Form submit ──────────────────────────────────────────────
+  document.querySelectorAll('form[data-ajanlat]').forEach(form => {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const btn = form.querySelector('[type=submit]');
+      const orig = btn.textContent;
+      btn.textContent = '✓ Köszönjük! Hamarosan felvesszük Önnel a kapcsolatot.';
+      btn.disabled = true;
+      btn.style.background = '#16a34a';
+      setTimeout(() => { btn.textContent = orig; btn.disabled = false; btn.style.background = ''; form.reset(); }, 5000);
+    });
+  });
+
+  // ── Smooth scroll ────────────────────────────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); window.scrollTo({ top: t.offsetTop - 80, behavior: 'smooth' }); }
+    });
+  });
+
+  document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+  // ── Admin szerkesztési mód ───────────────────────────────────
+  const SAVE_URL = '%%SAVE_URL%%';
+  let editPass = null;
+
+  function initEditMode() {
+    const pass = prompt('Jelszó:');
+    if (!pass) return;
+    editPass = pass;
+    document.querySelectorAll('[data-editable]').forEach(section => {
+      section.querySelectorAll('p, h1, h2, h3, h4, h5, li, span').forEach(el => {
+        if (!el.closest('[data-locked]') && !el.querySelector('[data-editable]')) {
+          el.contentEditable = 'true';
+          el.style.outline = '1px dashed rgba(196,149,90,.4)';
+        }
+      });
+    });
+    document.getElementById('editSaveBar').style.display = 'flex';
+  }
+
+  async function saveEdits() {
+    document.querySelectorAll('[contenteditable]').forEach(el => {
+      el.removeAttribute('contenteditable'); el.style.outline = '';
+    });
+    document.getElementById('editSaveBar').style.display = 'none';
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    try {
+      const res = await fetch(SAVE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: editPass, content: html })
+      });
+      if (res.ok) alert('Mentve! Az oldal 1-2 percen belül frissül.');
+      else alert('Hiba: érvénytelen jelszó vagy szerverhiba.');
+    } catch(e) { alert('Kapcsolódási hiba.'); }
+    editPass = null;
+  }
+
+  function cancelEdit() {
+    document.querySelectorAll('[contenteditable]').forEach(el => {
+      el.removeAttribute('contenteditable'); el.style.outline = '';
+    });
+    document.getElementById('editSaveBar').style.display = 'none';
+    editPass = null;
+  }
+</script>
 </body>
 </html>

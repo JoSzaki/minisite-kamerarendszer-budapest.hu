@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Érdekel ez az oldal — KameraRendszer Budapest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#1a3a6b;--navy-dark:#0f2347;--red:#e8390e;--green:#23B573;--green-dark:#1a9460;--cream:#f1f5f9;--white:#fff;--text:#334155;--text-mid:#64748b;--border:rgba(0,0,0,0.08)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Manrope',system-ui,sans-serif;background:var(--cream);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
+    .card{background:var(--white);border-radius:20px;box-shadow:0 8px 40px rgba(26,58,107,0.13);max-width:480px;width:100%;padding:48px 40px;text-align:center}
+    .logo{display:inline-flex;align-items:center;gap:10px;margin-bottom:32px;text-decoration:none}
+    .logo-icon{width:40px;height:40px;background:var(--navy);border-radius:9px;display:flex;align-items:center;justify-content:center}
+    .logo-icon svg{width:22px;height:22px;fill:#fff}
+    .logo-name{font-size:.95rem;font-weight:800;color:var(--navy);line-height:1.1}
+    .logo-sub{font-size:.6rem;color:var(--text-mid);text-transform:uppercase;letter-spacing:.08em;display:block}
+    h1{font-size:1.55rem;font-weight:700;color:var(--navy);margin-bottom:12px;line-height:1.3}
+    .subtitle{color:var(--text-mid);font-size:.92rem;margin-bottom:32px;line-height:1.6}
+    .profile-preview{display:flex;align-items:center;gap:14px;background:var(--cream);border-radius:12px;padding:14px 18px;margin-bottom:28px;text-align:left}
+    .profile-preview img{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid var(--navy)}
+    .profile-preview .pname{font-weight:700;color:var(--navy);font-size:.95rem}
+    .profile-preview .prole{font-size:.8rem;color:var(--text-mid)}
+    form{display:flex;flex-direction:column;gap:14px}
+    label{display:flex;flex-direction:column;gap:6px;font-size:.82rem;font-weight:600;color:var(--text);text-align:left}
+    input,select{padding:12px 14px;border:1.5px solid var(--border);border-radius:9px;font-size:.93rem;font-family:inherit;color:var(--text);transition:border .2s;outline:none}
+    input:focus,select:focus{border-color:var(--navy)}
+    .btn-submit{background:var(--green);color:#fff;border:none;border-radius:9px;padding:15px;font-size:1rem;font-weight:700;cursor:pointer;transition:background .2s;margin-top:6px}
+    .btn-submit:hover{background:var(--green-dark)}
+    .privacy{font-size:.76rem;color:var(--text-mid);margin-top:14px;line-height:1.5}
+    /* Thanks state */
+    #thanks{display:none}
+    #thanks .check{width:64px;height:64px;background:#d1fae5;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+    #thanks .check svg{width:32px;height:32px;fill:#16a34a}
+    #thanks h2{font-size:1.4rem;color:var(--navy);margin-bottom:10px}
+    #thanks p{color:var(--text-mid);font-size:.92rem;line-height:1.6}
+    .back-link{display:inline-block;margin-top:20px;color:var(--navy);font-size:.85rem;font-weight:600;text-decoration:none;border-bottom:1px solid var(--navy)}
+    .back-link:hover{color:var(--red)}
+  </style>
+</head>
+<body>
+<div class="card">
+  <a href="/" class="logo">
+    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg></div>
+    <div><span class="logo-name">KameraRendszer Budapest</span><span class="logo-sub">Profi biztonságtechnika</span></div>
+  </a>
+
+  <!-- Form state -->
+  <div id="formState">
+    <div id="profilePreview" class="profile-preview" style="display:none">
+      <img id="prevImg" src="" alt="">
+      <div><div class="pname" id="prevName"></div><div class="prole">Kamerarendszer szakértő · Budapest</div></div>
+    </div>
+    <h1>Szeretném ezt az oldalt magamra szabni</h1>
+    <p class="subtitle">Töltse ki az alábbi űrlapot — kollégánk 1 munkanapon belül felveszi Önnel a kapcsolatot.</p>
+    <form id="erdekelForm">
+      <label>Neve <input type="text" id="fnev" placeholder="Pl. Nagy János" required></label>
+      <label>Telefonszáma <input type="tel" id="ftelefon" placeholder="+36 30 123 4567" required></label>
+      <label>E-mail (opcionális) <input type="email" id="femail" placeholder="nev@pelda.hu"></label>
+      <label>Melyik kerületben dolgozik?
+        <select id="fkerulet">
+          <option value="">— Válasszon —</option>
+          <option>I. kerület</option><option>II. kerület</option><option>III. kerület</option>
+          <option>IV. kerület</option><option>V. kerület</option><option>VI. kerület</option>
+          <option>VII. kerület</option><option>VIII. kerület</option><option>IX. kerület</option>
+          <option>X. kerület</option><option>XI. kerület</option><option>XII. kerület</option>
+          <option>XIII. kerület</option><option>XIV. kerület</option><option>XV. kerület</option>
+          <option>XVI. kerület</option><option>XVII. kerület</option><option>XVIII. kerület</option>
+          <option>XIX. kerület</option><option>XX. kerület</option><option>XXI. kerület</option>
+          <option>XXII. kerület</option><option>XXIII. kerület</option>
+          <option>Pest megye</option>
+        </select>
+      </label>
+      <button type="submit" class="btn-submit">Elküldöm az érdeklődést</button>
+      <p class="privacy">Az adatokat bizalmasan kezeljük, harmadik félnek nem adjuk át. <a href="/gdpr-adatvedelem/" style="color:var(--navy)">Adatvédelmi tájékoztató</a></p>
+    </form>
+  </div>
+
+  <!-- Thanks state -->
+  <div id="thanks">
+    <div class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+    <h2>Köszönjük érdeklődését!</h2>
+    <p>Kollégánk hamarosan felveszi Önnel a kapcsolatot. Addig is böngéssze tovább az oldalt!</p>
+    <a href="/" class="back-link">← Vissza a főoldalra</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  const FB_KEY  = 'AIzaSyDfdCNl3LeuBT4xIYQPYluSVKKMFJTGVws';
+  const FB_BASE = 'https://firestore.googleapis.com/v1/projects/joszaki-minisite/databases/(default)/documents/';
+  const params  = new URLSearchParams(location.search);
+  const id      = params.get('id');
+
+  // Ha van ?id=, töltsd be a profilt és mutasd az előnézetet
+  if (id) {
+    (async function(){
+      try {
+        const res = await fetch(FB_BASE + 'joszaki/' + encodeURIComponent(id) + '?key=' + FB_KEY);
+        if (!res.ok) return;
+        const f = (await res.json()).fields || {};
+        const name  = f.name?.stringValue;
+        const fotoUrl = f.foto?.stringValue
+          || ('https://storage.googleapis.com/joszaki-assets/minisite_assests/' + id + '.webp');
+        const preview = document.getElementById('profilePreview');
+        if (preview) {
+          if (name) document.getElementById('prevName').textContent = name;
+          const img = document.getElementById('prevImg');
+          if (img) { img.src = fotoUrl; img.alt = name || ''; }
+          preview.style.display = 'flex';
+        }
+      } catch(e){}
+    })();
+  }
+
+  // Form beküldése → Firestore joszaki_erdekel kollekcióba
+  document.getElementById('erdekelForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const btn = this.querySelector('.btn-submit');
+    btn.disabled = true; btn.textContent = 'Küldés…';
+
+    const data = {
+      fields: {
+        nev:      { stringValue: document.getElementById('fnev').value.trim() },
+        telefon:  { stringValue: document.getElementById('ftelefon').value.trim() },
+        email:    { stringValue: document.getElementById('femail').value.trim() },
+        kerulet:  { stringValue: document.getElementById('fkerulet').value },
+        domain:   { stringValue: 'kamerearendszer-budapest.hu' },
+        ref_id:   { stringValue: id || '' },
+        datum:    { stringValue: new Date().toISOString() }
+      }
+    };
+
+    try {
+      await fetch(FB_BASE + 'joszaki_erdekel?key=' + FB_KEY, {
+        method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data)
+      });
+    } catch(e){}
+
+    document.getElementById('formState').style.display = 'none';
+    document.getElementById('thanks').style.display    = 'block';
+  });
+})();
+</script>
+</body>
+</html>

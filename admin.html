@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin — KameraRendszer Budapest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#1a3a6b;--navy-dark:#0f2347;--red:#e8390e;--green:#23B573;--cream:#f1f5f9;--white:#fff;--text:#334155;--text-mid:#64748b;--border:rgba(0,0,0,0.1)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Manrope',system-ui,sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+    /* Login */
+    #loginScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
+    .login-card{background:var(--white);border-radius:16px;box-shadow:0 8px 40px rgba(26,58,107,0.13);padding:48px 40px;max-width:380px;width:100%;text-align:center}
+    .login-card h1{font-size:1.4rem;color:var(--navy);margin-bottom:8px}
+    .login-card p{color:var(--text-mid);font-size:.85rem;margin-bottom:28px}
+    .login-card input{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:9px;font-size:.93rem;font-family:inherit;outline:none;transition:border .2s}
+    .login-card input:focus{border-color:var(--navy)}
+    .login-card button{width:100%;margin-top:14px;padding:14px;background:var(--navy);color:#fff;border:none;border-radius:9px;font-size:.95rem;font-weight:700;cursor:pointer;transition:background .2s}
+    .login-card button:hover{background:var(--navy-dark)}
+    #loginError{color:var(--red);font-size:.82rem;margin-top:10px;display:none}
+    /* App */
+    #app{display:none}
+    .topbar{background:var(--navy);color:#fff;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+    .topbar h1{font-size:1rem;font-weight:700}
+    .topbar span{font-size:.8rem;color:rgba(255,255,255,0.6)}
+    .main{max-width:1100px;margin:0 auto;padding:32px 24px}
+    .tabs{display:flex;gap:4px;margin-bottom:28px;border-bottom:2px solid var(--border);padding-bottom:0}
+    .tab{padding:10px 20px;font-size:.88rem;font-weight:600;cursor:pointer;border-radius:8px 8px 0 0;color:var(--text-mid);background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+    .tab.active{color:var(--navy);border-bottom-color:var(--navy);background:var(--white)}
+    .pane{display:none}
+    .pane.active{display:block}
+    /* Table */
+    .table-wrap{overflow-x:auto}
+    table{width:100%;border-collapse:collapse;background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.06)}
+    thead{background:var(--navy);color:#fff}
+    th{padding:13px 16px;font-size:.8rem;font-weight:600;text-align:left;text-transform:uppercase;letter-spacing:.05em}
+    td{padding:12px 16px;font-size:.87rem;border-bottom:1px solid var(--border);vertical-align:middle}
+    tr:last-child td{border-bottom:none}
+    tr:hover td{background:#f8fafc}
+    .profile-cell{display:flex;align-items:center;gap:12px}
+    .profile-cell img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--border);flex-shrink:0}
+    .profile-cell .pname{font-weight:700;color:var(--navy)}
+    .profile-cell .pid{font-size:.75rem;color:var(--text-mid)}
+    .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:600}
+    .badge-new{background:#dbeafe;color:#1d4ed8}
+    .badge-old{background:#f1f5f9;color:var(--text-mid)}
+    .btn{padding:8px 14px;border-radius:7px;border:none;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s}
+    .btn-view{background:var(--navy);color:#fff}
+    .btn-view:hover{background:var(--navy-dark)}
+    .btn-win{background:var(--green);color:#fff}
+    .btn-win:hover{background:#1a9460}
+    .btn-win:disabled{background:#94a3b8;cursor:not-allowed}
+    .btn-del{background:#fee2e2;color:var(--red)}
+    .btn-del:hover{background:#fecaca}
+    .empty{text-align:center;padding:40px;color:var(--text-mid);font-size:.9rem}
+    .loading{text-align:center;padding:60px;color:var(--text-mid)}
+    /* Modal */
+    .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;align-items:center;justify-content:center;padding:24px}
+    .modal-bg.open{display:flex}
+    .modal{background:var(--white);border-radius:16px;max-width:500px;width:100%;padding:36px;position:relative;max-height:90vh;overflow-y:auto}
+    .modal h2{font-size:1.2rem;color:var(--navy);margin-bottom:20px}
+    .modal-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:1.3rem;cursor:pointer;color:var(--text-mid);line-height:1}
+    .modal-close:hover{color:var(--red)}
+    .detail-row{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px}
+    .detail-row .label{font-size:.78rem;font-weight:600;color:var(--text-mid);min-width:100px;padding-top:2px}
+    .detail-row .value{font-size:.9rem;font-weight:500;color:var(--text)}
+    .win-result{margin-top:16px;padding:14px;border-radius:9px;font-size:.87rem;font-weight:600;display:none}
+    .win-result.ok{background:#d1fae5;color:#065f46;display:block}
+    .win-result.err{background:#fee2e2;color:var(--red);display:block}
+    /* Stats */
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:28px}
+    .stat-card{background:var(--white);border-radius:12px;padding:20px;box-shadow:0 2px 12px rgba(0,0,0,0.06);text-align:center}
+    .stat-card .num{font-size:2rem;font-weight:800;color:var(--navy)}
+    .stat-card .lbl{font-size:.78rem;color:var(--text-mid);margin-top:4px}
+    /* Log */
+    .log{background:var(--navy-dark);color:#a5f3fc;font-family:monospace;font-size:.78rem;border-radius:9px;padding:14px;max-height:200px;overflow-y:auto;margin-top:14px;line-height:1.6}
+  </style>
+</head>
+<body>
+
+<!-- Login -->
+<div id="loginScreen">
+  <div class="login-card">
+    <h1>Admin belépés</h1>
+    <p>KameraRendszer Budapest — kezelőfelület</p>
+    <input type="password" id="pwInput" placeholder="Jelszó" autocomplete="current-password">
+    <button onclick="doLogin()">Belépés</button>
+    <div id="loginError">Hibás jelszó.</div>
+  </div>
+</div>
+
+<!-- App -->
+<div id="app">
+  <div class="topbar">
+    <h1>KameraRendszer Budapest — Admin</h1>
+    <span id="adminUser"></span>
+  </div>
+  <div class="main">
+    <div class="stats">
+      <div class="stat-card"><div class="num" id="statProfiles">—</div><div class="lbl">Aktív profil</div></div>
+      <div class="stat-card"><div class="num" id="statLeads">—</div><div class="lbl">Érdeklődő</div></div>
+    </div>
+    <div class="tabs">
+      <button class="tab active" onclick="showTab('szakik')">Szakemberek</button>
+      <button class="tab" onclick="showTab('erdekelok')">Érdeklődők</button>
+    </div>
+    <div id="pane-szakik" class="pane active">
+      <div class="loading" id="loadingP">Betöltés…</div>
+      <div class="table-wrap" id="tableProfiles" style="display:none">
+        <table>
+          <thead><tr><th>Szakember</th><th>Telefon</th><th>Dátum</th><th>Műveletek</th></tr></thead>
+          <tbody id="profilesTbody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div id="pane-erdekelok" class="pane">
+      <div class="loading" id="loadingE">Betöltés…</div>
+      <div class="table-wrap" id="tableLeads" style="display:none">
+        <table>
+          <thead><tr><th>Név</th><th>Telefon</th><th>E-mail</th><th>Kerület</th><th>Ref. ID</th><th>Dátum</th><th></th></tr></thead>
+          <tbody id="leadsTbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Megnyerte modal -->
+<div class="modal-bg" id="winModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('winModal')">✕</button>
+    <h2>🏆 Megnyerte — megerősítés</h2>
+    <div id="winInfo"></div>
+    <p style="font-size:.85rem;color:var(--text-mid);margin:14px 0 18px">Ez a művelet:</p>
+    <ul style="font-size:.85rem;color:var(--text-mid);padding-left:18px;line-height:2;margin-bottom:18px">
+      <li>Hardkódolja a nyertes adatait az <code>index.html</code>-be</li>
+      <li>Eltávolítja a Firebase dinamikus betöltést</li>
+      <li>Eltávolítja a FAB gombot</li>
+      <li>Hozzáad egy redirect scriptet (?id= → főoldal)</li>
+      <li>Feltölti a módosított HTML-t GitHubra</li>
+      <li>Törli az összes többi Firestore profilt</li>
+    </ul>
+    <button class="btn btn-win" id="winConfirmBtn" onclick="doMegnyerte()">Igen, véglegesítés</button>
+    <div class="win-result" id="winResult"></div>
+    <div class="log" id="winLog" style="display:none"></div>
+  </div>
+</div>
+
+<!-- Érdeklődő részletek modal -->
+<div class="modal-bg" id="leadModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('leadModal')">✕</button>
+    <h2>Érdeklődő részletei</h2>
+    <div id="leadDetail"></div>
+  </div>
+</div>
+
+<script>
+// ── Config ─────────────────────────────────────────────────────────
+const FB_KEY    = 'AIzaSyDfdCNl3LeuBT4xIYQPYluSVKKMFJTGVws';
+const FB_BASE   = 'https://firestore.googleapis.com/v1/projects/joszaki-minisite/databases/(default)/documents/';
+const ADMIN_PW  = 'joszaki2025admin';  // cserélje le éles jelszóra!
+const SAVE_URL  = '%%SAVE_URL%%';
+const GITHUB_RAW = '%%GITHUB_RAW%%';
+
+// ── Login ──────────────────────────────────────────────────────────
+function doLogin(){
+  const pw = document.getElementById('pwInput').value;
+  if (pw !== ADMIN_PW) {
+    document.getElementById('loginError').style.display = 'block';
+    return;
+  }
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  loadAll();
+}
+document.getElementById('pwInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doLogin();
+});
+
+// ── Tab ─────────────────────────────────────────────────────────────
+function showTab(name) {
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    const names = ['szakik','erdekelok'];
+    t.classList.toggle('active', names[i] === name);
+  });
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+  document.getElementById('pane-' + name).classList.add('active');
+}
+
+// ── Helpers ─────────────────────────────────────────────────────────
+function fv(f, key) { return f[key]?.stringValue || f[key]?.integerValue || ''; }
+function fdate(iso) { try { return new Date(iso).toLocaleString('hu-HU'); } catch(e){ return iso; } }
+
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+
+// ── State ───────────────────────────────────────────────────────────
+let profiles = [];
+let leads    = [];
+let winTarget = null;
+
+// ── Load ─────────────────────────────────────────────────────────────
+async function loadAll(){
+  await Promise.all([loadProfiles(), loadLeads()]);
+}
+
+async function loadProfiles(){
+  document.getElementById('loadingP').style.display = 'block';
+  document.getElementById('tableProfiles').style.display = 'none';
+  try {
+    const res = await fetch(FB_BASE + 'joszaki?key=' + FB_KEY);
+    const data = await res.json();
+    profiles = (data.documents || []).map(d => {
+      const id = d.name.split('/').pop();
+      return { id, ...Object.fromEntries(Object.entries(d.fields || {}).map(([k,v]) => [k, v.stringValue || v.integerValue || ''])) };
+    });
+    document.getElementById('statProfiles').textContent = profiles.length;
+    renderProfiles();
+  } catch(e){ console.error(e); }
+  document.getElementById('loadingP').style.display = 'none';
+  document.getElementById('tableProfiles').style.display = profiles.length ? 'block' : 'none';
+}
+
+async function loadLeads(){
+  document.getElementById('loadingE').style.display = 'block';
+  document.getElementById('tableLeads').style.display = 'none';
+  try {
+    const res = await fetch(FB_BASE + 'joszaki_erdekel?key=' + FB_KEY);
+    const data = await res.json();
+    leads = (data.documents || []).map(d => {
+      const id = d.name.split('/').pop();
+      return { id, ...Object.fromEntries(Object.entries(d.fields || {}).map(([k,v]) => [k, v.stringValue || v.integerValue || ''])) };
+    });
+    document.getElementById('statLeads').textContent = leads.length;
+    renderLeads();
+  } catch(e){ console.error(e); }
+  document.getElementById('loadingE').style.display = 'none';
+  document.getElementById('tableLeads').style.display = leads.length ? 'block' : 'none';
+}
+
+function renderProfiles(){
+  const tbody = document.getElementById('profilesTbody');
+  tbody.innerHTML = '';
+  if (!profiles.length) { tbody.innerHTML = '<tr><td colspan="4" class="empty">Nincsenek profilok.</td></tr>'; return; }
+  profiles.forEach(p => {
+    const fotoUrl = p.foto || ('https://storage.googleapis.com/joszaki-assets/minisite_assests/' + p.id + '.webp');
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><div class="profile-cell">
+        <img src="${fotoUrl}" onerror="this.src='./profil.webp'" alt="">
+        <div><div class="pname">${p.name || p.id}</div><div class="pid">id: ${p.id}</div></div>
+      </div></td>
+      <td>${p.phone || '—'}</td>
+      <td><span class="badge badge-new">${fdate(p.datum || '')}</span></td>
+      <td style="display:flex;gap:8px;flex-wrap:wrap">
+        <a class="btn btn-view" href="/?id=${encodeURIComponent(p.id)}" target="_blank">Előnézet</a>
+        <button class="btn btn-win" onclick="openWin('${p.id}')">🏆 Megnyerte</button>
+        <button class="btn btn-del" onclick="deleteProfile('${p.id}')">Törlés</button>
+      </td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+function renderLeads(){
+  const tbody = document.getElementById('leadsTbody');
+  tbody.innerHTML = '';
+  if (!leads.length) { tbody.innerHTML = '<tr><td colspan="7" class="empty">Nincsenek érdeklődők.</td></tr>'; return; }
+  leads.forEach(l => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><strong>${l.nev || '—'}</strong></td>
+      <td>${l.telefon || '—'}</td>
+      <td>${l.email || '—'}</td>
+      <td>${l.kerulet || '—'}</td>
+      <td><span class="badge badge-old">${l.ref_id || '—'}</span></td>
+      <td>${fdate(l.datum || '')}</td>
+      <td><button class="btn btn-del" onclick="deleteLead('${l.id}')">Törlés</button></td>`;
+    tbody.appendChild(tr);
+  });
+}
+
+// ── Delete ────────────────────────────────────────────────────────
+async function deleteProfile(id){
+  if (!confirm('Biztosan törli a profilt: ' + id + '?')) return;
+  await fetch(FB_BASE + 'joszaki/' + encodeURIComponent(id) + '?key=' + FB_KEY, { method: 'DELETE' });
+  await loadProfiles();
+}
+
+async function deleteLead(id){
+  if (!confirm('Biztosan törli az érdeklődőt?')) return;
+  await fetch(FB_BASE + 'joszaki_erdekel/' + encodeURIComponent(id) + '?key=' + FB_KEY, { method: 'DELETE' });
+  await loadLeads();
+}
+
+// ── Megnyerte ─────────────────────────────────────────────────────
+function openWin(id){
+  const p = profiles.find(x => x.id === id);
+  if (!p) return;
+  winTarget = p;
+  document.getElementById('winInfo').innerHTML = `
+    <div class="detail-row"><span class="label">ID</span><span class="value">${p.id}</span></div>
+    <div class="detail-row"><span class="label">Neve</span><span class="value">${p.name || '—'}</span></div>
+    <div class="detail-row"><span class="label">Telefon</span><span class="value">${p.phone || '—'}</span></div>
+  `;
+  document.getElementById('winResult').className = 'win-result';
+  document.getElementById('winResult').textContent = '';
+  document.getElementById('winLog').style.display = 'none';
+  document.getElementById('winLog').textContent = '';
+  document.getElementById('winConfirmBtn').disabled = false;
+  document.getElementById('winModal').classList.add('open');
+}
+
+function log(msg){
+  const el = document.getElementById('winLog');
+  el.style.display = 'block';
+  el.textContent += msg + '\n';
+  el.scrollTop = el.scrollHeight;
+}
+
+async function doMegnyerte(){
+  if (!winTarget) return;
+  const btn = document.getElementById('winConfirmBtn');
+  btn.disabled = true; btn.textContent = 'Folyamatban…';
+  const res = document.getElementById('winResult');
+  const p = winTarget;
+
+  try {
+    // 1. Fetch nyers HTML GitHubról
+    log('1. HTML letöltése: ' + GITHUB_RAW);
+    const htmlRes = await fetch(GITHUB_RAW);
+    if (!htmlRes.ok) throw new Error('GitHub fetch hiba: ' + htmlRes.status);
+    let html = await htmlRes.text();
+    log('   ✓ HTML letöltve (' + html.length + ' karakter)');
+
+    // 2. DOM parse + módosítások
+    log('2. DOM módosítások…');
+    const parser = new DOMParser();
+    const doc    = parser.parseFromString(html, 'text/html');
+
+    // 2a. SITE config frissítése
+    const scripts = Array.from(doc.querySelectorAll('script'));
+    const siteScript = scripts.find(s => s.textContent.includes('var SITE'));
+    if (siteScript) {
+      let src = siteScript.textContent;
+      src = src.replace(/(nev\s*:\s*)['"][^'"]*['"]/, `$1'${p.name || ''}'`);
+      if (p.phone) {
+        const telDisp = p.phone.replace(/(\+36)(\d{2})(\d{3})(\d{4})/, '$1-$2-$3-$4');
+        src = src.replace(/(telefon\s*:\s*)['"][^'"]*['"]/, `$1'${p.phone}'`);
+        src = src.replace(/(telefonMegjelenit\s*:\s*)['"][^'"]*['"]/, `$1'${telDisp}'`);
+      }
+      siteScript.textContent = src;
+      log('   ✓ SITE config frissítve');
+    }
+
+    // 2b. .dyn-name cserék
+    doc.querySelectorAll('.dyn-name').forEach(el => { el.textContent = p.name || ''; });
+
+    // 2c. .dyn-phone cserék
+    if (p.phone) {
+      const digits = p.phone.replace(/\D/g,'');
+      const telHref = 'tel:+36' + (digits.startsWith('36') ? digits.slice(2) : digits.startsWith('06') ? digits.slice(2) : digits);
+      doc.querySelectorAll('.dyn-phone').forEach(el => { el.textContent = p.phone; });
+      doc.querySelectorAll('a[href^="tel:"]').forEach(a => { a.href = telHref; });
+    }
+    log('   ✓ dyn-name / dyn-phone cserélve');
+
+    // 2d. Firebase IIFE eltávolítása
+    scripts.forEach(s => {
+      if (s.textContent.includes('databases/(default)/documents/joszaki/') && s.textContent.includes('if (!id) return')) {
+        s.remove();
+        log('   ✓ Firebase IIFE eltávolítva');
+      }
+    });
+
+    // 2e. FAB gomb eltávolítása
+    const fab = doc.getElementById('fabBtn');
+    if (fab) { fab.remove(); log('   ✓ FAB gomb eltávolítva'); }
+
+    // 2f. Redirect script hozzáadása (?id= → főoldal)
+    const redirectScript = doc.createElement('script');
+    redirectScript.textContent = "if(location.search)history.replaceState(null,'',location.pathname);";
+    doc.body.appendChild(redirectScript);
+    log('   ✓ Redirect script hozzáadva');
+
+    // 2g. Profilkép hardkódolása (opcionális — ha van foto mező)
+    if (p.foto) {
+      const profilImg = doc.getElementById('profilImg');
+      if (profilImg) {
+        profilImg.setAttribute('src', p.foto);
+        log('   ✓ Profilkép hardkódolva');
+      }
+    }
+
+    // 3. Serialise
+    const newHtml = '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
+    log('3. HTML serialisálva (' + newHtml.length + ' karakter)');
+
+    // 4. Push GitHub-ra
+    log('4. Feltöltés: ' + SAVE_URL);
+    const saveRes = await fetch(SAVE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ html: newHtml, winner_id: p.id })
+    });
+    if (!saveRes.ok) throw new Error('Save hiba: ' + saveRes.status + ' ' + await saveRes.text());
+    log('   ✓ HTML feltöltve GitHubra');
+
+    // 5. Többi profil törlése
+    log('5. Többi profil törlése…');
+    const toDelete = profiles.filter(x => x.id !== p.id);
+    await Promise.all(toDelete.map(async x => {
+      await fetch(FB_BASE + 'joszaki/' + encodeURIComponent(x.id) + '?key=' + FB_KEY, { method: 'DELETE' });
+      log('   ✓ Törölve: ' + x.id);
+    }));
+
+    res.className = 'win-result ok';
+    res.textContent = '✓ Sikeres véglegesítés! Az oldal el lett választva a Firebase-től, a nyertes adatai hardkódolva lettek.';
+    log('KÉSZ.');
+    await loadProfiles();
+  } catch(e) {
+    res.className = 'win-result err';
+    res.textContent = 'Hiba: ' + e.message;
+    log('HIBA: ' + e.message);
+    btn.disabled = false;
+    btn.textContent = 'Újrapróbálás';
+  }
+}
+</script>
+</body>
+</html>
