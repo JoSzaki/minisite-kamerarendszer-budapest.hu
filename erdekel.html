@@ -92,57 +92,63 @@
 (function(){
   const FB_KEY  = 'AIzaSyDfdCNl3LeuBT4xIYQPYluSVKKMFJTGVws';
   const FB_BASE = 'https://firestore.googleapis.com/v1/projects/joszaki-minisite/databases/(default)/documents/';
-  const params  = new URLSearchParams(location.search);
-  const id      = params.get('id');
+  const id      = new URLSearchParams(location.search).get('id');
 
-  // Ha van ?id=, töltsd be a profilt és mutasd az előnézetet
+  async function saveErdekel(fields) {
+    try {
+      await fetch(FB_BASE + 'joszaki_erdekel?key=' + FB_KEY, {
+        method: 'POST', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ fields })
+      });
+    } catch(e){}
+  }
+
+  function showThanks() {
+    document.getElementById('formState').style.display = 'none';
+    document.getElementById('thanks').style.display    = 'block';
+  }
+
   if (id) {
+    // ?id= van → profil adatai már megvannak Firestore-ban, nem kell form
     (async function(){
       try {
         const res = await fetch(FB_BASE + 'joszaki/' + encodeURIComponent(id) + '?key=' + FB_KEY);
-        if (!res.ok) return;
+        if (!res.ok) { showThanks(); return; }
         const f = (await res.json()).fields || {};
-        const name  = f.name?.stringValue;
-        const fotoUrl = f.foto?.stringValue
-          || ('https://storage.googleapis.com/joszaki-assets/minisite_assests/' + id + '.webp');
-        const preview = document.getElementById('profilePreview');
-        if (preview) {
-          if (name) document.getElementById('prevName').textContent = name;
-          const img = document.getElementById('prevImg');
-          if (img) { img.src = fotoUrl; img.alt = name || ''; }
-          preview.style.display = 'flex';
-        }
+
+        // Csendben mentés joszaki_erdekel-be
+        await saveErdekel({
+          nev:     { stringValue: f.name?.stringValue  || '' },
+          telefon: { stringValue: f.phone?.stringValue || '' },
+          email:   { stringValue: f.email?.stringValue || '' },
+          domain:  { stringValue: 'kamerearendszer-budapest.hu' },
+          ref_id:  { stringValue: id },
+          datum:   { stringValue: new Date().toISOString() }
+        });
       } catch(e){}
+
+      showThanks();
     })();
-  }
+  } else {
+    // Nincs ?id= → mutasd a formot
+    document.getElementById('erdekelForm').addEventListener('submit', async function(e){
+      e.preventDefault();
+      const btn = this.querySelector('.btn-submit');
+      btn.disabled = true; btn.textContent = 'Küldés…';
 
-  // Form beküldése → Firestore joszaki_erdekel kollekcióba
-  document.getElementById('erdekelForm').addEventListener('submit', async function(e){
-    e.preventDefault();
-    const btn = this.querySelector('.btn-submit');
-    btn.disabled = true; btn.textContent = 'Küldés…';
-
-    const data = {
-      fields: {
-        nev:      { stringValue: document.getElementById('fnev').value.trim() },
-        telefon:  { stringValue: document.getElementById('ftelefon').value.trim() },
-        email:    { stringValue: document.getElementById('femail').value.trim() },
-        kerulet:  { stringValue: document.getElementById('fkerulet').value },
-        domain:   { stringValue: 'kamerearendszer-budapest.hu' },
-        ref_id:   { stringValue: id || '' },
-        datum:    { stringValue: new Date().toISOString() }
-      }
-    };
-
-    try {
-      await fetch(FB_BASE + 'joszaki_erdekel?key=' + FB_KEY, {
-        method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data)
+      await saveErdekel({
+        nev:     { stringValue: document.getElementById('fnev').value.trim() },
+        telefon: { stringValue: document.getElementById('ftelefon').value.trim() },
+        email:   { stringValue: document.getElementById('femail').value.trim() },
+        kerulet: { stringValue: document.getElementById('fkerulet').value },
+        domain:  { stringValue: 'kamerearendszer-budapest.hu' },
+        ref_id:  { stringValue: '' },
+        datum:   { stringValue: new Date().toISOString() }
       });
-    } catch(e){}
 
-    document.getElementById('formState').style.display = 'none';
-    document.getElementById('thanks').style.display    = 'block';
-  });
+      showThanks();
+    });
+  }
 })();
 </script>
 </body>
