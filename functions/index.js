@@ -9,7 +9,7 @@ const FILE   = 'index.html';
 const BRANCH = 'master';
 
 exports.saveMinisite = onRequest(
-  { secrets: [GITHUB_TOKEN], cors: true, region: 'europe-west3' },
+  { secrets: [GITHUB_TOKEN], cors: true, region: 'europe-west3', invoker: 'public' },
   async (req, res) => {
     // CORS preflight
     if (req.method === 'OPTIONS') {
