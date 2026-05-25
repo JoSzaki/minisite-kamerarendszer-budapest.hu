@@ -743,15 +743,13 @@
   </div>
   <div class="footer-bottom">
     <span>© <span id="footerYear"></span> <span class="dyn-name">KameraRendszer Budapest</span> · <a href="tel:+3612345678" class="dyn-phone">+36-1-234-5678</a></span>
-    <span><a href="/gdpr-adatvedelem/">Adatvédelmi tájékoztató</a> · <a href="https://joszaki.hu" data-locked target="_blank" rel="noopener">joszaki.hu</a></span>
+    <span><a href="/gdpr-adatvedelem/">Adatvédelmi tájékoztató</a> · <a href="https://joszaki.hu" data-locked target="_blank" rel="noopener">joszaki.hu</a> · <span onclick="initEditMode()" style="cursor:pointer;user-select:none">Belépés</span></span>
   </div>
 </footer>
 
 <!-- FAB — csak ?id= esetén jelenik meg -->
 <a id="fabBtn" class="fab" target="_blank">Szeretném ezt az oldalt magamra szabni</a>
 
-<!-- Rejtett admin belépő -->
-<button id="editLoginBtn" onclick="initEditMode()" style="position:fixed;bottom:0;right:0;width:32px;height:32px;opacity:0;border:none;background:none;cursor:default;z-index:9998" aria-hidden="true"></button>
 <div id="editSaveBar" style="display:none;position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:10000;background:var(--navy-dark);border:1px solid rgba(196,149,90,.4);border-radius:100px;padding:12px 24px;align-items:center;gap:16px;box-shadow:0 8px 32px rgba(0,0,0,.4)">
   <span style="font-family:var(--ff-body);font-size:.8rem;color:rgba(255,255,255,.6)">Szerkesztési mód</span>
   <button onclick="saveEdits()" style="background:#23B573;color:#fff;border:none;border-radius:100px;padding:8px 20px;font-family:var(--ff-body);font-size:.78rem;font-weight:700;cursor:pointer">Mentés</button>
