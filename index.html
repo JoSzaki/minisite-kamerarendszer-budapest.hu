@@ -871,20 +871,21 @@
   document.getElementById('footerYear').textContent = new Date().getFullYear();
 
   // ── Admin szerkesztési mód ───────────────────────────────────
-  const SAVE_URL = '%%SAVE_URL%%';
+  const SAVE_URL      = 'https://saveminisite-e3yxgwd3oq-ey.a.run.app';
+  const GITHUB_OWNER  = 'JoSzaki';
+  const GITHUB_REPO   = 'minisite-kamerarendszer-budapest.hu';
+  const GITHUB_BRANCH = 'master';
   let editPass = null;
 
   function initEditMode() {
     const pass = prompt('Jelszó:');
     if (!pass) return;
     editPass = pass;
-    document.querySelectorAll('[data-editable]').forEach(section => {
-      section.querySelectorAll('p, h1, h2, h3, h4, h5, li, span').forEach(el => {
-        if (!el.closest('[data-locked]') && !el.querySelector('[data-editable]')) {
-          el.contentEditable = 'true';
-          el.style.outline = '1px dashed rgba(196,149,90,.4)';
-        }
-      });
+    document.querySelectorAll('p, h1, h2, h3, h4, h5, li').forEach(el => {
+      if (!el.closest('[data-locked]') && !el.querySelector('p,h1,h2,h3,h4,h5,li')) {
+        el.contentEditable = 'true';
+        el.style.outline = '1px dashed rgba(196,149,90,.4)';
+      }
     });
     document.getElementById('editSaveBar').style.display = 'flex';
   }
@@ -899,7 +900,7 @@
       const res = await fetch(SAVE_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password: editPass, content: html })
+        body: JSON.stringify({ html, owner: GITHUB_OWNER, repo: GITHUB_REPO, branch: GITHUB_BRANCH })
       });
       if (res.ok) alert('Mentve! Az oldal 1-2 percen belül frissül.');
       else alert('Hiba: érvénytelen jelszó vagy szerverhiba.');
