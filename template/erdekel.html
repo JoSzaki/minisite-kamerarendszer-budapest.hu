@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>Érdekel ez az oldal — KameraRendszer Budapest</title>
+  <title>Érdekel ez az oldal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -31,7 +31,6 @@
     .btn-submit{background:var(--green);color:#fff;border:none;border-radius:9px;padding:15px;font-size:1rem;font-weight:700;cursor:pointer;transition:background .2s;margin-top:6px}
     .btn-submit:hover{background:var(--green-dark)}
     .privacy{font-size:.76rem;color:var(--text-mid);margin-top:14px;line-height:1.5}
-    /* Thanks state */
     #thanks{display:none}
     #thanks .check{width:64px;height:64px;background:#d1fae5;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
     #thanks .check svg{width:32px;height:32px;fill:#16a34a}
@@ -45,14 +44,13 @@
 <div class="card">
   <a href="/" class="logo">
     <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg></div>
-    <div><span class="logo-name">KameraRendszer Budapest</span><span class="logo-sub">Profi biztonságtechnika</span></div>
+    <div><span class="logo-name">%%SITE_NEV%%</span><span class="logo-sub">%%SITE_SLOGAN%%</span></div>
   </a>
 
-  <!-- Form state -->
   <div id="formState">
     <div id="profilePreview" class="profile-preview" style="display:none">
       <img id="prevImg" src="" alt="">
-      <div><div class="pname" id="prevName"></div><div class="prole">Kamerarendszer szakértő · Budapest</div></div>
+      <div><div class="pname" id="prevName"></div><div class="prole">%%SZAKMA_JELZO%% · %%VAROS%%</div></div>
     </div>
     <h1>Szeretném ezt az oldalt magamra szabni</h1>
     <p class="subtitle">Töltse ki az alábbi űrlapot — kollégánk 1 munkanapon belül felveszi Önnel a kapcsolatot.</p>
@@ -75,15 +73,14 @@
         </select>
       </label>
       <button type="submit" class="btn-submit">Elküldöm az érdeklődést</button>
-      <p class="privacy">Az adatokat bizalmasan kezeljük, harmadik félnek nem adjuk át. <a href="/gdpr-adatvedelem/" style="color:var(--navy)">Adatvédelmi tájékoztató</a></p>
+      <p class="privacy">Az adatokat bizalmasan kezeljük. <a href="/gdpr-adatvedelem/" style="color:var(--navy)">Adatvédelmi tájékoztató</a></p>
     </form>
   </div>
 
-  <!-- Thanks state -->
   <div id="thanks">
     <div class="check"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
     <h2>Köszönjük érdeklődését!</h2>
-    <p>Kollégánk hamarosan felveszi Önnel a kapcsolatot. Addig is böngéssze tovább az oldalt!</p>
+    <p>Kollégánk hamarosan felveszi Önnel a kapcsolatot.</p>
     <a href="/" class="back-link">← Vissza a főoldalra</a>
   </div>
 </div>
@@ -92,9 +89,9 @@
 (function(){
   const FB_KEY             = 'AIzaSyDfdCNl3LeuBT4xIYQPYluSVKKMFJTGVws';
   const FB_BASE            = 'https://firestore.googleapis.com/v1/projects/joszaki-minisite/databases/(default)/documents/';
-  const PROJEKT_COLLECTION = 'joszaki_kamera';
-  const ERDEKEL_COLLECTION = 'joszaki_kamera_erdekel';
-  const DOMAIN             = 'kamerearendszer-budapest.hu';
+  const PROJEKT_COLLECTION = '%%PROJEKT_COLLECTION%%';
+  const ERDEKEL_COLLECTION = '%%ERDEKEL_COLLECTION%%';
+  const DOMAIN             = '%%DOMAIN%%';
   const id                 = new URLSearchParams(location.search).get('id');
 
   async function saveErdekel(fields) {
@@ -112,14 +109,23 @@
   }
 
   if (id) {
-    // ?id= van → profil adatai már megvannak Firestore-ban, nem kell form
     (async function(){
       try {
         const res = await fetch(FB_BASE + PROJEKT_COLLECTION + '/' + encodeURIComponent(id) + '?key=' + FB_KEY);
         if (!res.ok) { showThanks(); return; }
         const f = (await res.json()).fields || {};
+        const name    = f.name?.stringValue || '';
+        const fotoUrl = f.foto?.stringValue
+          || ('https://storage.googleapis.com/joszaki-assets/minisite_assests/' + id + '.webp');
 
-        // Csendben mentés joszaki_erdekel-be
+        const preview = document.getElementById('profilePreview');
+        if (preview && name) {
+          document.getElementById('prevName').textContent = name;
+          const img = document.getElementById('prevImg');
+          if (img) { img.src = fotoUrl; img.alt = name; }
+          preview.style.display = 'flex';
+        }
+
         await saveErdekel({
           nev:     { stringValue: f.name?.stringValue  || '' },
           telefon: { stringValue: f.phone?.stringValue || '' },
@@ -129,26 +135,22 @@
           datum:   { stringValue: new Date().toISOString() }
         });
       } catch(e){}
-
       showThanks();
     })();
   } else {
-    // Nincs ?id= → mutasd a formot
     document.getElementById('erdekelForm').addEventListener('submit', async function(e){
       e.preventDefault();
       const btn = this.querySelector('.btn-submit');
       btn.disabled = true; btn.textContent = 'Küldés…';
-
       await saveErdekel({
         nev:     { stringValue: document.getElementById('fnev').value.trim() },
         telefon: { stringValue: document.getElementById('ftelefon').value.trim() },
         email:   { stringValue: document.getElementById('femail').value.trim() },
         kerulet: { stringValue: document.getElementById('fkerulet').value },
-        domain:  { stringValue: 'kamerearendszer-budapest.hu' },
+        domain:  { stringValue: DOMAIN },
         ref_id:  { stringValue: '' },
         datum:   { stringValue: new Date().toISOString() }
       });
-
       showThanks();
     });
   }

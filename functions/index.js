@@ -1,17 +1,12 @@
 const { onRequest } = require('firebase-functions/v2/https');
 const { defineSecret } = require('firebase-functions/params');
 
-const GITHUB_TOKEN = defineSecret('GITHUB_TOKEN');
-
-const OWNER  = 'JoSzaki';
-const REPO   = 'minisite-kamerarendszer-budapest.hu';
-const FILE   = 'index.html';
-const BRANCH = 'master';
+const GITHUB_TOKEN  = defineSecret('GITHUB_TOKEN');
+const ALLOWED_OWNER = 'JoSzaki'; // csak ebből a GitHub org-ból fogad el push-t
 
 exports.saveMinisite = onRequest(
   { secrets: [GITHUB_TOKEN], cors: true, region: 'europe-west3', invoker: 'public' },
   async (req, res) => {
-    // CORS preflight
     if (req.method === 'OPTIONS') {
       res.set('Access-Control-Allow-Origin', '*');
       res.set('Access-Control-Allow-Methods', 'POST');
@@ -25,14 +20,20 @@ exports.saveMinisite = onRequest(
       return;
     }
 
-    const { html, winner_id } = req.body;
-    if (!html) {
-      res.status(400).json({ error: 'html mező kötelező' });
+    const { html, winner_id, owner, repo, branch = 'master' } = req.body;
+
+    if (!html)  { res.status(400).json({ error: 'html mező kötelező' });  return; }
+    if (!owner) { res.status(400).json({ error: 'owner mező kötelező' }); return; }
+    if (!repo)  { res.status(400).json({ error: 'repo mező kötelező' });  return; }
+
+    if (owner !== ALLOWED_OWNER) {
+      console.warn('Nem engedélyezett owner:', owner);
+      res.status(403).json({ error: 'Nem engedélyezett GitHub owner: ' + owner });
       return;
     }
 
     const token   = GITHUB_TOKEN.value();
-    const apiUrl  = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE}`;
+    const apiUrl  = `https://api.github.com/repos/${owner}/${repo}/contents/index.html`;
     const headers = {
       'Authorization': `Bearer ${token}`,
       'Accept': 'application/vnd.github+json',
@@ -40,8 +41,8 @@ exports.saveMinisite = onRequest(
       'Content-Type': 'application/json',
     };
 
-    // 1. Aktuális fájl SHA lekérése (a GitHub API PUT-hoz kötelező)
-    const getRes = await fetch(`${apiUrl}?ref=${BRANCH}`, { headers });
+    // 1. Aktuális fájl SHA lekérése
+    const getRes = await fetch(`${apiUrl}?ref=${branch}`, { headers });
     if (!getRes.ok) {
       const detail = await getRes.text();
       console.error('GitHub GET failed:', detail);
@@ -59,7 +60,7 @@ exports.saveMinisite = onRequest(
         message: `Megnyerte: ${winner_id || 'winner'} — oldal véglegesítve`,
         content,
         sha,
-        branch: BRANCH,
+        branch,
       }),
     });
 
@@ -70,7 +71,7 @@ exports.saveMinisite = onRequest(
       return;
     }
 
-    console.log('Sikeresen feltöltve, winner_id:', winner_id);
-    res.json({ ok: true, winner_id });
+    console.log(`Siker: ${owner}/${repo}@${branch} — winner: ${winner_id}`);
+    res.json({ ok: true, winner_id, repo: `${owner}/${repo}` });
   }
 );

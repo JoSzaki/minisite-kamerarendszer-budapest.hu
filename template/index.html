@@ -773,7 +773,7 @@
     if (!id) return;
     try {
       const res = await fetch(
-        'https://firestore.googleapis.com/v1/projects/joszaki-minisite/databases/(default)/documents/joszaki_kamera/'
+        'https://firestore.googleapis.com/v1/projects/joszaki-minisite/databases/(default)/documents/%%PROJEKT_COLLECTION%%/'
         + encodeURIComponent(id) + '?key=AIzaSyDfdCNl3LeuBT4xIYQPYluSVKKMFJTGVws'
       );
       if (!res.ok) return;
