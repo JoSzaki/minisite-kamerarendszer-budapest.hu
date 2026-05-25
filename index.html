@@ -146,17 +146,14 @@
     .cred-phone-num:hover{color:var(--warm-light)}
 
     /* Form nézet (id nélkül) */
-    .cred-form{}
     .cred-form h3{font-family:var(--ff-display);font-size:1.4rem;font-weight:500;color:var(--white);margin-bottom:20px;text-align:left}
-    .form-group{margin-bottom:14px;text-align:left}
-    .form-group label{display:block;font-size:.72rem;font-weight:600;margin-bottom:5px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1.5px}
-    .form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;font-size:.95rem;font-family:var(--ff-body);color:var(--white);transition:border-color .2s}
-    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:rgba(196,149,90,.7)}
-    .form-group select option{background:var(--navy-dark);color:var(--white)}
-    .form-group input::placeholder{color:rgba(255,255,255,.25)}
-    .form-note{font-size:.75rem;color:rgba(255,255,255,.3);margin-top:10px;text-align:center}
-    .btn-form{width:100%;background:var(--red);color:var(--white);border:none;padding:14px;font-family:var(--ff-body);font-size:.85rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;border-radius:6px;transition:all .3s;margin-top:4px}
-    .btn-form:hover{background:var(--red-dark);transform:translateY(-1px)}
+    .hero-contact-list{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+    .hero-contact-phone{font-size:1.6rem;font-weight:800;color:var(--warm);letter-spacing:.5px;text-decoration:none;display:block;text-align:center;padding:14px;background:rgba(196,149,90,.12);border-radius:10px;border:1px solid rgba(196,149,90,.3);transition:background .2s}
+    .hero-contact-phone:hover{background:rgba(196,149,90,.22)}
+    .hero-contact-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+    .hci-label{font-size:.7rem;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.4);font-weight:600;flex-shrink:0;margin-right:12px}
+    .hci-val{font-size:.88rem;font-weight:600;color:rgba(255,255,255,.85);text-decoration:none;text-align:right}
+    .hci-val:hover{color:var(--white)}
 
     /* STATS STRIP */
     .stats-strip{background:var(--navy);padding:40px 0}
@@ -256,11 +253,17 @@
     .blog-more{margin-top:12px;font-weight:700;font-size:.82rem;color:var(--navy);display:inline-flex;align-items:center;gap:6px}
 
     /* CONTACT */
-    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
-    .contact-detail{display:flex;align-items:flex-start;gap:16px;padding:18px 0;border-bottom:1px solid rgba(0,0,0,.07)}
-    .cd-icon{width:44px;height:44px;background:var(--navy);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-    .cd-label{font-size:.68rem;text-transform:uppercase;letter-spacing:2px;color:var(--text-light);margin-bottom:3px;font-weight:600}
-    .cd-value{font-weight:700;color:var(--navy-dark)}
+    .contact-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:860px;margin:0 auto}
+    .contact-card{background:var(--white);border-radius:16px;padding:36px 28px;text-align:center;box-shadow:0 2px 16px rgba(26,58,107,.08);border:1.5px solid transparent;text-decoration:none;color:inherit;transition:transform .2s,border-color .2s,box-shadow .2s;display:block}
+    .contact-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(26,58,107,.14);border-color:var(--navy)}
+    .contact-card-primary{background:var(--navy);color:var(--white)}
+    .contact-card-primary .cc-label,.contact-card-primary .cc-note{color:rgba(255,255,255,.6)}
+    .contact-card-primary .cc-value{color:var(--white)}
+    .contact-card-primary:hover{border-color:var(--warm)}
+    .cc-icon{font-size:2rem;margin-bottom:14px}
+    .cc-label{font-size:.68rem;text-transform:uppercase;letter-spacing:2px;color:var(--text-light);margin-bottom:6px;font-weight:600}
+    .cc-value{font-size:1.05rem;font-weight:700;color:var(--navy-dark);margin-bottom:6px;word-break:break-all}
+    .cc-note{font-size:.78rem;color:var(--text-mid)}
     .map-placeholder{height:260px;background:var(--cream);border:1.5px solid rgba(0,0,0,.06);border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--text-mid);font-size:.9rem;margin-top:20px;padding:20px}
 
     /* FOOTER */
@@ -308,7 +311,7 @@
     @media(max-width:1024px){
       .hero-inner{grid-template-columns:1fr;gap:48px}
       .hero-cred{max-width:440px}
-      .contact-grid{grid-template-columns:1fr;gap:40px}
+      .contact-cards{grid-template-columns:1fr;gap:16px}
       .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
       .process-track{grid-template-columns:1fr 1fr;gap:40px}
       .process-track::before{display:none}
@@ -408,35 +411,25 @@
         <a href="tel:+3612345678" class="cred-phone-num dyn-phone">+36-1-234-5678</a>
       </div>
 
-      <!-- Form nézet — ?id= nélkül -->
+      <!-- Kontakt nézet — ?id= nélkül -->
       <div class="cred-form" id="credForm">
-        <h3>🎯 Ingyenes ajánlatkérés</h3>
-        <form data-ajanlat id="heroForm">
-          <div class="form-group">
-            <label>Neve</label>
-            <input type="text" name="nev" placeholder="Kovács János" required>
+        <h3>📞 Hívjon fel most!</h3>
+        <div class="hero-contact-list">
+          <a href="tel:+3612345678" class="hero-contact-item hero-contact-phone dyn-phone">+36-1-234-5678</a>
+          <div class="hero-contact-item">
+            <span class="hci-label">E-mail</span>
+            <a href="mailto:info@kamerearendszer-budapest.hu" class="hci-val">info@kamerearendszer-budapest.hu</a>
           </div>
-          <div class="form-group">
-            <label>Telefonszám</label>
-            <input type="tel" name="tel" placeholder="+36 30 123 4567" required>
+          <div class="hero-contact-item">
+            <span class="hci-label">Nyitvatartás</span>
+            <span class="hci-val">H–P: 8:00–18:00 · Szo: 9:00–14:00</span>
           </div>
-          <div class="form-group">
-            <label>Milyen objektum?</label>
-            <select name="tipus">
-              <option value="">Válasszon...</option>
-              <option>Lakás / ház</option>
-              <option>Vállalkozás / iroda</option>
-              <option>Társasház</option>
-              <option>Raktár / gyár</option>
-            </select>
+          <div class="hero-contact-item">
+            <span class="hci-label">Cím</span>
+            <span class="hci-val">1134 Budapest, Váci út 45.</span>
           </div>
-          <div class="form-group">
-            <label>Kerület</label>
-            <input type="text" name="kerulet" placeholder="pl. XIII. kerület">
-          </div>
-          <button type="submit" class="btn-form">Ajánlatot kérek →</button>
-        </form>
-        <p class="form-note">🔒 Adatait bizalmasan kezeljük. Visszahívás 2 munkanapon belül.</p>
+        </div>
+        <p class="form-note">Visszahívás 2 munkanapon belül.</p>
       </div>
     </div>
   </div>
@@ -667,29 +660,26 @@
   <div class="sec-inner">
     <div class="sec-header reveal">
       <div class="sec-overline"><span>Kapcsolat</span></div>
-      <h2 class="sec-title">Kérjen ingyenes<br><em>ajánlatot!</em></h2>
+      <h2 class="sec-title">Hívjon fel vagy írjon —<br><em>visszahívunk!</em></h2>
     </div>
-    <div class="contact-grid">
-      <div class="reveal">
-        <div class="contact-detail"><div class="cd-icon">📍</div><div><div class="cd-label">Cím</div><div class="cd-value">1134 Budapest, Váci út 45.</div></div></div>
-        <div class="contact-detail"><div class="cd-icon">📞</div><div><div class="cd-label">Telefon</div><div class="cd-value"><a href="tel:+3612345678" class="dyn-phone" style="color:var(--navy-dark)">+36-1-234-5678</a></div></div></div>
-        <div class="contact-detail"><div class="cd-icon">✉️</div><div><div class="cd-label">E-mail</div><div class="cd-value"><a href="mailto:info@kamerearendszer-budapest.hu" style="color:var(--navy-dark)">info@kamerearendszer-budapest.hu</a></div></div></div>
-        <div class="contact-detail"><div class="cd-icon">🕐</div><div><div class="cd-label">Nyitvatartás</div><div class="cd-value">H–P: 8:00–18:00 | Szo: 9:00–14:00</div></div></div>
-        <div class="map-placeholder">🗺️ Google Térkép<br><small>1134 Budapest, Váci út 45. — XIII. kerület</small></div>
-      </div>
-      <div class="reveal" style="background:var(--navy-dark);border-radius:14px;padding:40px;position:relative;overflow:hidden">
-        <div style="position:absolute;top:-1px;left:52px;right:52px;height:1px;background:linear-gradient(90deg,transparent,rgba(196,149,90,.6),transparent)"></div>
-        <h3 style="font-family:var(--ff-display);font-weight:400;font-size:1.5rem;color:var(--white);margin-bottom:24px">Írjon nekünk</h3>
-        <form data-ajanlat>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-            <div class="form-group"><label>Neve *</label><input type="text" name="nev" placeholder="Kovács János" required></div>
-            <div class="form-group"><label>Telefon *</label><input type="tel" name="tel" placeholder="+36 30 ..." required></div>
-          </div>
-          <div class="form-group"><label>Szolgáltatás</label><select name="tipus"><option>Otthoni kamerarendszer</option><option>Üzleti kamerarendszer</option><option>Társasházi kamerarendszer</option><option>Ipari kamerarendszer</option><option>Szerviz</option></select></div>
-          <div class="form-group"><label>Megjegyzés</label><textarea name="uzenet" placeholder="Miben segíthetünk?" rows="3" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;width:100%;padding:11px 14px;font-family:var(--ff-body);color:var(--white);font-size:.95rem;resize:vertical"></textarea></div>
-          <button type="submit" class="btn-form">Üzenet küldése</button>
-        </form>
-        <p class="form-note">🔒 Adatait bizalmasan kezeljük.</p>
+    <div class="contact-cards reveal">
+      <a href="tel:+3612345678" class="contact-card contact-card-primary dyn-phone">
+        <div class="cc-icon">📞</div>
+        <div class="cc-label">Telefon</div>
+        <div class="cc-value dyn-phone">+36-1-234-5678</div>
+        <div class="cc-note">H–P: 8–18 · Szo: 9–14</div>
+      </a>
+      <a href="mailto:info@kamerearendszer-budapest.hu" class="contact-card">
+        <div class="cc-icon">✉️</div>
+        <div class="cc-label">E-mail</div>
+        <div class="cc-value">info@kamerearendszer-budapest.hu</div>
+        <div class="cc-note">1–2 munkanapon belül válaszolunk</div>
+      </a>
+      <div class="contact-card">
+        <div class="cc-icon">📍</div>
+        <div class="cc-label">Cím</div>
+        <div class="cc-value">1134 Budapest, Váci út 45.</div>
+        <div class="cc-note">XIII. kerület</div>
       </div>
     </div>
   </div>
