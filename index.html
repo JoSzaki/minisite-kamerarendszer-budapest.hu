@@ -262,9 +262,9 @@
     .efaq-pane.active{display:block}
     .efaq-item{border-bottom:1px solid var(--border)}
     .efaq-item.h4-item .efaq-q-btn{padding-left:20px;font-size:.83rem;color:var(--text-mid)}
-    .efaq-q-btn{width:100%;text-align:left;background:none;border:none;padding:16px 0;font-family:var(--ff-body);font-size:.92rem;font-weight:600;color:var(--navy-dark);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;line-height:1.4}
-    .efaq-q-btn .efaq-icon{width:20px;height:20px;border-radius:50%;background:var(--cream);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;transition:transform .2s,background .2s}
-    .efaq-item.open .efaq-q-btn .efaq-icon{transform:rotate(45deg);background:var(--navy);border-color:var(--navy);color:#fff}
+    .efaq-q-btn{width:100%;text-align:left;background:none;border:none;padding:16px 36px 16px 0;font-family:var(--ff-body);font-size:.92rem;font-weight:600;color:var(--navy-dark);cursor:pointer;display:block;position:relative;line-height:1.5}
+    .efaq-q-btn .efaq-icon{position:absolute;right:0;top:50%;transform:translateY(-50%);width:20px;height:20px;border-radius:50%;background:var(--cream);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:transform .2s,background .2s}
+    .efaq-item.open .efaq-q-btn .efaq-icon{transform:translateY(-50%) rotate(45deg);background:var(--navy);border-color:var(--navy);color:#fff}
     .efaq-icon::before{content:'+'}
     .efaq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
     .efaq-item.open .efaq-a{max-height:400px}
