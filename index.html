@@ -253,6 +253,23 @@
     .cc-note{font-size:.78rem;color:var(--text-mid)}
     .map-placeholder{height:260px;background:var(--cream);border:1.5px solid rgba(0,0,0,.06);border-radius:12px;display:flex;align-items:center;justify-content:center;text-align:center;color:var(--text-mid);font-size:.9rem;margin-top:20px;padding:20px}
 
+    /* EXPERT FAQ TABS */
+    .efaq-nav{display:flex;gap:4px;flex-wrap:wrap;border-bottom:2px solid var(--border);margin-bottom:28px;padding-bottom:0}
+    .efaq-tab{padding:10px 16px;font-size:.8rem;font-weight:700;cursor:pointer;border:none;background:none;color:var(--text-mid);border-bottom:2px solid transparent;margin-bottom:-2px;border-radius:6px 6px 0 0;transition:all .2s;letter-spacing:.02em;text-transform:uppercase}
+    .efaq-tab:hover:not(.active){color:var(--navy);background:rgba(26,58,107,.05)}
+    .efaq-tab.active{color:var(--navy);border-bottom-color:var(--navy);background:var(--white)}
+    .efaq-pane{display:none}
+    .efaq-pane.active{display:block}
+    .efaq-item{border-bottom:1px solid var(--border)}
+    .efaq-item.h4-item .efaq-q-btn{padding-left:20px;font-size:.83rem;color:var(--text-mid)}
+    .efaq-q-btn{width:100%;text-align:left;background:none;border:none;padding:16px 0;font-family:var(--ff-body);font-size:.92rem;font-weight:600;color:var(--navy-dark);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;line-height:1.4}
+    .efaq-q-btn .efaq-icon{width:20px;height:20px;border-radius:50%;background:var(--cream);border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.7rem;transition:transform .2s,background .2s}
+    .efaq-item.open .efaq-q-btn .efaq-icon{transform:rotate(45deg);background:var(--navy);border-color:var(--navy);color:#fff}
+    .efaq-icon::before{content:'+'}
+    .efaq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+    .efaq-item.open .efaq-a{max-height:400px}
+    .efaq-a-inner{padding:0 0 16px;font-size:.88rem;line-height:1.75;color:var(--text-mid)}
+
     /* FOOTER */
     footer{background:var(--navy-dark);padding:56px 0 0}
     .footer-grid{max-width:1180px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:40px;margin-bottom:48px}
@@ -431,6 +448,212 @@
     <div class="stat-item"><span class="stat-num">2 év</span><div class="stat-lbl">Garancia</div></div>
   </div>
 </div>
+
+<!-- SZAKÉRTŐI FAQ -->
+<section id="szakertoi-faq" style="background:var(--white);padding:80px 0">
+  <div class="sec-inner">
+    <div class="sec-header reveal">
+      <div class="sec-overline"><span>Kérdések & Válaszok</span></div>
+      <h2 class="sec-title">Minden, amit tudnia kell<br><em><span class="dyn-name">Kovács Péterről</span></em></h2>
+    </div>
+    <div class="expert-faq reveal">
+      <div class="efaq-nav" role="tablist">
+        <button class="efaq-tab active" data-etab="0">Bemutatkozás</button>
+        <button class="efaq-tab" data-etab="1">Helyszín</button>
+        <button class="efaq-tab" data-etab="2">Szakterület</button>
+        <button class="efaq-tab" data-etab="3">Szolgáltatások</button>
+        <button class="efaq-tab" data-etab="4">Innováció</button>
+        <button class="efaq-tab" data-etab="5">Elvek</button>
+        <button class="efaq-tab" data-etab="6">Kapcsolat</button>
+        <button class="efaq-tab" data-etab="7">Időpontfoglalás</button>
+      </div>
+
+      <!-- TAB 0: Bemutatkozás -->
+      <div class="efaq-pane active" data-epane="0">
+        <div class="efaq-item open">
+          <button class="efaq-q-btn">Mi <span class="dyn-name">Kovács Péter</span> szakmai háttere?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> mélyszakmai ismeretekkel rendelkezik az IP-alapú kamerarendszerek tervezése, telepítése és karbantartása terén. Hikvision és Dahua tanúsítvánnyal rendelkező szakember, aki több éve nyújt biztonságtechnikai megoldásokat Budapesten és vonzáskörzetében.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Ki <span class="dyn-name">Kovács Péter</span>?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> tapasztalt kamerarendszer-telepítő szakértő, aki lakások, vállalkozások, társasházak és ipari létesítmények teljes körű biztonságtechnikai megoldásait végzi el. Munkájában a minőségre, az átláthatóságra és a hosszú távú ügyfélkapcsolatokra helyezi a hangsúlyt.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Mi inspirálta <span class="dyn-name">Kovács Pétert</span> erre a szakmára?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner">A technológia és a biztonság iránti elkötelezettség vezette <span class="dyn-name">Kovács Pétert</span> a biztonságtechnika területére. Fontosnak tartja, hogy az emberek otthonukban és munkahelyükön valódi, megbízható védelmet élvezhessenek.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Milyen területekre specializálódott <span class="dyn-name">Kovács Péter</span>?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> főként lakóingatlanok, irodák, éttermek, társasházak és ipari létesítmények kamerarendszereinek telepítésére specializálódott. Emellett meglévő rendszerek szervizét, bővítését és GDPR-kompatibilis dokumentálását is elvégzi.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Mi <span class="dyn-name">Kovács Péter</span> küldetése és víziója?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> célja, hogy minden ügyfele hozzáférjen a professzionális, megbízható és jogszabály-kompatibilis kamerarendszerekhez. Víziója egy biztonságosabb Budapest, ahol a technológia valódi védelmet nyújt — nem csak marketing.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Hogyan definiálja <span class="dyn-name">Kovács Péter</span> a sikert?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner">Siker <span class="dyn-name">Kovács Péter</span> számára, ha az általa telepített rendszer évek múlva is kifogástalanul működik, és az ügyfél biztonságban érzi magát. A visszatérő megbízók és az ajánlások számára a legjobb visszajelzés.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Mi <span class="dyn-name">Kovács Péter</span> karriertörténete?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> több éve aktív a biztonságtechnikai szektorban. Pályáját kisebb, 2–4 kamerás lakástelepítésekkel kezdte, mára összetett, 16–32 kamerás rendszereket épít ki irodaházakban, raktárakban és társasházakban egyaránt.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Milyen cégekkel dolgozott együtt <span class="dyn-name">Kovács Péter</span>?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> számos fővárosi vállalkozással, társasházzal és magánszeméllyel dolgozott. Referenciái között szerepelnek irodaházak, éttermek, logisztikai cégek és lakóparkok Budapesten és Pest megyében.</div></div>
+        </div>
+        <div class="efaq-item h4-item">
+          <button class="efaq-q-btn">Melyek <span class="dyn-name">Kovács Péter</span> kiemelkedő projektjei?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner">Elvégzett munkái között megtalálható egy 32 kamerás XIII. kerületi raktárkomplexum, több belvárosi társasház közös területeinek teljes biztonsági rendszere, és számos fővárosi étteremlánc kamerarendszere.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Milyen elismeréseket kapott <span class="dyn-name">Kovács Péter</span>?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> Hikvision Silver Partner és Dahua Partner tanúsítvánnyal rendelkezik. Ügyfélértékelései alapján 4.9/5 átlagos elégedettséget ér el 187 Google értékelés alapján.</div></div>
+        </div>
+        <div class="efaq-item h4-item">
+          <button class="efaq-q-btn">Tagja-e <span class="dyn-name">Kovács Péter</span> szakmai szövetségeknek?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> tagja hazai biztonságtechnikai szakmai szervezeteknek, és rendszeresen részt vesz gyártói képzéseken és tanúsítási programokon, hogy tudása mindig naprakész maradjon.</div></div>
+        </div>
+      </div>
+
+      <!-- TAB 1: Helyszín -->
+      <div class="efaq-pane" data-epane="1">
+        <div class="efaq-item open">
+          <button class="efaq-q-btn">Hol tevékenykedik jelenleg <span class="dyn-name">Kovács Péter</span>?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> jelenleg Budapesten és Pest megyében aktív, ahol a legtöbb megbízását teljesíti. A főváros mind a 23 kerületében vállal kiszállást, általában 24–48 órán belül.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Honnan származik <span class="dyn-name">Kovács Péter</span>?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> Budapesthez kötődik, és a fővárosi piac sajátos igényeire — társasházi szabályok, kerületi rendeletekre — specializálódva alakította ki szaktudását és ügyfélkörét.</div></div>
+        </div>
+        <div class="efaq-item h4-item">
+          <button class="efaq-q-btn">Végez-e <span class="dyn-name">Kovács Péter</span> munkát Pest megyén kívül is?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> elsősorban Budapestre és Pest megyére fókuszál, de nagyobb volumenű projektek esetén más régiókba is vállal kiszállást előzetes egyeztetés alapján.</div></div>
+        </div>
+      </div>
+
+      <!-- TAB 2: Szakterület -->
+      <div class="efaq-pane" data-epane="2">
+        <div class="efaq-item open">
+          <button class="efaq-q-btn">Mely kerületeket és területeket szolgálja ki <span class="dyn-name">Kovács Péter</span>?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> Budapest összes kerületében dolgozik, kiemelten a XIII., XIV., XI. és VI. kerületekben. Pest megye számos városában — Érden, Budaörsön, Dunakeszin, Gödöllőn — szintén rendszeresen vállal megbízásokat.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Mi <span class="dyn-name">Kovács Péter</span> képzési háttere?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> biztonságtechnikai és elektrotechnikai végzettséggel rendelkezik, amelyet folyamatos gyártói képzésekkel egészít ki Hikvision, Dahua és más vezető márkák rendszereiből.</div></div>
+        </div>
+        <div class="efaq-item h4-item">
+          <button class="efaq-q-btn">Milyen képzéseken vett részt <span class="dyn-name">Kovács Péter</span>?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> elvégezte a Hikvision és Dahua hivatalos partneri képzéseit, IP-kamera és NVR rendszerek tervezési és telepítési kurzusait, valamint GDPR-kompatibilis biztonságtechnikai rendszerek kialakítási képzéseit.</div></div>
+        </div>
+        <div class="efaq-item h4-item">
+          <button class="efaq-q-btn">Milyen bizonyítványai vannak <span class="dyn-name">Kovács Péternek</span>?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> rendelkezik Hikvision Silver Partner és Dahua Partner tanúsítvánnyal, elektrotechnikai kivitelezői jogosultsággal, valamint Pest megyei telepítői engedéllyel.</div></div>
+        </div>
+        <div class="efaq-item h4-item">
+          <button class="efaq-q-btn">Hogyan tartja naprakészen magát <span class="dyn-name">Kovács Péter</span>?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> rendszeresen részt vesz gyártói workshopokon, és figyelemmel követi a kamerarendszerek, NVR technológiák és AI-alapú biztonsági megoldások legújabb fejlesztéseit és piaci trendjeit.</div></div>
+        </div>
+      </div>
+
+      <!-- TAB 3: Szolgáltatások -->
+      <div class="efaq-pane" data-epane="3">
+        <div class="efaq-item open">
+          <button class="efaq-q-btn">Milyen kamerarendszer-telepítési szolgáltatásokat kínál <span class="dyn-name">Kovács Péter</span>?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> teljes körű megoldásokat kínál: ingyenes helyszíni felmérés, rendszertervezés, eszközbeszerzés, telepítés, beüzemelés, mobilos elérés konfigurálása és 2 éves garancia — minden projekthez egységes csomagban.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Hogyan közelíti meg <span class="dyn-name">Kovács Péter</span> az ügyfélszolgálatot?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> mindig az ügyfél konkrét igényeit méri fel először, és személyre szabott megoldást javasol. A legolcsóbb helyett a legjobb ár-érték arányú eszközöket ajánlja, és részletes tételes árajánlatot ad.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Milyen típusú ügyfeleket szolgál ki <span class="dyn-name">Kovács Péter</span>?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> ügyfelei között egyaránt megtalálhatók magánemberek (lakások, kertes házak), vállalkozások (irodák, éttermek, üzletek, szállodák), társasházak és ipari ügyfelek (raktárak, gyárak, logisztikai cégek).</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Mi <span class="dyn-name">Kovács Péter</span> hozzáállása a projekttervezéshez?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> részletes tervrajzot és árajánlatot készít minden projekt előtt. A telepítés során precízen dolgozik, az elrejtett kábelezésre és az esztétikus kialakításra különösen nagy figyelmet fordít.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Hogyan biztosítja <span class="dyn-name">Kovács Péter</span> az átláthatóságot?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> tételes árajánlatot ad minden munkálathoz — nincs rejtett díj. A GDPR-dokumentációt teljes körűen biztosítja: adatkezelési tájékoztató, figyelmeztető táblák és automatikus felülírás beállítása.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Mit gondol <span class="dyn-name">Kovács Péter</span> a kamerarendszer-telepítésről?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> úgy véli, hogy a jó kamerarendszer nemcsak visszatartó erőként hat, hanem valódi biztonságot ad. A minőségi eszközök és a professzionális telepítés együtt nyújtanak tartós, megbízható védelmet.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Hogyan látja <span class="dyn-name">Kovács Péter</span> a kamerarendszer-telepítés jövőjét?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> szerint az AI-alapú videóelemzés, a 4K felbontású kamerák és a felhős tárolás egyre elterjedtebbé válik. A jövő rendszerei nemcsak rögzítenek, hanem proaktívan figyelmeztetnek a veszélyhelyzetekre.</div></div>
+        </div>
+      </div>
+
+      <!-- TAB 4: Innováció -->
+      <div class="efaq-pane" data-epane="4">
+        <div class="efaq-item open">
+          <button class="efaq-q-btn">Milyen innovációk fogják átalakítani a szakmát <span class="dyn-name">Kovács Péter</span> szerint?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> szerint az AI-alapú videóelemzés, az arcfelismerés, az edge computing és a valós idejű riasztási rendszerek fogják leginkább forradalmasítani a biztonságtechnikai szektort az elkövetkező években.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Hogyan alkalmazza <span class="dyn-name">Kovács Péter</span> a legújabb technológiákat?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> már ma is integrálja a mesterséges intelligenciát — mozgáselemzést, arcfelismerést, automatikus riasztásokat — az általa telepített rendszerekbe, ahol az ügyfél igényli és a büdzsé engedi.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Milyen tanácsokat ad <span class="dyn-name">Kovács Péter</span> a biztonságtudatosságról?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> azt javasolja, hogy rendszeresen ellenőrizzék a kameraképek minőségét, frissítsék a firmware-t, és gondoskodjanak a felvételek biztonságos tárolásáról — akár helyi NVR, akár felhős megoldással.</div></div>
+        </div>
+      </div>
+
+      <!-- TAB 5: Elvek -->
+      <div class="efaq-pane" data-epane="5">
+        <div class="efaq-item open">
+          <button class="efaq-q-btn">Mik <span class="dyn-name">Kovács Péter</span> karrierjének vezérelvei?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> alapelvei: minőség kompromisszum nélkül, átlátható árazás, hosszú távú ügyfélkapcsolatok és folyamatos szakmai fejlődés. Minden projektnél úgy dolgozik, mintha saját otthonát vagy vállalkozását szerelné fel.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Milyen kedvenc mottói vannak <span class="dyn-name">Kovács Péternek</span>?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> egyik kedvenc mottója: „A biztonság nem luxus, hanem alapjog." Vallja, hogy mindenki megérdemel egy biztonságos otthont és munkahelyet — a büdzséjétől függetlenül.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Kit csodál <span class="dyn-name">Kovács Péter</span> a szakmai életben?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> nagyra értékeli azokat a szakembereket, akik magas minőséget képviselnek, és az ügyfelek hosszú távú érdekeit helyezik előtérbe a gyors profit helyett. A folyamatos fejlődés — a japán kaizen-szemlélet — közel áll hozzá.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Mi motiválja <span class="dyn-name">Kovács Pétert</span>?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Pétert</span> az motiválja, hogy minden általa védett helyszínen biztonságban tudhatják magukat az emberek. Az ügyfelek elégedettsége és az évek múlva is tökéletesen működő rendszerek adják a munkájához a legnagyobb energiát.</div></div>
+        </div>
+      </div>
+
+      <!-- TAB 6: Kapcsolat -->
+      <div class="efaq-pane" data-epane="6">
+        <div class="efaq-item open">
+          <button class="efaq-q-btn">Hogyan egyensúlyozza <span class="dyn-name">Kovács Péter</span> a szakmai kiválóságot az ügyfélorientált hozzáállással?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> szerint a legjobb munka az, ami technikailag tökéletes ÉS az ügyfél valódi igényeire épül. Mindig időt szán az elvárások megértésére, és a telepítés után is elérhető a felmerülő kérdésekkel.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Hol találhatók <span class="dyn-name">Kovács Péter</span> cikkei, interjúi?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> szakmai tapasztalatait és biztonságtechnikai tippjeit rendszeresen megosztja — aktuális publikációit a weboldalon és a közösségi médiában találja.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Hogyan lehet felvenni a kapcsolatot <span class="dyn-name">Kovács Péterrel</span>?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péterrel</span> legegyszerűbben telefonon (<a href="tel:+3612345678" class="dyn-phone" style="color:var(--navy)">+36-1-234-5678</a>) vagy e-mailben (<a href="mailto:info@kamerearendszer-budapest.hu" style="color:var(--navy)">info@kamerearendszer-budapest.hu</a>) lehet kapcsolatba lépni. Általában 1 munkanapon belül visszajelez.</div></div>
+        </div>
+      </div>
+
+      <!-- TAB 7: Időpontfoglalás -->
+      <div class="efaq-pane" data-epane="7">
+        <div class="efaq-item open">
+          <button class="efaq-q-btn">Hogyan lehet időpontot foglalni vagy ingyenes felmérést kérni <span class="dyn-name">Kovács Pétertől</span>?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner">Egyszerűen hívja fel <span class="dyn-name">Kovács Pétert</span> a <a href="tel:+3612345678" class="dyn-phone" style="color:var(--navy)">+36-1-234-5678</a> számon, vagy küldjön e-mailt az <a href="mailto:info@kamerearendszer-budapest.hu" style="color:var(--navy)">info@kamerearendszer-budapest.hu</a> címre. Az ingyenes helyszíni felmérést általában 48 órán belül meg lehet szervezni.</div></div>
+        </div>
+        <div class="efaq-item">
+          <button class="efaq-q-btn">Kínál-e <span class="dyn-name">Kovács Péter</span> online konzultációt?<span class="efaq-icon"></span></button>
+          <div class="efaq-a"><div class="efaq-a-inner"><span class="dyn-name">Kovács Péter</span> telefonon és videóhívás útján is tud előzetes konzultációt biztosítani, ahol megbeszélik az igényeket és hozzávetőleges árajánlatot ad. A pontos ajánlathoz azonban helyszíni felmérés szükséges.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- SZOLGÁLTATÁSOK -->
 <section id="szolgaltatasok">
@@ -702,15 +925,24 @@
   })();
 
   (async function(){
+    const FB_KEY2 = 'AIzaSyDfdCNl3LeuBT4xIYQPYluSVKKMFJTGVws';
+    const FB_COL  = 'https://firestore.googleapis.com/v1/projects/joszaki-minisite/databases/(default)/documents/joszaki_kamera';
     const id = new URLSearchParams(location.search).get('id');
-    if (!id) return;
     try {
-      const res = await fetch(
-        'https://firestore.googleapis.com/v1/projects/joszaki-minisite/databases/(default)/documents/joszaki_kamera/'
-        + encodeURIComponent(id) + '?key=AIzaSyDfdCNl3LeuBT4xIYQPYluSVKKMFJTGVws'
-      );
-      if (!res.ok) return;
-      const f = (await res.json()).fields || {};
+      let f = {}, resolvedId = id;
+      if (id) {
+        const res = await fetch(FB_COL + '/' + encodeURIComponent(id) + '?key=' + FB_KEY2);
+        if (!res.ok) throw new Error();
+        f = (await res.json()).fields || {};
+      } else {
+        const res = await fetch(FB_COL + '?key=' + FB_KEY2 + '&pageSize=1');
+        if (!res.ok) throw new Error();
+        const data = await res.json();
+        const docs = data.documents || [];
+        if (!docs.length) throw new Error();
+        resolvedId = docs[0].name.split('/').pop();
+        f = docs[0].fields || {};
+      }
       const name  = f.name?.stringValue;
       const phone = f.phone?.stringValue;
 
@@ -727,22 +959,18 @@
         document.querySelectorAll('a[href^="tel:"]').forEach(a => a.href = telHref);
       }
 
-      // Profil kártya megjelenítése
-      const profile = document.getElementById('credProfile');
-      const form    = document.getElementById('credForm');
-      if (profile && form) {
-        profile.style.display = 'block';
-        form.style.display    = 'none';
-      }
-
-      // Profilkép betöltése GCS-ről (foto mező a Firestore-ból, fallback: bucket/id.webp)
-      const img = document.getElementById('profilImg');
-      if (img) {
-        const fotoUrl = f.foto?.stringValue
-          || ('https://storage.googleapis.com/joszaki-assets/minisite_assests/' + id + '.webp');
-        img.onerror = () => { img.onerror = null; img.src = './profil.webp'; };
-        img.src = fotoUrl;
-        if (name) img.alt = name + ' – Kamerarendszer szakértő';
+      if (id) {
+        const profile = document.getElementById('credProfile');
+        const form    = document.getElementById('credForm');
+        if (profile && form) { profile.style.display = 'block'; form.style.display = 'none'; }
+        const img = document.getElementById('profilImg');
+        if (img) {
+          const fotoUrl = f.foto?.stringValue
+            || ('https://storage.googleapis.com/joszaki-assets/minisite_assests/' + resolvedId + '.webp');
+          img.onerror = () => { img.onerror = null; img.src = './profil.webp'; };
+          img.src = fotoUrl;
+          if (name) img.alt = name + ' – Kamerarendszer szakértő';
+        }
       }
     } catch(e) {}
   })();
@@ -771,6 +999,26 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
   }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ── Expert FAQ tabs ──────────────────────────────────────────
+  document.querySelectorAll('.efaq-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const idx = tab.dataset.etab;
+      document.querySelectorAll('.efaq-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.efaq-pane').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector('.efaq-pane[data-epane="' + idx + '"]').classList.add('active');
+    });
+  });
+  document.querySelectorAll('.efaq-q-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const pane = item.closest('.efaq-pane');
+      const open = item.classList.contains('open');
+      pane.querySelectorAll('.efaq-item').forEach(i => i.classList.remove('open'));
+      if (!open) item.classList.add('open');
+    });
+  });
 
   // ── FAQ accordion ────────────────────────────────────────────
   document.querySelectorAll('.faq-q').forEach(btn => {
