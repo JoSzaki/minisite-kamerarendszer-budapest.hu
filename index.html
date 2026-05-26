@@ -969,7 +969,7 @@
         if (img) {
           const fotoUrl = f.foto?.stringValue
             || ('https://storage.googleapis.com/joszaki-assets/minisite_assests/' + resolvedId + '.webp');
-          img.onerror = () => { img.onerror = null; img.src = './profil.webp'; };
+          img.onerror = () => { img.onerror = null; img.src = 'https://storage.googleapis.com/joszaki-assets/minisite_assests/default-avatar.png'; };
           img.src = fotoUrl;
           if (name) img.alt = name + ' – Kamerarendszer szakértő';
         }
