@@ -129,6 +129,9 @@
     .hero-stat-number{font-family:var(--ff-display);font-size:2rem;font-weight:600;color:var(--white);display:block;line-height:1}
     .hero-stat-label{font-size:.7rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
 
+    /* Hero háttér scroll-animáció (canvas) */
+    .hero-anim-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;mix-blend-mode:screen;z-index:1;opacity:.7}
+
     /* PROFILE CARD (hero jobb oldal) */
     .hero-cred{background:rgba(10,18,32,.45);border:1px solid rgba(196,149,90,.25);border-radius:20px;padding:36px 32px;text-align:center;backdrop-filter:blur(12px);position:relative}
     .hero-cred::before{content:'';position:absolute;top:-1px;left:60px;right:60px;height:1px;background:linear-gradient(90deg,transparent,rgba(196,149,90,.7),transparent)}
@@ -148,7 +151,7 @@
     /* Form nézet (id nélkül) */
     .cred-form h3{font-family:var(--ff-display);font-size:1.4rem;font-weight:500;color:var(--white);margin-bottom:20px;text-align:left}
     .hero-contact-list{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
-    .hero-contact-phone{font-size:1.6rem;font-weight:800;color:var(--warm);letter-spacing:.5px;text-decoration:none;display:block;text-align:center;padding:14px;background:rgba(196,149,90,.12);border-radius:10px;border:1px solid rgba(196,149,90,.3);transition:background .2s}
+    .hero-contact-phone{font-size:1.8rem;font-weight:800;color:var(--warm);letter-spacing:.5px;text-decoration:none;display:block;text-align:center;padding:18px;background:rgba(196,149,90,.12);border-radius:10px;border:1px solid rgba(196,149,90,.3);transition:background .2s;width:100%}
     .hero-contact-phone:hover{background:rgba(196,149,90,.22)}
     .hero-contact-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.07)}
     .hci-label{font-size:.7rem;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.4);font-weight:600;flex-shrink:0;margin-right:12px}
@@ -337,6 +340,25 @@
       .footer-grid{grid-template-columns:1fr}
       .topbar-right{display:none}
     }
+
+    /* ── SCROLL ANIMATION ─────────────────────────────────────── */
+    .scroll-anim-section{position:relative;height:500vh;background:var(--navy-dark)}
+    .scroll-anim-sticky{position:sticky;top:0;height:100vh;width:100%;overflow:hidden}
+    .scroll-anim-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:var(--navy-dark);z-index:2;transition:opacity .6s;display:block}
+    .scroll-anim-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;display:block}
+    .scroll-anim-caption{position:absolute;bottom:48px;left:0;right:0;text-align:center;z-index:3;pointer-events:none}
+    .scroll-anim-caption .sec-overline{justify-content:center}
+    .scroll-anim-caption .sec-title{color:var(--white);font-size:clamp(1.5rem,2.8vw,2.2rem);margin-bottom:0;text-shadow:0 2px 20px rgba(0,0,0,.6)}
+    .scroll-anim-hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);z-index:3;font-size:.68rem;color:rgba(255,255,255,.3);letter-spacing:.12em;text-transform:uppercase;pointer-events:none;animation:hintBob 2.5s ease-in-out infinite}
+    @keyframes hintBob{0%,100%{opacity:.3;transform:translateX(-50%) translateY(0)}50%{opacity:.6;transform:translateX(-50%) translateY(5px)}}
+    @keyframes mobilePulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+    @media(hover:none){
+      .scroll-anim-section{height:auto}
+      .scroll-anim-sticky{position:relative;height:56vw;max-height:80vh;min-height:220px}
+      .scroll-anim-hint{display:none}
+      .scroll-anim-poster{object-fit:cover;transition:none;animation:mobilePulse 5s ease-in-out infinite}
+      .scroll-anim-canvas{display:none}
+    }
   </style>
 </head>
 <body>
@@ -385,13 +407,14 @@
 
 <!-- HERO -->
 <section class="hero" id="fooldal">
+  <canvas id="scrollAnimCanvas" class="hero-anim-canvas" aria-hidden="true"></canvas>
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
         Budapest vezető kamerarendszer-telepítője
       </div>
-      <h1>Kamerarendszer<br>telepítés <em>Budapesten</em><br>— profi, garantált</h1>
+      <h1>Kamerarendszer<br>telepítés <em>Budapesten</em></h1>
       <p class="hero-desc">Védje otthonát, vállalkozását és társasházát Pest megye tapasztalt biztonságtechnikai csapatával. Ingyenes helyszíni felmérés, 2 év garancia, Hikvision és Dahua minőség.</p>
       <div class="hero-actions">
         <a href="tel:+3612345678" class="btn btn-gold dyn-phone">📞 +36-1-234-5678</a>
@@ -420,21 +443,7 @@
       <!-- Kontakt nézet — ?id= nélkül -->
       <div class="cred-form" id="credForm">
         <h3>📞 Hívjon fel most!</h3>
-        <div class="hero-contact-list">
-          <a href="tel:+3612345678" class="hero-contact-item hero-contact-phone dyn-phone">+36-1-234-5678</a>
-          <div class="hero-contact-item">
-            <span class="hci-label">E-mail</span>
-            <a href="mailto:info@kamerearendszer-budapest.hu" class="hci-val">info@kamerearendszer-budapest.hu</a>
-          </div>
-          <div class="hero-contact-item">
-            <span class="hci-label">Nyitvatartás</span>
-            <span class="hci-val">H–P: 8:00–18:00 · Szo: 9:00–14:00</span>
-          </div>
-          <div class="hero-contact-item">
-            <span class="hci-label">Cím</span>
-            <span class="hci-val">1134 Budapest, Váci út 45.</span>
-          </div>
-        </div>
+        <a href="tel:+3612345678" class="hero-contact-phone dyn-phone">+36-1-234-5678</a>
         <p class="form-note">Visszahívás 2 munkanapon belül.</p>
       </div>
     </div>
@@ -450,6 +459,7 @@
     <div class="stat-item"><span class="stat-num">2 év</span><div class="stat-lbl">Garancia</div></div>
   </div>
 </div>
+
 
 <!-- SZAKÉRTŐI FAQ -->
 <section id="szakertoi-faq" style="background:var(--white);padding:80px 0">
@@ -1100,6 +1110,69 @@
     document.getElementById('editSaveBar').style.display = 'none';
     editPass = null;
   }
+</script>
+
+<script>
+(function () {
+  var hero = document.getElementById('fooldal');
+  var cvs  = document.getElementById('scrollAnimCanvas');
+  if (!hero || !cvs) return;
+
+  var ctx = cvs.getContext('2d');
+  var W = 1948, H = 1060;
+  var FRAME_COUNT = 61;
+  var frames = new Array(FRAME_COUNT);
+  var loaded = 0;
+  var currentFrame = 0;
+
+  function setSize() {
+    cvs.width  = hero.offsetWidth  || window.innerWidth;
+    cvs.height = hero.offsetHeight || window.innerHeight;
+  }
+
+  function drawFrame(idx) {
+    var bmp = frames[idx];
+    if (!bmp) return;
+    var cw = cvs.width, ch = cvs.height;
+    var scale = Math.max(cw / W, ch / H);
+    var dw = W * scale, dh = H * scale;
+    ctx.clearRect(0, 0, cw, ch);
+    ctx.filter = 'invert(1)';
+    ctx.drawImage(bmp, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+    ctx.filter = 'none';
+  }
+
+  function onScroll() {
+    var rect = hero.getBoundingClientRect();
+    var frac = Math.max(0, Math.min(1, -rect.top / (rect.height * 0.4)));
+    var idx  = Math.round(frac * (FRAME_COUNT - 1));
+    if (idx !== currentFrame && frames[idx]) {
+      currentFrame = idx;
+      requestAnimationFrame(function () { drawFrame(idx); });
+    }
+  }
+
+  // Frame-ek preload-olása ImageBitmap-be (GPU-ready)
+  for (var i = 0; i < FRAME_COUNT; i++) {
+    (function (idx) {
+      var img = new Image();
+      img.onload = function () {
+        createImageBitmap(img).then(function (bmp) {
+          frames[idx] = bmp;
+          loaded++;
+          if (idx === 0) drawFrame(0); // első frame azonnal
+          if (loaded === FRAME_COUNT) {
+            window.addEventListener('scroll', onScroll, { passive: true });
+          }
+        });
+      };
+      img.src = './frames/f' + String(idx + 1).padStart(4, '0') + '.jpg';
+    })(i);
+  }
+
+  setSize();
+  window.addEventListener('resize', function () { setSize(); drawFrame(currentFrame); });
+})();
 </script>
 </body>
 </html>
