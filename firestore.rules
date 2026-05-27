@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /joszaki_kamera/{doc} {
+      allow read: if true;
+    }
+    match /joszaki_kamera_erdekel/{doc} {
+      allow create: if true;
+      allow read, update, delete: if false;
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
