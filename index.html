@@ -103,11 +103,6 @@
     .hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
     /* TOPBAR */
-    .topbar{background:var(--navy-dark);color:rgba(255,255,255,0.65);font-size:.8rem;padding:8px 0;position:relative;z-index:100}
-    .topbar-inner{max-width:1180px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
-    .topbar a{color:rgba(255,255,255,0.65);transition:color .2s}
-    .topbar a:hover{color:var(--white)}
-    .topbar-item{display:inline-flex;align-items:center;gap:6px}
 
     /* HERO */
     .hero{background:linear-gradient(135deg,var(--navy-dark) 0%,var(--navy) 60%,var(--navy-light) 100%);color:var(--white);padding:88px 0 72px;position:relative;overflow:hidden}
@@ -338,7 +333,6 @@
       .hero-stats{gap:20px}
       .stats-inner{grid-template-columns:repeat(2,1fr)}
       .footer-grid{grid-template-columns:1fr}
-      .topbar-right{display:none}
     }
 
     /* ── SCROLL ANIMATION ─────────────────────────────────────── */
@@ -364,18 +358,6 @@
 <body>
 
 <!-- TOPBAR -->
-<div class="topbar">
-  <div class="topbar-inner">
-    <div style="display:flex;gap:18px;flex-wrap:wrap">
-      <span class="topbar-item">📍 Budapest, XIII. kerület — Pest megye</span>
-      <span class="topbar-item">⭐ 4.9/5 (187 értékelés)</span>
-    </div>
-    <div class="topbar-right" style="display:flex;gap:18px">
-      <span class="topbar-item">🕐 H–P: 8:00–18:00 | Szo: 9:00–14:00</span>
-      <a href="tel:+3612345678" class="topbar-item dyn-phone">+36-1-234-5678</a>
-    </div>
-  </div>
-</div>
 
 <!-- HEADER / NAV -->
 <header>
