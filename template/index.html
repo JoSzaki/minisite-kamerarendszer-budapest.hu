@@ -803,13 +803,53 @@
       }
 
       // Profilkép betöltése GCS-ről (foto mező a Firestore-ból, fallback: bucket/id.webp)
+      const fotoUrl = f.foto?.stringValue
+        || ('https://storage.googleapis.com/joszaki-assets/minisite_assests/' + id + '.webp');
       const img = document.getElementById('profilImg');
       if (img) {
-        const fotoUrl = f.foto?.stringValue
-          || ('https://storage.googleapis.com/joszaki-assets/minisite_assests/' + id + '.webp');
         img.onerror = () => { img.onerror = null; img.src = './profil.webp'; };
         img.src = fotoUrl;
         if (name) img.alt = name + ' – Kamerarendszer szakértő';
+      }
+
+      if (name) {
+        const pageUrl    = 'https://' + SITE.domain + '/?id=' + encodeURIComponent(id);
+        const siteUrl    = 'https://' + SITE.domain + '/';
+        const joszakiUrl = 'https://joszaki.hu/szakember/' + id;
+        const injectLd   = obj => { const s = document.createElement('script'); s.type = 'application/ld+json'; s.textContent = JSON.stringify(obj); document.head.appendChild(s); };
+
+        injectLd({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "@id": pageUrl + "#szemely",
+          "name": name,
+          "jobTitle": SITE.szakmaJelzo,
+          "telephone": phone || SITE.telefon,
+          "image": fotoUrl,
+          "url": pageUrl,
+          "address": { "@type": "PostalAddress", "addressLocality": SITE.varos, "addressRegion": SITE.kerulet, "addressCountry": "HU" },
+          "sameAs": [joszakiUrl],
+          "worksFor": { "@type": "LocalBusiness", "@id": siteUrl + "#vallalkozas" }
+        });
+
+        injectLd({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "@id": siteUrl + "#vallalkozas",
+          "name": name + " – Kamerarendszer Budapest",
+          "description": SITE.description,
+          "url": siteUrl,
+          "telephone": phone || SITE.telefon,
+          "image": fotoUrl,
+          "address": { "@type": "PostalAddress", "addressLocality": SITE.varos, "addressRegion": SITE.kerulet, "addressCountry": "HU" },
+          "areaServed": { "@type": "City", "name": SITE.varos },
+          "employee": { "@type": "Person", "@id": pageUrl + "#szemely" },
+          "founder": { "@type": "Person", "name": name },
+          "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "08:00", "closes": "18:00" },
+          "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "187", "bestRating": "5" },
+          "priceRange": "$$",
+          "sameAs": [joszakiUrl]
+        });
       }
     } catch(e) {}
   })();
