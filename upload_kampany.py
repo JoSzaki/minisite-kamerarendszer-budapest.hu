@@ -1,18 +1,31 @@
-import csv, json, subprocess, urllib.request, urllib.error, sys
+import csv, json, subprocess, urllib.request, urllib.error, sys, argparse
 
-PROJECT    = 'joszaki-minisite'
-COLLECTION = 'joszaki_kamera'
-CSV_FILE   = r'C:\Users\Szabó Norbert\Downloads\KAmerarendszer-Budapest 1 kampány - Sheet1 (1).csv'
+PROJECT      = 'joszaki-minisite'
 DEFAULT_FOTO = 'https://storage.googleapis.com/joszaki-assets/minisite_assests/default-avatar.png'
+SAMPLE_IDS   = ['kovacs-peter-1', 'nagy-janos-2', 'szabo-laszlo-3', 'horvath-gabor-4']
 
-SAMPLE_IDS = ['kovacs-peter-1', 'nagy-janos-2', 'szabo-laszlo-3', 'horvath-gabor-4']
+parser = argparse.ArgumentParser(
+    description='Kampány CSV → Firestore feltöltő (csak mintaadatokat töröl, majd feltölt)',
+    formatter_class=argparse.RawDescriptionHelpFormatter,
+    epilog='''Példák:
+  python upload_kampany.py kampany.csv
+  python upload_kampany.py kampany.csv --collection joszaki_lakatos
+'''
+)
+parser.add_argument('csv_file', help='Kampány CSV fájl elérési útja (id,name,mobile,kép oszlopok)')
+parser.add_argument('--collection', default='joszaki_kamera',
+                    help='Firestore kollekció neve (alapértelmezett: joszaki_kamera)')
+args = parser.parse_args()
+
+CSV_FILE   = args.csv_file
+COLLECTION = args.collection
 
 def get_token():
     result = subprocess.run('gcloud auth print-access-token',
                             capture_output=True, text=True, shell=True)
     token = result.stdout.strip()
     if not token:
-        print('HIBA: gcloud token nem elérhető')
+        print('HIBA: gcloud token nem elérhető. Futtasd: gcloud auth login')
         sys.exit(1)
     return token
 
@@ -39,6 +52,7 @@ def format_phone(raw):
     return '+36' + digits
 
 token = get_token()
+print(f'Token megszerzve. Kollekció: {COLLECTION}\n')
 
 # 1. Minták törlése
 print('Minták törlése...')

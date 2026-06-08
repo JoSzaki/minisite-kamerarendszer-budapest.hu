@@ -58,7 +58,7 @@
       "address":{"@type":"PostalAddress","addressLocality":SITE.varos,"addressRegion":SITE.kerulet,"addressCountry":"HU"},
       "areaServed":{"@type":"City","name":SITE.varos},
       "openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"08:00","closes":"18:00"},
-      "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"187","bestRating":"5"},
+      "aggregateRating":{"@type":"AggregateRating","ratingValue":"%%RATING_VALUE%%","reviewCount":"%%REVIEW_COUNT%%","bestRating":"5"},
       "priceRange":"$$"
     });
     ld({
@@ -345,6 +345,7 @@
 
 <!-- HERO -->
 <section class="hero" id="fooldal">
+  <canvas id="scrollAnimCanvas" class="hero-anim-canvas"></canvas>
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-badge">
@@ -358,9 +359,9 @@
         <a href="#kapcsolat" class="btn btn-ghost">Ingyenes felmérés</a>
       </div>
       <div class="hero-stats">
-        <div><span class="hero-stat-number">340+</span><div class="hero-stat-label">Elvégzett telepítés</div></div>
-        <div><span class="hero-stat-number">8 év</span><div class="hero-stat-label">Fővárosi tapasztalat</div></div>
-        <div><span class="hero-stat-number">4.9★</span><div class="hero-stat-label">187 Google-értékelés</div></div>
+        <div><span class="hero-stat-number">%%HERO_STAT_1_SZAM%%</span><div class="hero-stat-label">%%HERO_STAT_1_LABEL%%</div></div>
+        <div><span class="hero-stat-number">%%HERO_STAT_2_SZAM%%</span><div class="hero-stat-label">%%HERO_STAT_2_LABEL%%</div></div>
+        <div><span class="hero-stat-number">%%RATING_VALUE%%★</span><div class="hero-stat-label">%%REVIEW_COUNT%% Google-értékelés</div></div>
       </div>
     </div>
 
@@ -368,7 +369,7 @@
       <!-- Profil nézet — csak ?id= esetén látható -->
       <div class="cred-profile" id="credProfile">
         <div class="cred-photo">
-          <img id="profilImg" src="./profil.webp" alt="" loading="eager">
+          <img id="profilImg" src="/default-avatar.webp" alt="" loading="eager">
         </div>
         <div class="cred-name dyn-name">Kovács Péter</div>
         <div class="cred-role">Kamerarendszer szakértő · Budapest</div>
@@ -390,9 +391,9 @@
 <!-- STATS STRIP -->
 <div class="stats-strip">
   <div class="stats-inner">
-    <div class="stat-item"><span class="stat-num">340+</span><div class="stat-lbl">Telepített rendszer</div></div>
-    <div class="stat-item"><span class="stat-num">23</span><div class="stat-lbl">Budapesti Kerületben</div></div>
-    <div class="stat-item"><span class="stat-num">8 év</span><div class="stat-lbl">Fővárosi tapasztalat</div></div>
+    <div class="stat-item"><span class="stat-num">%%HERO_STAT_1_SZAM%%</span><div class="stat-lbl">%%STAT_STRIP_1_LABEL%%</div></div>
+    <div class="stat-item"><span class="stat-num">%%STAT_STRIP_2_SZAM%%</span><div class="stat-lbl">%%STAT_STRIP_2_LABEL%%</div></div>
+    <div class="stat-item"><span class="stat-num">%%HERO_STAT_2_SZAM%%</span><div class="stat-lbl">%%STAT_STRIP_3_LABEL%%</div></div>
     <div class="stat-item"><span class="stat-num">2 év</span><div class="stat-lbl">Garancia</div></div>
   </div>
 </div>
@@ -520,7 +521,7 @@
     <div class="sec-header reveal">
       <div class="sec-overline"><span>Vélemények</span></div>
       <h2 class="sec-title" style="color:var(--white)">Mit mondanak<br><em>ügyfeleink?</em></h2>
-      <p class="sec-desc" style="color:rgba(255,255,255,.5)">4.9/5 csillag — 187 Google Maps értékelés alapján</p>
+      <p class="sec-desc" style="color:rgba(255,255,255,.5)">%%RATING_VALUE%%/5 csillag — %%REVIEW_COUNT%% Google Maps értékelés alapján</p>
     </div>
     <div class="test-grid">
       <div class="test-card reveal" style="background:rgba(255,255,255,.04);border-color:rgba(196,149,90,.15)">
@@ -707,7 +708,7 @@
         || ('https://storage.googleapis.com/joszaki-assets/minisite_assests/' + id + '.webp');
       const img = document.getElementById('profilImg');
       if (img) {
-        img.onerror = () => { img.onerror = null; img.src = './profil.webp'; };
+        img.onerror = () => { img.onerror = null; img.src = '/default-avatar.webp'; };
         img.src = fotoUrl;
         if (name) img.alt = name + ' – Kamerarendszer szakértő';
       }
@@ -746,7 +747,7 @@
           "employee": { "@type": "Person", "@id": pageUrl + "#szemely" },
           "founder": { "@type": "Person", "name": name },
           "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "08:00", "closes": "18:00" },
-          "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "187", "bestRating": "5" },
+          "aggregateRating": { "@type": "AggregateRating", "ratingValue": "%%RATING_VALUE%%", "reviewCount": "%%REVIEW_COUNT%%", "bestRating": "5" },
           "priceRange": "$$",
           "sameAs": [joszakiUrl]
         });
@@ -856,6 +857,68 @@
     document.getElementById('editSaveBar').style.display = 'none';
     editPass = null;
   }
+</script>
+
+<script>
+(function () {
+  var hero = document.getElementById('fooldal');
+  var cvs  = document.getElementById('scrollAnimCanvas');
+  if (!hero || !cvs) return;
+
+  var ctx = cvs.getContext('2d');
+  var W = 1948, H = 1060;
+  var FRAME_COUNT = %%FRAME_COUNT%%;
+  var frames = new Array(FRAME_COUNT);
+  var loaded = 0;
+  var currentFrame = 0;
+
+  function setSize() {
+    cvs.width  = hero.offsetWidth  || window.innerWidth;
+    cvs.height = hero.offsetHeight || window.innerHeight;
+  }
+
+  function drawFrame(idx) {
+    var bmp = frames[idx];
+    if (!bmp) return;
+    var cw = cvs.width, ch = cvs.height;
+    var scale = Math.max(cw / W, ch / H);
+    var dw = W * scale, dh = H * scale;
+    ctx.clearRect(0, 0, cw, ch);
+    ctx.filter = 'invert(1)';
+    ctx.drawImage(bmp, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+    ctx.filter = 'none';
+  }
+
+  function onScroll() {
+    var rect = hero.getBoundingClientRect();
+    var frac = Math.max(0, Math.min(1, -rect.top / (rect.height * 0.4)));
+    var idx  = Math.round(frac * (FRAME_COUNT - 1));
+    if (idx !== currentFrame && frames[idx]) {
+      currentFrame = idx;
+      requestAnimationFrame(function () { drawFrame(idx); });
+    }
+  }
+
+  for (var i = 0; i < FRAME_COUNT; i++) {
+    (function (idx) {
+      var img = new Image();
+      img.onload = function () {
+        createImageBitmap(img).then(function (bmp) {
+          frames[idx] = bmp;
+          loaded++;
+          if (idx === 0) drawFrame(0);
+          if (loaded === FRAME_COUNT) {
+            window.addEventListener('scroll', onScroll, { passive: true });
+          }
+        });
+      };
+      img.src = './frames/f' + String(idx + 1).padStart(4, '0') + '.jpg';
+    })(i);
+  }
+
+  setSize();
+  window.addEventListener('resize', function () { setSize(); drawFrame(currentFrame); });
+})();
 </script>
 </body>
 </html>

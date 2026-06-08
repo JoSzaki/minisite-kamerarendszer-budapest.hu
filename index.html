@@ -418,7 +418,7 @@
       <!-- Profil nézet — csak ?id= esetén látható -->
       <div class="cred-profile" id="credProfile">
         <div class="cred-photo">
-          <img id="profilImg" src="./profil.webp" alt="" loading="eager">
+          <img id="profilImg" src="/default-avatar.webp" alt="" loading="eager">
         </div>
         <div class="cred-name dyn-name">Kovács Péter</div>
         <div class="cred-role">Kamerarendszer szakértő · Budapest</div>
@@ -970,7 +970,7 @@
         if (profile && form) { profile.style.display = 'block'; form.style.display = 'none'; }
         const img = document.getElementById('profilImg');
         if (img) {
-          img.onerror = () => { img.onerror = null; img.src = 'https://storage.googleapis.com/joszaki-assets/minisite_assests/default-avatar.png'; };
+          img.onerror = () => { img.onerror = null; img.src = '/default-avatar.webp'; };
           img.src = fotoUrl;
           if (name) img.alt = name + ' – Kamerarendszer szakértő';
         }
@@ -1151,7 +1151,7 @@
 
   var ctx = cvs.getContext('2d');
   var W = 1948, H = 1060;
-  var FRAME_COUNT = 61;
+  var FRAME_COUNT = 97;
   var frames = new Array(FRAME_COUNT);
   var loaded = 0;
   var currentFrame = 0;

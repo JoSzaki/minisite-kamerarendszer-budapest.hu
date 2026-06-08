@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kovács Zoltán – SOS villanyszerelő Budapest | VillanyGyors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1a3a6b; --navy-dark:#0f2347; --navy-light:#1e4d8c;
+    --red:#e8390e; --red-dark:#c42d0a;
+    --cream:#f1f5f9; --white:#fff;
+    --text:#334155; --text-mid:#64748b; --text-light:#94a3b8;
+    --warm:#c4955a; --border:rgba(15,35,71,.10); --border-soft:rgba(15,35,71,.06);
+    --ff-display:'Cormorant Garamond',Georgia,serif;
+    --ff-body:'Manrope',system-ui,sans-serif;
+    --ease:cubic-bezier(.23,1,.32,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:var(--ff-body);color:var(--text);line-height:1.65;
+    background:
+      radial-gradient(120% 80% at 100% 0%, rgba(26,58,107,.05), transparent 60%),
+      radial-gradient(100% 70% at 0% 100%, rgba(232,57,14,.04), transparent 55%),
+      var(--cream);
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+
+  /* ───── Header / entity grounding ───── */
+  .entity-head{padding:64px 0 28px;position:relative}
+  .eyebrow{
+    font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--red);font-weight:600;margin-bottom:14px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .eyebrow::before{content:"";width:34px;height:2px;background:var(--red)}
+  h1{
+    font-family:var(--ff-display);font-weight:500;
+    font-size:clamp(2.3rem,6vw,3.7rem);line-height:1.05;color:var(--navy-dark);
+    letter-spacing:-.01em;max-width:18ch;
+  }
+  .meta-row{
+    display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:24px;
+    font-size:.92rem;color:var(--text-mid);font-weight:500;
+  }
+  .meta-row span{display:flex;align-items:center;gap:8px}
+  .meta-row span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--warm)}
+  .head-cta{
+    display:inline-flex;align-items:center;gap:9px;margin-top:26px;
+    background:var(--red);color:#fff;text-decoration:none;font-weight:600;
+    padding:13px 24px;border-radius:50px;font-size:.95rem;
+    box-shadow:0 8px 22px rgba(232,57,14,.28);transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+  }
+  .head-cta:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(232,57,14,.36)}
+
+  /* ───── Tab bar ───── */
+  .tabs-shell{position:sticky;top:0;z-index:20;background:rgba(241,245,249,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .tablist{
+    display:flex;gap:4px;max-width:980px;margin:0 auto;padding:0 18px;
+    overflow-x:auto;scrollbar-width:none;
+  }
+  .tablist::-webkit-scrollbar{display:none}
+  .tab{
+    flex:0 0 auto;appearance:none;background:none;border:none;cursor:pointer;
+    font-family:var(--ff-body);font-weight:600;font-size:.92rem;color:var(--text-mid);
+    padding:18px 18px 16px;position:relative;white-space:nowrap;
+    transition:color .3s var(--ease);letter-spacing:.005em;
+  }
+  .tab .ix{font-family:var(--ff-display);font-size:.85rem;color:var(--text-light);margin-right:7px;font-style:italic}
+  .tab::after{
+    content:"";position:absolute;left:14px;right:14px;bottom:0;height:3px;border-radius:3px 3px 0 0;
+    background:var(--red);transform:scaleX(0);transform-origin:center;transition:transform .35s var(--ease);
+  }
+  .tab:hover{color:var(--navy)}
+  .tab[aria-selected="true"]{color:var(--navy-dark)}
+  .tab[aria-selected="true"] .ix{color:var(--red)}
+  .tab[aria-selected="true"]::after{transform:scaleX(1)}
+
+  /* ───── Panels ───── */
+  .panels{padding:46px 0 96px}
+  .panel{display:none}
+  .panel.active{display:block}
+  .panel.active .panel-h2,
+  .panel.active .qa{animation:rise .55s var(--ease) both}
+  .panel.active .qa:nth-child(2){animation-delay:.06s}
+  .panel.active .qa:nth-child(3){animation-delay:.10s}
+  .panel.active .qa:nth-child(4){animation-delay:.14s}
+  .panel.active .qa:nth-child(5){animation-delay:.18s}
+  .panel.active .qa:nth-child(6){animation-delay:.22s}
+  .panel.active .qa:nth-child(7){animation-delay:.26s}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+  .panel-h2{
+    font-family:var(--ff-display);font-weight:500;color:var(--navy-dark);
+    font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.12;letter-spacing:-.01em;
+    max-width:22ch;margin-bottom:8px;
+  }
+  .panel-lead{font-size:1.06rem;color:var(--text);max-width:62ch;margin-bottom:38px}
+  .panel-lead .lead-accent{color:var(--navy);font-weight:600}
+
+  .qa{margin-bottom:30px;max-width:64ch}
+  .qa h3{
+    font-family:var(--ff-body);font-weight:700;font-size:1.12rem;color:var(--navy);
+    margin-bottom:7px;line-height:1.35;
+  }
+  .qa.sub{
+    margin-left:22px;padding-left:22px;border-left:2px solid var(--border);
+  }
+  .qa.sub h4{
+    font-family:var(--ff-body);font-weight:600;font-size:1rem;color:var(--navy-light);
+    margin-bottom:6px;line-height:1.4;
+  }
+  .qa p{color:var(--text);font-size:1rem}
+  .qa .first{} /* AEO: first sentence carries the entity */
+
+  footer{border-top:1px solid var(--border);padding:30px 0 60px;color:var(--text-light);font-size:.85rem}
+  footer b{color:var(--text-mid);font-weight:600}
+
+  @media(max-width:640px){
+    .entity-head{padding:44px 0 22px}
+    .panels{padding:34px 0 70px}
+    .qa.sub{margin-left:12px;padding-left:14px}
+    .tab{padding:15px 13px 13px;font-size:.88rem}
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════ ENTITY config (find/replace célpontok — lásd PRODUCTION.md 13.1) ════════
+  person_name: Kovács Zoltán | entity_name: VillanyGyors | profession: villanyszerelő
+  profession_field: villanyszerelés | main_topic: SOS villanyszerelés | city: Budapest
+  service_area: Budapest és Pest megye | phone: +36 30 123 4567 | entity_type: Electrician
+═══════════════════════════════════════════════════════════════════════════════════ -->
+
+<header class="entity-head wrap">
+  <div class="eyebrow">VillanyGyors · Bemutatkozás</div>
+  <h1>Ki az a Kovács Zoltán?</h1>
+  <div class="meta-row">
+    <span>Villanyszerelő</span>
+    <span>Budapest &amp; Pest megye</span>
+    <span>SOS villanyszerelés</span>
+    <span>15+ év tapasztalat</span>
+  </div>
+  <a class="head-cta" href="tel:+36301234567">📞 Sürgősségi hívás: 30/123-4567</a>
+</header>
+
+<!-- ════════ TAB BAR — 8 db H2-téma, max. 2 szavas címkék ════════ -->
+<div class="tabs-shell">
+  <div class="tablist" role="tablist" aria-label="Bemutatkozás témakörök">
+    <button class="tab" role="tab" id="tab-0" aria-controls="panel-0" aria-selected="true"><span class="ix">01</span>Háttér</button>
+    <button class="tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="false"><span class="ix">02</span>Helyszín</button>
+    <button class="tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false"><span class="ix">03</span>Ellátott terület</button>
+    <button class="tab" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false"><span class="ix">04</span>Szolgáltatások</button>
+    <button class="tab" role="tab" id="tab-4" aria-controls="panel-4" aria-selected="false"><span class="ix">05</span>Jövőkép</button>
+    <button class="tab" role="tab" id="tab-5" aria-controls="panel-5" aria-selected="false"><span class="ix">06</span>Vezérelvek</button>
+    <button class="tab" role="tab" id="tab-6" aria-controls="panel-6" aria-selected="false"><span class="ix">07</span>Szemlélet</button>
+    <button class="tab" role="tab" id="tab-7" aria-controls="panel-7" aria-selected="false"><span class="ix">08</span>Kapcsolat</button>
+  </div>
+</div>
+
+<main class="panels wrap">
+
+  <!-- ░░ 01 — H2 #2 ░░ -->
+  <section class="panel active" id="panel-0" role="tabpanel" aria-labelledby="tab-0">
+    <h2 class="panel-h2">Mi Kovács Zoltán szakmai háttere?</h2>
+    <p class="panel-lead"><span class="lead-accent">Kovács Zoltán több mint 15 éve dolgozó budapesti villanyszerelő</span>, aki az SOS villanyszerelésre és a gyors hibaelhárításra szakosodott. A VillanyGyors alapítójaként napi szinten végez sürgősségi kiszállásokat Budapesten és Pest megyében.</p>
+
+    <div class="qa"><h3>Mi inspirálta Kovács Zoltánt, hogy villanyszerelő legyen?</h3><p>Kovács Zoltánt a kézzelfogható, azonnali eredmény vonzotta a villanyszerelő szakmába. Tizenévesen édesapja műhelyében ismerte meg az áram világát, és hamar rájött, hogy egy jól elvégzett hibaelhárítás közvetlenül teszi biztonságosabbá egy család otthonát.</p></div>
+
+    <div class="qa"><h3>Milyen villanyszerelési szakterületekre specializálódott Kovács Zoltán?</h3><p>Kovács Zoltán fő szakterülete az SOS villanyszerelés: zárlat- és hibakeresés, biztosítótábla-csere, kapcsoló- és konnektorhibák, valamint érintésvédelmi felülvizsgálat. Emellett lakások és társasházak teljes elektromos felújítását is vállalja.</p></div>
+
+    <div class="qa"><h3>Mi Kovács Zoltán küldetése és jövőképe a villanyszerelés terén?</h3><p>Kovács Zoltán küldetése, hogy az áramhibát percek, ne napok alatt oldja meg. Hisz abban, hogy az átlátható, fix áras, gyors villanyszerelés mindenki számára elérhető kell, hogy legyen Budapesten.</p></div>
+
+    <div class="qa"><h3>Hogyan határozza meg Kovács Zoltán a sikert a villanyszerelő munkában?</h3><p>Kovács Zoltán számára a siker az elsőre, véglegesen megoldott hiba és a visszatérő ügyfél. Egy munkát akkor tekint befejezettnek, ha az ügyfél biztonságban érzi magát, és érti, mi okozta a problémát.</p></div>
+
+    <div class="qa"><h3>Milyen Kovács Zoltán szakmai pályafutása?</h3><p>Kovács Zoltán pályafutása 2009-ben indult segédként, majd önálló vállalkozóként folytatta. 2016 óta a VillanyGyors márka alatt dolgozik, amely mára Budapest egyik legismertebb sürgősségi villanyszerelő szolgáltatása.</p></div>
+
+    <div class="qa"><h3>Mely cégekkel vagy intézményekkel dolgozott Kovács Zoltán?</h3><p>Kovács Zoltán dolgozott nagyobb kivitelező cégekkel társasházi felújításokon, valamint ingatlankezelőkkel és biztosítókkal kárfelmérési és helyreállítási munkákon. Ma elsősorban közvetlen lakossági és kisvállalati megrendelőket szolgál ki.</p></div>
+
+    <div class="qa sub"><h4>Melyek Kovács Zoltán kiemelkedő munkái vagy eredményei?</h4><p>Kovács Zoltán nevéhez fűződik több mint 4000 sürgősségi kiszállás és egy 120 lakásos társasház teljes elektromos hálózatának felújítása. Számos esetben hárított el tűzveszélyes zárlatot még a baj bekövetkezte előtt.</p></div>
+
+    <div class="qa"><h3>Hogyan járult hozzá Kovács Zoltán a villanyszerelő szakmai közösséghez?</h3><p>Kovács Zoltán rendszeresen oszt meg gyakorlati hibaelhárítási tudást fiatal szakemberekkel, és mentorként segíti a pályakezdő villanyszerelőket. Online is publikál közérthető tartalmakat az otthoni elektromos biztonságról.</p></div>
+
+    <div class="qa"><h3>Melyek Kovács Zoltán fontosabb elismerései, díjai vagy referenciái?</h3><p>Kovács Zoltán legfontosabb referenciája a több mint 300 ötcsillagos ügyfélértékelés a JóSzaki.hu-n. Munkáját több ingatlankezelő ajánlja állandó partnerként.</p></div>
+
+    <div class="qa sub"><h4>Tagja-e Kovács Zoltán szakmai szövetségnek vagy kamarának?</h4><p>Kovács Zoltán a Magyar Elektrotechnikai Egyesület tagja, és érvényes érintésvédelmi szabványossági felülvizsgálói jogosultsággal rendelkezik. Ez garantálja, hogy munkája megfelel a hatályos szabványoknak.</p></div>
+  </section>
+
+  <!-- ░░ 02 — H2 #13 ░░ -->
+  <section class="panel" id="panel-1" role="tabpanel" aria-labelledby="tab-1">
+    <h2 class="panel-h2">Hol dolgozik jelenleg Kovács Zoltán?</h2>
+    <p class="panel-lead"><span class="lead-accent">Kovács Zoltán jelenleg Budapesten dolgozik</span>, a XIII. kerületi telephelyéről indulva. Innen éri el leggyorsabban a fővárost és Pest megye agglomerációját.</p>
+
+    <div class="qa"><h3>Honnan származik Kovács Zoltán?</h3><p>Kovács Zoltán Vácon született, és a Dunakanyarban nőtt fel. Húsz éve költözött Budapestre, a várost ma második otthonának tekinti.</p></div>
+
+    <div class="qa sub"><h4>Helyben, régiósan vagy országosan dolgozik Kovács Zoltán?</h4><p>Kovács Zoltán elsősorban helyben, Budapesten és Pest megyében dolgozik. Sürgősségi kiszállást a fővárosban átlagosan 60 percen belül vállal; országos munkát csak előzetes egyeztetéssel.</p></div>
+  </section>
+
+  <!-- ░░ 03 — H2 #16 ░░ -->
+  <section class="panel" id="panel-2" role="tabpanel" aria-labelledby="tab-2">
+    <h2 class="panel-h2">Mely területeket vagy városokat szolgálja ki Kovács Zoltán?</h2>
+    <p class="panel-lead"><span class="lead-accent">Kovács Zoltán Budapest mind a 23 kerületét és Pest megye agglomerációs településeit szolgálja ki.</span> Az SOS kiszállás súlypontja a belső és észak-pesti kerületek.</p>
+
+    <div class="qa"><h3>Milyen Kovács Zoltán szakmai képzettsége?</h3><p>Kovács Zoltán szakképzett villanyszerelő, erősáramú végzettséggel és érintésvédelmi minősítéssel. Tudását folyamatos továbbképzésekkel tartja naprakészen.</p></div>
+
+    <div class="qa sub"><h4>Mely iskolákban vagy képzéseken vett részt Kovács Zoltán?</h4><p>Kovács Zoltán a Bláthy Ottó Szakközépiskolában szerezte villanyszerelő szakképesítését, majd OKJ-s erősáramú berendezés-szerelő képzést végzett.</p></div>
+
+    <div class="qa sub"><h4>Milyen képesítéseket, tanúsítványokat vagy speciális képzéseket szerzett Kovács Zoltán?</h4><p>Kovács Zoltán rendelkezik érintésvédelmi szabványossági felülvizsgálói jogosultsággal, kisfeszültségű kapcsolóberendezés-szerelői képesítéssel és tűzvédelmi szakvizsgával.</p></div>
+
+    <div class="qa sub"><h4>Hogyan tartja naprakészen Kovács Zoltán a tudását a változó szabványok, előírások és technológiák terén?</h4><p>Kovács Zoltán évente részt vesz az MSZ HD 60364 szabványfrissítésekhez kapcsolódó továbbképzéseken, és követi az új érintésvédelmi és tűzvédelmi előírásokat. Az új mérőműszereket és okos elektromos megoldásokat folyamatosan beépíti a munkájába.</p></div>
+  </section>
+
+  <!-- ░░ 04 — H2 #21 ░░ -->
+  <section class="panel" id="panel-3" role="tabpanel" aria-labelledby="tab-3">
+    <h2 class="panel-h2">Milyen villanyszerelési szolgáltatásokat kínál Kovács Zoltán?</h2>
+    <p class="panel-lead"><span class="lead-accent">Kovács Zoltán teljes körű villanyszerelési szolgáltatást kínál</span>, a sürgősségi hibaelhárítástól a tervezett felújításig. A hangsúly az SOS villanyszerelésen és a biztosítótábla-cserén van.</p>
+
+    <div class="qa"><h3>Hogyan közelíti meg Kovács Zoltán az ügyfélmunkát és a munkavégzést?</h3><p>Kovács Zoltán minden munkát helyszíni felméréssel és a hiba okának azonosításával kezd. Csak azután lát neki, hogy az ügyfél megértette a problémát és jóváhagyta a fix árat.</p></div>
+
+    <div class="qa"><h3>Milyen ügyfél- vagy ingatlantípusokat szolgál ki jellemzően Kovács Zoltán?</h3><p>Kovács Zoltán jellemzően lakástulajdonosokat, társasházakat, irodákat és kisvállalkozásokat szolgál ki. Gyakran hívják ingatlankezelők és rövidtávú lakáskiadók is gyors hibaelhárításra.</p></div>
+
+    <div class="qa"><h3>Mi Kovács Zoltán filozófiája az árazásról és a problémamegoldásról?</h3><p>Kovács Zoltán fix, előre közölt árakkal dolgozik, rejtett költségek nélkül. A problémamegoldásban a gyökérok megszüntetését részesíti előnyben a tüneti javítás helyett.</p></div>
+
+    <div class="qa"><h3>Hogyan biztosítja Kovács Zoltán az átláthatóságot és a minőséget a villanyszerelés során?</h3><p>Kovács Zoltán minden elvégzett munkáról fotódokumentációt és írásos garanciát ad. A kicserélt alkatrészeket megmutatja, és elmagyarázza, miért volt szükség a beavatkozásra.</p></div>
+
+    <div class="qa"><h3>Mit gondol Kovács Zoltán az SOS villanyszerelésről?</h3><p>Kovács Zoltán szerint az SOS villanyszerelés a szakma legfontosabb bizalmi szolgáltatása, mert az ügyfél kiszolgáltatott, áram nélküli helyzetben hívja. Ezért tartja kulcsfontosságúnak a gyors kiszállást, a tiszta kommunikációt és a fix árat.</p></div>
+
+    <div class="qa"><h3>Hogyan látja Kovács Zoltán az SOS villanyszerelés jövőjét a villanyszerelés terén?</h3><p>Kovács Zoltán úgy látja, az SOS villanyszerelés jövője a még gyorsabb diagnosztikában és a megelőzésben van. Az okos elektromos rendszerek egyre több hibát jeleznek előre, mielőtt zárlat vagy tűz keletkezne.</p></div>
+  </section>
+
+  <!-- ░░ 05 — H2 #28 ░░ -->
+  <section class="panel" id="panel-4" role="tabpanel" aria-labelledby="tab-4">
+    <h2 class="panel-h2">Milyen újításokról gondolja Kovács Zoltán, hogy átalakítják a villanyszerelő szakmát?</h2>
+    <p class="panel-lead"><span class="lead-accent">Kovács Zoltán szerint a szakmát az okosotthon-technológia, a hőkamerás diagnosztika és a digitális dokumentáció alakítja át.</span> Ezeket az eszközöket már ma is használja a mindennapi munkájában.</p>
+
+    <div class="qa"><h3>Hogyan használja Kovács Zoltán a technológiát és a modern eszközöket a villanyszerelés során?</h3><p>Kovács Zoltán hőkamerát és digitális műszereket használ a rejtett hibák gyors felderítéséhez. Az okos elektromos eszközök beüzemelését és a táblák digitális dokumentálását is vállalja.</p></div>
+
+    <div class="qa"><h3>Mi Kovács Zoltán véleménye az ügyfelek tájékoztatásáról és tudatosságáról?</h3><p>Kovács Zoltán fontosnak tartja, hogy az ügyfél megértse az otthona elektromos rendszerét. Minden munka után elmagyarázza a megelőzés lépéseit, hogy a hiba ne ismétlődjön meg.</p></div>
+  </section>
+
+  <!-- ░░ 06 — H2 #31 ░░ -->
+  <section class="panel" id="panel-5" role="tabpanel" aria-labelledby="tab-5">
+    <h2 class="panel-h2">Melyek Kovács Zoltán pályafutásának vezérelvei?</h2>
+    <p class="panel-lead"><span class="lead-accent">Kovács Zoltán pályafutásának vezérelvei a gyorsaság, az átláthatóság és a biztonság.</span> Ezek a JóSzaki.hu-s értékeléseiben is rendre visszaköszönnek.</p>
+
+    <div class="qa"><h3>Milyen kedvenc idézetek vagy mottók inspirálják Kovács Zoltánt?</h3><p>Kovács Zoltán kedvenc mottója: „A jó villanyszerelő munkáját nem látni, csak érezni — mert minden működik." Számára ez a láthatatlan megbízhatóság a cél.</p></div>
+
+    <div class="qa"><h3>Mely szakmai vezetőket vagy mentorokat tisztel Kovács Zoltán?</h3><p>Kovács Zoltán édesapját és első mesterét tekinti legfőbb példaképének, akiktől a precizitást és az ügyfél tiszteletét tanulta. A szakmában azokat becsüli, akik a biztonságot soha nem áldozzák fel a gyorsaságért.</p></div>
+
+    <div class="qa"><h3>Mi motiválja Kovács Zoltánt, hogy folyamatosan minőségi munkát végezzen?</h3><p>Kovács Zoltánt az motiválja, hogy egy-egy kiszállással valódi veszélyt — zárlatot, tűzveszélyt — háríthat el. A megkönnyebbült ügyfél visszajelzése adja a napi lendületet.</p></div>
+  </section>
+
+  <!-- ░░ 07 — H2 #35 ░░ -->
+  <section class="panel" id="panel-6" role="tabpanel" aria-labelledby="tab-6">
+    <h2 class="panel-h2">Hogyan egyensúlyozza Kovács Zoltán a szakmai kiválóságot az ügyfélközpontúsággal?</h2>
+    <p class="panel-lead"><span class="lead-accent">Kovács Zoltán a szabványos, precíz munkát empátiával párosítja</span>, és emberként kezeli a stresszes helyzetben lévő ügyfelet. Több csatornán is elérhető.</p>
+
+    <div class="qa"><h3>Melyek Kovács Zoltán / VillanyGyors hivatalos közösségi média fiókjai?</h3><p>Kovács Zoltán és a VillanyGyors hivatalos oldalai a Facebookon és az Instagramon érhetők el @villanygyors néven. Itt oszt meg hibaelhárítási tippeket és munkafotókat.</p></div>
+
+    <div class="qa"><h3>Hol találhatók Kovács Zoltán cikkei, referenciái vagy interjúi?</h3><p>Kovács Zoltán referenciái és ügyfélértékelései a JóSzaki.hu profilján olvashatók. Szakmai tippjeit a VillanyGyors blogján publikálja.</p></div>
+
+    <div class="qa"><h3>Hogyan lehet kapcsolatba lépni Kovács Zoltánnal konzultáció céljából?</h3><p>Kovács Zoltán a nap 24 órájában elérhető a +36 30 123 4567 számon sürgősségi esetekre. Nem sürgős ügyekben e-mailben (info@villanygyors.hu) is fogad megkereséseket.</p></div>
+  </section>
+
+  <!-- ░░ 08 — H2 #39 ░░ -->
+  <section class="panel" id="panel-7" role="tabpanel" aria-labelledby="tab-7">
+    <h2 class="panel-h2">Hogyan lehet időpontot foglalni vagy árajánlatot kérni Kovács Zoltántól?</h2>
+    <p class="panel-lead"><span class="lead-accent">Kovács Zoltántól időpontot foglalni vagy árajánlatot kérni telefonon, e-mailben vagy a JóSzaki.hu-n keresztül lehet.</span> Sürgősségi esetben a telefon a leggyorsabb út.</p>
+
+    <div class="qa"><h3>Kínál-e Kovács Zoltán online konzultációt vagy online foglalást?</h3><p>Kovács Zoltán kínál online konzultációt: fotó vagy videó alapján előzetes diagnózist és becsült árat ad, mielőtt kiszállna. Az időpontfoglalás a VillanyGyors oldalán online is elérhető.</p></div>
+
+    <a class="head-cta" href="tel:+36301234567" style="margin-top:8px">📞 Időpont &amp; árajánlat: 30/123-4567</a>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <p><b>VillanyGyors</b> — SOS villanyszerelés Budapesten és Pest megyében · +36 30 123 4567 · info@villanygyors.hu</p>
+</footer>
+
+<script>
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+
+  function activate(i, focus){
+    tabs.forEach(function(t,k){ t.setAttribute('aria-selected', k===i ? 'true':'false'); t.tabIndex = k===i ? 0 : -1; });
+    panels.forEach(function(p,k){
+      // re-trigger entry animation by toggling the class
+      if(k===i){ p.classList.remove('active'); void p.offsetWidth; p.classList.add('active'); }
+      else p.classList.remove('active');
+    });
+    if(focus){ tabs[i].focus(); tabs[i].scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'}); }
+  }
+
+  tabs.forEach(function(tab,i){
+    tab.addEventListener('click', function(){ activate(i,false); });
+    tab.addEventListener('keydown', function(e){
+      var n = tabs.length;
+      if(e.key==='ArrowRight'||e.key==='ArrowDown'){ e.preventDefault(); activate((i+1)%n,true); }
+      else if(e.key==='ArrowLeft'||e.key==='ArrowUp'){ e.preventDefault(); activate((i-1+n)%n,true); }
+      else if(e.key==='Home'){ e.preventDefault(); activate(0,true); }
+      else if(e.key==='End'){ e.preventDefault(); activate(n-1,true); }
+    });
+  });
+
+  // alapból az első téma nyitva
+  activate(0,false);
+})();
+</script>
+</body>
+</html>

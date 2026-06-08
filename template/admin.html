@@ -232,7 +232,7 @@ function renderProfiles(){
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td><div class="profile-cell">
-        <img src="${fotoUrl}" onerror="this.src='./profil.webp'" alt="">
+        <img src="${fotoUrl}" onerror="this.src='/default-avatar.webp'" alt="">
         <div><div class="pname">${p.name || p.id}</div><div class="pid">id: ${p.id}</div></div>
       </div></td>
       <td>${p.phone || '—'}</td>

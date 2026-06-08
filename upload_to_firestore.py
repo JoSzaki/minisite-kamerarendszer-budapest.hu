@@ -1,8 +1,22 @@
-import csv, json, subprocess, urllib.request, urllib.error, sys
+import csv, json, subprocess, urllib.request, urllib.error, sys, argparse
 
-PROJECT    = 'joszaki-minisite'
-COLLECTION = 'joszaki_kamera'
-CSV_FILE   = r'C:\Users\Szabó Norbert\Downloads\Budapesti Biztonságtechnikusok 1-7 ker - Biztonságtechnika -Budapest 1-8ker.csv'
+PROJECT = 'joszaki-minisite'
+
+parser = argparse.ArgumentParser(
+    description='Firestore feltöltő — joszaki.hu CSV alapján (töröl + újratölt)',
+    formatter_class=argparse.RawDescriptionHelpFormatter,
+    epilog='''Példák:
+  python upload_to_firestore.py szakemberek.csv
+  python upload_to_firestore.py szakemberek.csv --collection joszaki_lakatos
+'''
+)
+parser.add_argument('csv_file', help='CSV fájl elérési útja (joszaki.hu export)')
+parser.add_argument('--collection', default='joszaki_kamera',
+                    help='Firestore kollekció neve (alapértelmezett: joszaki_kamera)')
+args = parser.parse_args()
+
+CSV_FILE   = args.csv_file
+COLLECTION = args.collection
 
 def get_token():
     result = subprocess.run(
@@ -55,7 +69,7 @@ def upload_doc(doc_id, fields, token):
         return e.code
 
 token = get_token()
-print(f'Token megszerzve.\n')
+print(f'Token megszerzve. Kollekció: {COLLECTION}\n')
 
 # 1. Meglévő dokumentumok törlése
 print('Meglévő dokumentumok törlése...')

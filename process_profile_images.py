@@ -30,14 +30,34 @@ DEFAULT_AVATAR_URL = "https://joszaki.hu/_nuxt/img/default-avatar.9677c28.png"
 DEFAULT_AVATAR_GCS_NAME = "default-avatar.webp"
 GCS_BUCKET = "gs://joszaki-assets/minisite_assests/"
 GCS_PUBLIC_BASE = "https://storage.googleapis.com/joszaki-assets/minisite_assests/"
-SHEET_ID = "1WM2IOBZqdTLEsNnTYBrwSIDwlZddBetVg0Cv01rGrnU"
-SHEET_GID = "1184434414"
+SHEET_ID = "1zgh1l2vZDSTYoMexiUY77JhGjVpenRcDGUnw2nCEAdA"
+SHEET_GID = "0"
 SHEET_CSV_URL = f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid={SHEET_GID}"
-GSUTIL = r"C:\Users\Szabó Norbert\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin\gsutil.cmd"
-GCLOUD = r"C:\Users\Szabó Norbert\AppData\Local\Google\Cloud SDK\google-cloud-sdk\bin\gcloud.cmd"
+def _find_tool(name):
+    import shutil
+    # 1. env var override (GSUTIL_PATH / GCLOUD_PATH)
+    env_key = name.upper().replace('.', '_') + '_PATH'
+    if os.environ.get(env_key):
+        return os.environ[env_key]
+    # 2. PATH-ban van?
+    found = shutil.which(name)
+    if found:
+        return found
+    # 3. Windows Cloud SDK tipikus helye
+    sdk = os.path.join(os.environ.get('LOCALAPPDATA', ''), 'Google', 'Cloud SDK',
+                       'google-cloud-sdk', 'bin', name + ('.cmd' if os.name == 'nt' else ''))
+    if os.path.exists(sdk):
+        return sdk
+    raise FileNotFoundError(
+        f"'{name}' nem található. Telepítsd a Google Cloud SDK-t, vagy állítsd be a {env_key} env változót."
+    )
 
-OAUTH_CLIENT_PATH = "C:/Temp/oauth_desktop.json"
-OAUTH_TOKEN_PATH = "C:/Temp/oauth_token.json"
+GSUTIL = _find_tool('gsutil')
+GCLOUD = _find_tool('gcloud')
+
+_tmp_base = os.environ.get('JOSZAKI_TMP', os.path.join(os.environ.get('TEMP', 'C:/Temp'), 'joszaki'))
+OAUTH_CLIENT_PATH = os.environ.get('OAUTH_CLIENT_PATH', os.path.join(_tmp_base, 'oauth_desktop.json'))
+OAUTH_TOKEN_PATH  = os.environ.get('OAUTH_TOKEN_PATH',  os.path.join(_tmp_base, 'oauth_token.json'))
 SHEETS_SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
 
@@ -49,11 +69,28 @@ def get_sheets_client():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
+            import webbrowser
+            chrome = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+            if os.path.exists(chrome):
+                webbrowser.register("chrome", None, webbrowser.BackgroundBrowser(chrome))
+                webbrowser._tryorder.insert(0, "chrome")
             flow = InstalledAppFlow.from_client_secrets_file(OAUTH_CLIENT_PATH, SHEETS_SCOPES)
             creds = flow.run_local_server(port=0)
         with open(OAUTH_TOKEN_PATH, "w") as f:
             f.write(creds.to_json())
     return gspread.authorize(creds)
+
+
+def get_or_create_foto_col(worksheet):
+    """Megkeresi a 'foto' oszlopot, ha nincs létrehozza a végén. 1-alapú oszlopindexet ad vissza."""
+    header = worksheet.row_values(1)
+    for i, h in enumerate(header):
+        if h.strip().lower() == "foto":
+            return i + 1
+    new_col = len(header) + 1
+    worksheet.update_cell(1, new_col, "foto")
+    print(f"  'foto' oszlop létrehozva ({new_col}. oszlop)")
+    return new_col
 
 
 def load_sheet_data(worksheet, limit=None, offset=None, force=False):
@@ -65,10 +102,16 @@ def load_sheet_data(worksheet, limit=None, offset=None, force=False):
     header = all_rows[0]
     try:
         seo_col = next(
-            header.index(h) for h in ("seo_name", "SEO név", "SEO nev") if h in header
+            header.index(h) for h in ("seo_name", "SEO név", "SEO nev", "SEO_név", "SEO_nev") if h in header
         )
     except StopIteration:
         seo_col = 1
+    try:
+        foto_col = next(
+            header.index(h) for h in ("foto", "Foto", "kép", "image_url") if h in header
+        )
+    except StopIteration:
+        foto_col = None
     result = []
     skipped = 0
     for i, row in enumerate(all_rows[1:], start=2):
@@ -79,8 +122,8 @@ def load_sheet_data(worksheet, limit=None, offset=None, force=False):
         seo_name = row[seo_col].strip()
         if not seo_name:
             continue
-        if not force:
-            existing_url = row[10].strip() if len(row) > 10 else ""
+        if not force and foto_col is not None:
+            existing_url = row[foto_col].strip() if len(row) > foto_col else ""
             if existing_url:
                 skipped += 1
                 continue
@@ -92,8 +135,13 @@ def load_sheet_data(worksheet, limit=None, offset=None, force=False):
     return result
 
 
+_foto_col_cache = None
+
 def write_image_url_to_sheet(worksheet, row_index, public_url):
-    worksheet.update_cell(row_index, 11, public_url)
+    global _foto_col_cache
+    if _foto_col_cache is None:
+        _foto_col_cache = get_or_create_foto_col(worksheet)
+    worksheet.update_cell(row_index, _foto_col_cache, public_url)
 
 
 def get_profile_image_url(slug):

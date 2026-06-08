@@ -1,15 +1,22 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /joszaki_kamera/{doc} {
-      allow read: if true;
+
+    // Profil kollekciók: joszaki_kamera, joszaki_lakatos, joszaki_viz stb.
+    // Névkonvenció: joszaki_ + egyetlen szó (csak kisbetűk)
+    match /{collection}/{doc} {
+      allow read: if collection.matches('^joszaki_[a-z]+$');
     }
-    match /joszaki_kamera_erdekel/{doc} {
-      allow create: if true;
-      allow read, update, delete: if false;
+
+    // Érdeklődő kollekciók: joszaki_kamera_erdekel, joszaki_lakatos_erdekel stb.
+    match /{collection}/{doc} {
+      allow create, read: if collection.matches('^joszaki_[a-z]+_erdekel$');
     }
+
+    // Minden más: tiltva
     match /{document=**} {
       allow read, write: if false;
     }
+
   }
 }
