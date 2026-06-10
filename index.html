@@ -246,10 +246,9 @@
     .contact-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:860px;margin:0 auto}
     .contact-card{background:var(--white);border-radius:16px;padding:36px 28px;text-align:center;box-shadow:0 2px 16px rgba(26,58,107,.08);border:1.5px solid transparent;text-decoration:none;color:inherit;transition:transform .2s,border-color .2s,box-shadow .2s;display:block}
     .contact-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(26,58,107,.14);border-color:var(--navy)}
-    .contact-card-primary{background:var(--navy);color:var(--white)}
-    .contact-card-primary .cc-label,.contact-card-primary .cc-note{color:rgba(255,255,255,.6)}
-    .contact-card-primary .cc-value{color:var(--white)}
-    .contact-card-primary:hover{border-color:var(--warm)}
+    .contact-card-primary{border-color:var(--warm);box-shadow:0 2px 20px rgba(197,145,80,.18)}
+    .contact-card-primary .cc-icon{filter:drop-shadow(0 0 6px rgba(197,145,80,.4))}
+    .contact-card-primary:hover{border-color:var(--warm);box-shadow:0 8px 32px rgba(197,145,80,.28)}
     .cc-icon{font-size:2rem;margin-bottom:14px}
     .cc-label{font-size:.68rem;text-transform:uppercase;letter-spacing:2px;color:var(--text-light);margin-bottom:6px;font-weight:600}
     .cc-value{font-size:1.05rem;font-weight:700;color:var(--navy-dark);margin-bottom:6px;word-break:break-all}
@@ -837,7 +836,7 @@
       <h2 class="sec-title">Hívjon fel vagy írjon —<br><em>visszahívunk!</em></h2>
     </div>
     <div class="contact-cards reveal">
-      <a href="tel:+3612345678" class="contact-card contact-card-primary dyn-phone">
+      <a href="tel:+3612345678" class="contact-card contact-card-primary">
         <div class="cc-icon">📞</div>
         <div class="cc-label">Telefon</div>
         <div class="cc-value dyn-phone">+36-1-234-5678</div>
