@@ -995,24 +995,11 @@
           "worksFor": { "@type": "LocalBusiness", "@id": siteUrl + "#vallalkozas" }
         });
 
-        injectLd({
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          "@id": siteUrl + "#vallalkozas",
-          "name": name + " – Kamerarendszer Budapest",
-          "description": SITE.description,
-          "url": siteUrl,
-          "telephone": phone || SITE.telefon,
-          "image": fotoUrl,
-          "address": { "@type": "PostalAddress", "addressLocality": SITE.varos, "addressRegion": SITE.kerulet, "addressCountry": "HU" },
-          "areaServed": { "@type": "City", "name": SITE.varos },
-          "employee": { "@type": "Person", "@id": pageUrl + "#szemely" },
-          "founder": { "@type": "Person", "name": name },
-          "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "08:00", "closes": "18:00" },
-          "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "reviewCount": "187", "bestRating": "5" },
-          "priceRange": "$$",
-          "sameAs": [joszakiUrl]
-        });
+        if (phone) {
+          document.head.querySelectorAll('script[type="application/ld+json"]').forEach(s => {
+            try { const d = JSON.parse(s.textContent); if (d['@type'] === SITE.schemaType) { d.telephone = phone; s.textContent = JSON.stringify(d); } } catch(e) {}
+          });
+        }
       }
     } catch(e) {}
   })();
