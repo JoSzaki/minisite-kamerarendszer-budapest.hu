@@ -936,13 +936,10 @@
         if (!res.ok) throw new Error();
         f = (await res.json()).fields || {};
       } else {
-        const res = await fetch(FB_COL + '?key=' + FB_KEY2 + '&pageSize=1');
+        const res = await fetch(FB_COL + '/ruttkay-gabor?key=' + FB_KEY2);
         if (!res.ok) throw new Error();
-        const data = await res.json();
-        const docs = data.documents || [];
-        if (!docs.length) throw new Error();
-        resolvedId = docs[0].name.split('/').pop();
-        f = docs[0].fields || {};
+        f = (await res.json()).fields || {};
+        resolvedId = 'ruttkay-gabor';
       }
       const name  = f.name?.stringValue;
       const phone = f.phone?.stringValue;
@@ -963,16 +960,14 @@
       const fotoUrl = f.foto?.stringValue
         || ('https://storage.googleapis.com/joszaki-assets/minisite_assests/' + resolvedId + '.webp');
 
-      if (id) {
-        const profile = document.getElementById('credProfile');
-        const form    = document.getElementById('credForm');
-        if (profile && form) { profile.style.display = 'block'; form.style.display = 'none'; }
-        const img = document.getElementById('profilImg');
-        if (img) {
-          img.onerror = () => { img.onerror = null; img.src = '/default-avatar.webp'; };
-          img.src = fotoUrl;
-          if (name) img.alt = name + ' – Kamerarendszer szakértő';
-        }
+      const profile = document.getElementById('credProfile');
+      const form    = document.getElementById('credForm');
+      if (profile && form) { profile.style.display = 'block'; form.style.display = 'none'; }
+      const img = document.getElementById('profilImg');
+      if (img) {
+        img.onerror = () => { img.onerror = null; img.src = '/default-avatar.webp'; };
+        img.src = fotoUrl;
+        if (name) img.alt = name + ' – Kamerarendszer szakértő';
       }
 
       if (name) {
